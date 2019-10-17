@@ -128,7 +128,8 @@ class MainController extends Controller {
         else
         {
         	$auctions = $this->helpers->getAuctions();
-        }     
+        }   
+        #dd($auctions);		
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
 		$title = "Kloud Auctions";

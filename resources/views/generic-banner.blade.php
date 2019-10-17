@@ -1,5 +1,5 @@
 	<!-- Page info -->
-	<div class="page-top-info">
+	<div class="page-top-info wow rubberBand">
 		<div class="container">
 			<h4><?=$title?></h4>
 			<div class="site-pagination">

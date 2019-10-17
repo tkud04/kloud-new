@@ -10,25 +10,26 @@
 <meta name="robots" content="index, follow">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->
-	<link href="../img/kloudlogo.PNG" rel="shortcut icon"/>
+	<link href="{{asset('../img/kloudlogo.PNG')}}" rel="shortcut icon"/>
 
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
 
 
 	<!-- Styles -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/flaticon.css"/>
-	<link rel="stylesheet" href="css/slicknav.min.css"/>
-	<link rel="stylesheet" href="css/jquery-ui.min.css"/>
-	<link rel="stylesheet" href="css/owl.carousel.min.css"/>
-	<link rel="stylesheet" href="css/animate.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
-	<link rel="stylesheet" href="css/custom.css"/>
+	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/flaticon.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/slicknav.min.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/jquery-ui.min.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/animate.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/style.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/custom.css')}}"/>
 	
-   <!-- kojo editor -->
-	<link rel="stylesheet" href="lib/kojo/style.css"> <!-- Core -->
+	<!-- kojo editor -->
+	<link rel="stylesheet" href="{{asset('lib/kojo/style.css')}}"> <!-- Core -->
+    
     
 	@yield('styles')
 
@@ -36,10 +37,11 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-    <script src="js/helper.js"></script>
+    <script src="{{asset('js/helper.js')}}"></script>
 	
-	<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-3.2.1.min.js"></script>
+	
+	<!--====== Jquery ======-->
+	<script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -55,7 +57,7 @@
 					<div class="col-lg-2 text-center text-lg-left">
 						<!-- logo -->
 						<a href="{{url('/')}}" class="site-logo">
-							<img src="img/kloudlogo.PNG" alt="">
+							<img src="{{asset('img/kloudlogo.PNG')}}" alt="">
 						</a>
 					</div>
 					<div class="col-xl-6 col-lg-5">
@@ -163,7 +165,7 @@
 	<!-- Banner section -->
 	<section class="banner-section wow rubberBand">
 		<div class="container">
-			<div class="banner set-bg" data-setbg="img/banner-bg.jpg">
+			<div class="banner set-bg" data-setbg="{{asset('img/banner-bg.jpg')}}">
 				<div class="tag-new">NEW</div>
 				<span>New Arrivals</span>
 				<h2>STRIPED SHIRTS</h2>
@@ -209,7 +211,7 @@
 					</div>
 				</div>
 				<div class="col-lg-3 col-sm-6">
-					<img src="../img/kloudlogo.PNG" alt="">
+					<img src="{{asset('../img/kloudlogo.PNG')}}" alt="">
 				</div>
 				<div class="col-lg-3 col-sm-6">
 					<div class="footer-widget contact-widget">
@@ -254,24 +256,23 @@
 
 
 	<!--====== Scripts ======-->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="{{asset('js/bootstrap.min.js')}}"></script>
 	<!-- wow js -->
-	<script src="js/wow.js"></script>
+	<script src="{{asset('js/wow.js')}}"></script>
               <script>
               new WOW().init();
               </script>
-			  
-    <!-- Kojo editor -->
-  <script src="lib/kojo/helpers.js"></script>
+	<!-- Kojo editor -->
+  <script src="{{asset('lib/kojo/helpers.js')}}"></script>
        @yield('kojo')
-  <script src="lib/kojo/main.js"></script>
-    <script src="js/jquery.slicknav.min.js"></script>
-	<script src="js/scrollup.min.js"></script>
-	<script src="js/owl.carousel.min.js"></script>
-	<script src="js/jquery.nicescroll.min.js"></script>
-	<script src="js/jquery.zoom.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/main.js"></script>
+  <script src="{{asset('lib/kojo/main.js')}}"></script>
+	<script src="{{asset('js/jquery.slicknav.min.js')}}"></script>
+	<script src="{{asset('js/scrollup.min.js')}}"></script>
+	<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+	<script src="{{asset('js/jquery.nicescroll.min.js')}}"></script>
+	<script src="{{asset('js/jquery.zoom.min.js')}}"></script>
+	<script src="{{asset('js/jquery-ui.min.js')}}"></script>
+	<script src="{{asset('js/main.js')}}"></script>
 
     @yield('scripts')
 	</body>

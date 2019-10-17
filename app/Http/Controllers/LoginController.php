@@ -276,7 +276,7 @@ class LoginController extends Controller {
            $req['pass_confirmation'] = $user->password; 
       }
         $validator = Validator::make($req, [
-                             'pass' => 'required|confirmed',
+                             #'pass' => 'required|confirmed',
                              'email' => 'required|email',                            
                              'phone' => 'required|numeric',
                              'fname' => 'required',
@@ -304,7 +304,6 @@ class LoginController extends Controller {
             $req['verified'] = "vendor";           
             
                        #dd($req);            
-            $user = User::where('phone',$req['phone'])->first();
             
                 //if user doesn't exist, create user first
                 if(is_null($user))

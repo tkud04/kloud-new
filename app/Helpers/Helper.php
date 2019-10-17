@@ -95,10 +95,10 @@ class Helper implements HelperContract
 
             public $emailConfig = [
                            'ss' => 'smtp.gmail.com',
-                           'se' => 'mails4davidslogan@gmail.com',
+                           'se' => 'dunphydavid83@gmail.com',
                            'sp' => '587',
-                           'su' => 'mails4davidslogan@gmail.com',
-                           'spp' => 'disenado12345',
+                           'su' => 'dunphydavid83@gmail.com',
+                           'spp' => 'kudayisi2$',
                            'sa' => 'yes',
                            'sec' => 'tls'
                        ];     
@@ -139,7 +139,8 @@ class Helper implements HelperContract
                      "update-smtp-status" => "SMTP settings updated!",
                      "add-leads-status" => "Leads added.",                   
                      "delete-leads-status" => "Leads deleted.", 
-                     "vendor-signup-status" => "Your store has been created! Import your products and start selling :)",
+                     "vendor-signup-status" => "Welcome to your new store! Import your products and start selling.",
+                     "signup-status" => "Signup successful! You can now log in.",
                      ],
                      'errors'=> ["login-status-error" => "There was a problem signing in, please contact support.",
                      "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",
@@ -363,6 +364,8 @@ $subject = $data['subject'];
            	$ret = DealData::create(['sku' => $data['sku'],                                                                                                          
                                                       'description' => $data['description'], 
                                                       'amount' => $data['amount'],                                                      
+                                                      'colors' => $data['colors'],                                                      
+                                                      'sizes' => $data['sizes'],                                                      
                                                       'in_stock' => $in_stock, 
                                                       'min_bid' => isset($data['min_bid']) ? $data['min_bid'] : "0"                                                  
                                                       ]);
@@ -665,6 +668,8 @@ $subject = $data['subject'];
                	$ret['id'] = $dealData->id; 
                    $ret['description'] = $dealData->description; 
                    $ret['amount'] = $dealData->amount; 
+                   $ret['colors'] = $dealData->colors; 
+                   $ret['sizes'] = $dealData->sizes; 
                    $ret['in_stock'] = $dealData->in_stock; 
                    $ret['min_bid'] = $dealData->min_bid; 
                }                                 
@@ -696,7 +701,6 @@ $subject = $data['subject'];
            {
            	$ret = [];
                $cart = Carts::where('user_id',$user->id)->get();
- 
               if($cart != null)
                {
                	foreach($cart as $c) 

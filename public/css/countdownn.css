@@ -1,0 +1,13 @@
+.deal-clock{
+    opacity: 1;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    z-index: 9;
+    border: 2px solid;
+    border-radius: 50px;
+    border-color: #11d6e1;
+}
+
