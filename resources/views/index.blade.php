@@ -5,7 +5,7 @@
 @section('content')
 @include('hero',['sliders' => $sliders])
 <!-- Features section -->
-	<section class="features-section">
+	<section class="features-section wow fadeInUp">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4 p-0 feature">
@@ -38,7 +38,7 @@
 	<!-- Features section end -->
    <br>
    <!-- Inner categories menu -->
-   <section class="product-filter-section">
+   <section class="product-filter-section wow fadeInUp">
      <div class="container">
    	<ul class="product-filter-menu">
 	            <?php
@@ -56,7 +56,7 @@
    <!-- Inner categories menu end -->
    	
 	<!-- Upsell section -->
-		<section class="features-section">
+		<section class="features-section wow fadeInUp">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-4 p-0 feature">
@@ -87,7 +87,7 @@
    <br>
    
 	<!-- new arrivals section -->
-	<section class="top-letest-product-section">
+	<section class="top-letest-product-section wow fadeInUp">
 		<div class="container">
 			<div class="section-title">
 				<h2>New Arrivals</h2>
@@ -183,7 +183,7 @@
   ?>
 
 <!-- Features section -->
-	<section class="features-section">
+	<section class="features-section wow fadeInUp">
 		<div class="container-fluid">
 			<div class="row">
 				
