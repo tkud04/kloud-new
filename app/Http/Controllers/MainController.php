@@ -1887,6 +1887,7 @@ class MainController extends Controller {
 	 */
     public function getUserGuide()
     {
+    	$user = null;
     	if(Auth::check())
 		{
 			$user = Auth::user();
