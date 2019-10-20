@@ -38,4 +38,7 @@
 	<!-- kloudpay section end -->
 	
 
+
+@include('ad-space')
+
 @stop

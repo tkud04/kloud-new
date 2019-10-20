@@ -93,7 +93,9 @@
 		</div>
 	</section>
 	<!-- my auctions section end -->
-	
+
+
+@include('ad-space')	
 
 @stop
 

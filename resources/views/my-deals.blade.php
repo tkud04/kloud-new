@@ -80,6 +80,9 @@
 	</section>
 	<!-- my deals section end -->
 	
+	
+
+@include('ad-space')
 
 @stop
 
