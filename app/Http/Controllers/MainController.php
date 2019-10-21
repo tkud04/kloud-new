@@ -1517,15 +1517,15 @@ class MainController extends Controller {
         }
         
         $req = $request->all();
-        dd($req);
+        #dd($req);
         
         $validator = Validator::make($req, [
                              'name' => 'required',
                              'category' => 'required',
                              'description' => 'required',
+                             'size-1' => 'required',
+                             'color' => 'required|not_in:null',
                              'amount' => 'required|numeric',
-                             'ird' => 'required',
-                             'irdc'=> 'required'
          ]);
          
          if($validator->fails())
@@ -1538,7 +1538,20 @@ class MainController extends Controller {
          else
          {
          	$req["user_id"] = $user->id; 
-             $req["type"] = "deal"; 
+             $req["type"] = "deal";
+
+             $sz = "";
+             if($req['size-1'] == "other")
+			 {
+				 if(isset($req['size-2']) && $req['size-2'] > 0) $sz = $req['size-2'];
+				 else $sz = "0";
+			 }
+             else
+			 {
+				 $sz = $req['size-1'];
+			 }
+             $req['size'] = $sz;
+			 
              $d = $this->helpers->createDeal($req);
 			  $req["sku"] = $d->sku; 
 	        session()->flash("add-deal-status","ok");

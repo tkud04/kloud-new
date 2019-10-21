@@ -35,7 +35,7 @@
                  <input type="hidden" name="irdc" id="irdc" value="" required>
                  <input type="hidden" name="description" id="description" value="" required>
                  <input type="hidden" name="color" id="ccolor" value="" required>
-								   
+              				   
 						<div class="cf-title">Add a new deal to the system<br>Only deals that are approved will be displayed on our platform</div>
 						<div class="row address-inputs">
 							<div class="col-md-12">
@@ -67,7 +67,7 @@
 							</div>
 							<div class="col-md-6">
 								 <p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Size</p><br>
-                                        <select class="form-control" id="size-1" required>
+                                        <select class="form-control" name="size-1" id="size-1" required>
                                         	<option value="none">Select size</option>
 											<?php
 											 $sizes = ['XS' => "Extra Small",
@@ -76,13 +76,14 @@
 											           'L' => "Large",
 											           'XL' => "Extra Large",
 											           'XXL' => "Extra extra Large",
+											           'other' => "Other(specify)"
 													  ];
 											?>
                                             @foreach($sizes as $key => $value)
                                             <option value="{{$key}}">{{$value}}</option>
                                             @endforeach
                                        </select><br>
-									   <input type="number" class="form-control" id="size-2" value="" placeholder="Enter size" required>
+									   <input type="number" class="form-control" id="size-2" name="size-2" value="" placeholder="Enter size">
 							</div>
 						</div>
 						<div class="row address-inputs">

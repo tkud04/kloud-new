@@ -17,7 +17,7 @@
 					</div>
 					<div class="offer-card text-white">
 						<span>from</span>
-						<h2>&#8358;<?=$s['price']?></h2>
+						<h2 style="font-size: 37px;">&#8358;<?=$s['price']?></h2>
 						<p>SHOP NOW</p>
 					</div>
 				</div>

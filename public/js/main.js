@@ -24,6 +24,19 @@ if (x) {
     $('#cookieConsent').hide();
 }
 
+//Add Deal - size
+$('#size-2').hide();
+$('#size-1').change(function(e){
+	e.preventDefault();
+	let size_1 = $('#size-1').val();
+    
+	if(size_1 == "other"){
+		$('#size-2').fadeIn();
+	}
+	else{
+		$('#size-2').hide();
+	}	
+});
 setTimeout(function(){window.scrollTo(0,0);},0);
 
  // :: 3.0 ScrollUp Active Code

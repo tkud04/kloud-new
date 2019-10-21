@@ -354,7 +354,14 @@ $subject = $data['subject'];
                                                       
                  $data['sku'] = $ret->sku;                         
                 $dealData = $this->createDealData($data);
-                $this->createDealImage(['sku' => $data['sku'], 'url' => $data['ird'], 'irdc' => $data['irdc']]);
+				$ird = "none";
+				$irdc = 0;
+				if(isset($data['ird']) && isset($data['irdc']))
+				{
+					$ird = $data['ird'];
+				    $irdc = $data['irdc'];
+				}
+                $this->createDealImage(['sku' => $data['sku'], 'url' => $ird, 'irdc' => $irdc]);
                 return $ret;
            }
            function createDealData($data)
@@ -364,8 +371,8 @@ $subject = $data['subject'];
            	$ret = DealData::create(['sku' => $data['sku'],                                                                                                          
                                                       'description' => $data['description'], 
                                                       'amount' => $data['amount'],                                                      
-                                                      'colors' => $data['colors'],                                                      
-                                                      'sizes' => $data['sizes'],                                                      
+                                                      'colors' => $data['color'],                                                      
+                                                      'size' => $data['size'],                                                      
                                                       'in_stock' => $in_stock, 
                                                       'min_bid' => isset($data['min_bid']) ? $data['min_bid'] : "0"                                                  
                                                       ]);
