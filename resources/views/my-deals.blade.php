@@ -18,6 +18,7 @@
 		<div class="container">
 			<div class="row">
           <div class="col-lg-12 mx-auto text-center">
+		    <a href="{{url('deal-new')}}" class="site-btn">Add New Deal</a>
             <div class="table-responsive m-t-40 wow fadeInUp">
                 	   <table class="table kloud-data-table" id="dealsTable">
                       <thead class=" text-primary">
