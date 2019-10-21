@@ -67,7 +67,7 @@
 							</div>
 							<div class="col-md-6">
 								 <p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Size</p><br>
-                                        <select class="form-control" name="size" required>
+                                        <select class="form-control" id="size-1" required>
                                         	<option value="none">Select size</option>
 											<?php
 											 $sizes = ['XS' => "Extra Small",
@@ -82,6 +82,7 @@
                                             <option value="{{$key}}">{{$value}}</option>
                                             @endforeach
                                        </select><br>
+									   <input type="number" class="form-control" id="size-2" value="" placeholder="Enter size" required>
 							</div>
 						</div>
 						<div class="row address-inputs">

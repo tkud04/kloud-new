@@ -15,10 +15,9 @@
 			<div class="row">
 			<div class="col-lg-12">
             <p>Kloudtransact is an online auction and ePayment platform. </p>
-            <p>Our mission is to become the engine of trade, payment and commerce Africa.</p>
             <br>
             <h4>Our Mission</h4>
-            <p>Our mission is to become the engine of trade, payment and commerce Africa.</p>
+            <p>Our mission is to become the engine of trade, payment and commerce in Africa.</p>
             <br>
             <h4>We bring forth a digital REVOLUTION!</h4>
             <p>We are building a society that would exist digitally as third party platform to enhance digital lifestyles.</p>
@@ -32,7 +31,7 @@
             <h4>We'd like to hear from you!</h4>
             <p>We are highly customer-centric and are committed towards finding innovative ways of improving our customers' shopping experience with us;</p>
             <p>Give us some feedback on <a href="mailto:support@kloudtransact.com">support@kloudtransact.com</a></p>
-            <p>For any press related questions, kindly send us an email at <a href="mailto:contact@kloudtransact.com">contact@kloudtransact.com</a></p>
+            <p>For any press related questions, kindly send us an email at <a href="mailto:support@kloudtransact.com">support@kloudtransact.com</a></p>
             <p><i class="fa fa-map mr-3"></i> Nigeria</p>
             <p><i class="fa fa-facebook"></i><a href="#" class="mr-3">kloudtransact</a> <i class="fa fa-twitter"></i><a href="#" class="mr-3">kloudtransact</a> <i class="fa fa-instagram"></i><a href="#" class="mr-3">kloudtransact</a></p>
             <br>
