@@ -79,7 +79,7 @@
 						   @else
 							<div class="up-item">
 								<i class="flaticon-profile"></i>
-								<a href="{{url('register')}}">Register</a> or <a href="{{url('login')}}">Login</a>
+								<a href="{{url('register')}}" style="color: #f51167;">Register</a> or <a href="{{url('login')}}" style="color: #f51167;">Login</a>
 							</div>
 						   @endif
 							<div class="up-item">
