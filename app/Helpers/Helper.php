@@ -676,7 +676,7 @@ $subject = $data['subject'];
                    $ret['description'] = $dealData->description; 
                    $ret['amount'] = $dealData->amount; 
                    $ret['colors'] = $dealData->colors; 
-                   $ret['sizes'] = $dealData->sizes; 
+                   $ret['sizes'] = $dealData->size; 
                    $ret['in_stock'] = $dealData->in_stock; 
                    $ret['min_bid'] = $dealData->min_bid; 
                }                                 

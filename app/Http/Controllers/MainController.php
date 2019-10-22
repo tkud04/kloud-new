@@ -1843,8 +1843,10 @@ class MainController extends Controller {
             
              $signals = $this->helpers->signals;
              $categories = $this->helpers->categories;
+			 $c = $this->helpers->categories;
 		     #$mainClass = "single-product-area section-padding-100 clearfix";
-             return view('edit-deal',compact(['user','cart','categories','signals','deal']));
+			 dd($deal);
+             return view('edit-deal',compact(['user','cart','c','categories','signals','deal']));
          }        
     }
     
