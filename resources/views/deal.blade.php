@@ -99,9 +99,11 @@
 						if(count($sizes) < 2) $sizes = [$data['sizes']];				    
 					  ?>
 						<p>Size</p>
+						<input type="hidden" id="sss" value="undefined"/>
+						
 						@for($x = 0; $x < count($sizes); $x++)
 						<div class="sc-item">
-							<input type="radio" name="sc" id="size-{{$x}}">
+							<input type="radio" name="sc" id="size-{{$x}}" onclick="var sss = document.getElementById('sss'); sss.value = '{{$sizes[$x]}}';">
 							<label for="size-{{$x}}">{{$sizes[$x]}}</label>
 						</div>
 						@endfor
@@ -123,7 +125,7 @@
                                   }
                                   if($deal['type'] == "deal"){
                                  ?>
-					<a href="#" class="site-btn" onclick="var effect = document.getElementById('qqq'); var qty = effect.value; if( !isNaN( qty )) window.location = '{{$cartURL}}' + qty;return false;">{{$cartText}}</a>
+					<a href="#" class="site-btn" onclick="var effect = document.getElementById('qqq'); var qty = effect.value; var sss = document.getElementById('sss').value; if( !isNaN( qty )) window.location = '{{$cartURL}}' + qty + '&sz=' + sss;return false;">{{$cartText}}</a>
 					<?php
                                 }
                                 else if($deal['type'] == "auction")

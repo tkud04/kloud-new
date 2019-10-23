@@ -323,6 +323,7 @@ $subject = $data['subject'];
            	$ret = Carts::create(['user_id' => $data['user_id'],
                                           'sku' => $data['sku'],  
                                           'qty' => $data['qty'], 
+                                          'size' => $data['sz'], 
                                           'auction_id' => $auction_id, 
                                          'type' => $type,                                 
                                          ]);

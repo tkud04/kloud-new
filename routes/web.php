@@ -26,6 +26,7 @@ Route::get('auction', 'MainController@getAuction');
 Route::get('cart', 'MainController@getCart');
 Route::get('buy', 'MainController@getBuy');
 Route::get('add-to-cart', 'MainController@getAddToCart');
+Route::get('update-cart', function(){return redirect()->intended('cart');});
 Route::post('update-cart', 'MainController@postUpdateCart');
 Route::get('remove-from-cart', 'MainController@getRemoveFromCart');
 

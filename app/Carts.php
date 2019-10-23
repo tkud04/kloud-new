@@ -13,7 +13,7 @@ class Carts extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'sku', 'qty','auction_id','type'
+        'user_id', 'sku', 'qty','size','color','auction_id','type'
     ];
     
 }

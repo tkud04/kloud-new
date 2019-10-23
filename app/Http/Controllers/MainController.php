@@ -593,7 +593,7 @@ class MainController extends Controller {
         	return redirect()->intended('/');
         }
         $req = $request->all();
-        //dd($req);
+        #dd($req);
         
         $validator = Validator::make($req, [
                              'qty' => 'required|numeric',
