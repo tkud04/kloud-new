@@ -77,7 +77,7 @@ $imgg = $deal['images'];
 							</div>
 							<div class="col-md-6">
 								 <p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Size</p><br>
-								       <div>Current size: {{$data['sizes']}}</div><br>
+								       <div>Available sizes: {{$data['sizes']}}</div><br>
                                         <select class="form-control" name="size-1" id="size-1" required>
                                         	<option value="none">Select size</option>
 											<?php
@@ -87,14 +87,14 @@ $imgg = $deal['images'];
 											           'L' => "Large",
 											           'XL' => "Extra Large",
 											           'XXL' => "Extra extra Large",
-											           'other' => "Other(specify)"
+											           'other' => "Other(multiple sizes)"
 													  ];
 											?>
                                             @foreach($sizes as $key => $value)
                                             <option value="{{$key}}">{{$value}}</option>
                                             @endforeach
                                        </select><br>
-									   <input type="text" class="form-control" id="size-2" name="size-2" value="" placeholder="Enter size">
+									   <input type="text" class="form-control" id="size-2" name="size-2" value="" placeholder="Enter sizes (separate with commas)">
 							</div>
 						</div>
 						<div class="row address-inputs">

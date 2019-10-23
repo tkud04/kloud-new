@@ -782,7 +782,7 @@ $subject = $data['subject'];
                    $md["items"] = $mmd;
                    $ret["md"] = $md;
                    $ret['delivery'] = $this->getDeliveryFee();
-                   $ret['total'] = $ret['subtotal'] + $ret['delivery'];
+                   $ret['total'] = (int)$ret['subtotal'] + (int)$ret['delivery'];
                }                                 
                                                       
                 return $ret;
