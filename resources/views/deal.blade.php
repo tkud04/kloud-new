@@ -4,7 +4,11 @@
 
 
 @section('content')
-@include('generic-banner',['title' => $deal['name']])
+<?php
+$rupture = "Not Available";
+if($deal['status'] == "approved") $rupture = $deal['name'];
+?>
+@include('generic-banner',['title' => $rupture])
 
  <?php
                                       $images = $deal['images'];
@@ -29,6 +33,7 @@
 	<!-- product section -->
 	<section class="product-section">
 		<div class="container">
+		@if($deal['status'] == "approved")
 			<div class="back-link">
 				<a href="{{url('top-deals')}}"> &lt;&lt; Go to Top deals</a>
 			</div>
@@ -184,9 +189,17 @@
 					</div>
 				</div>
 			</div>
+			@else
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="text-primary">This deal is awaiting approval and will be uploaded once approved by KloudTransact. <br><br></p>
+                    </div>
+                </div>
+           @endif
 		</div>
 	</section>
 	<!-- product section end -->
+
 
 
 	@include('more-products',['caption' => "RELATED DEALS"])
