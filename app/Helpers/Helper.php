@@ -1145,6 +1145,8 @@ $subject = $data['subject'];
                                            
                               $dd->update(['amount' => $data['amount'],
                                               'description' => $data['description'],
+                                              'colors' => $data['color'],
+                                              'size' => $data['size'],
                                               'in_stock' => $data['in_stock']
                                            ]);
                                            

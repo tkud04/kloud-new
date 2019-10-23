@@ -1752,7 +1752,8 @@ class MainController extends Controller {
                              'ird' => 'required',
                              'name' => 'required',
                              'flink' => 'required',
-                             'description' => 'required'
+                             'description' => 'required',
+							 
          ]);
          
          if($validator->fails())
@@ -1845,7 +1846,7 @@ class MainController extends Controller {
              $categories = $this->helpers->categories;
 			 $c = $this->helpers->categories;
 		     #$mainClass = "single-product-area section-padding-100 clearfix";
-			 dd($deal);
+			 #dd($deal);
              return view('edit-deal',compact(['user','cart','c','categories','signals','deal']));
          }        
     }
@@ -1876,7 +1877,9 @@ class MainController extends Controller {
                              'category' => 'required',
                              'in_stock' => 'required',
                              'description' => 'required',
-                             'amount' => 'required|numeric'
+                             'amount' => 'required|numeric',
+							  'size-1' => 'required',
+                             'color' => 'required|not_in:null'
          ]);
          
          if($validator->fails())
@@ -1888,6 +1891,17 @@ class MainController extends Controller {
          
          else
          {
+			 $sz = "";
+             if($req['size-1'] == "other")
+			 {
+				 if(isset($req['size-2']) && $req['size-2'] > 0) $sz = $req['size-2'];
+				 else $sz = "0";
+			 }
+             else
+			 {
+				 $sz = $req['size-1'];
+			 }
+             $req['size'] = $sz;
              $r = $this->helpers->updateUserDeal($user, $req);
 	        session()->flash("update-deal-status",$r);
 			$du = "deal?sku=".$req['sku'];

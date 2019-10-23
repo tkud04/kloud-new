@@ -19,11 +19,12 @@
 @stop
 
 @section('content')
-@include('generic-banner',['title' => "Add New Deal"])
+@include('generic-banner',['title' => "Edit Deal"])
 
 
 <?php 
 #$ct = (isset($category) && $category != null) ? " - ".$category : ""; 
+$data = $deal['data'];
 $imgg = $deal['images'];
  if($imgg[0]['url'] == "none") $img = "https://via.placeholder.com/150";
  else $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$imgg[0]['url'];
@@ -54,14 +55,15 @@ $imgg = $deal['images'];
 						<div class="row address-inputs">
 							<div class="col-md-6">
 								<p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Name</p><br>
-                                <input type="text" class="form-control" placeholder="e. g Samsung Galaxy S9 Edge" name="name" required>
+                                <input type="text" class="form-control" placeholder="e. g Samsung Galaxy S9 Edge" name="name" value="{{$deal['name']}}" required>
 							</div>
 							<div class="col-md-6">
 								 <p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Category</p><br>
                                         <select class="form-control" name="category" required>
                                         	<option value="none">Select deal category</option>
                                             @foreach($c as $key => $value)
-                                            <option value="{{$key}}">{{$value}}</option>
+											<?php $ss = ($deal['category'] == $key) ? 'selected="selected"' : ''; ?>
+                                            <option value="{{$key}}" {{$ss}}>{{$value}}</option>
                                             @endforeach
                                        </select><br>
 							</div>
@@ -69,11 +71,13 @@ $imgg = $deal['images'];
 						<div class="row address-inputs">
 							<div class="col-md-6">
 								<p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Color</p><br>
+								<div style="background: {{$data['colors']}}"> Current color  </div><br>
                                 <span>Click the box to specify product color</span>
 								<div class="color-picker"></div>
 							</div>
 							<div class="col-md-6">
 								 <p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Size</p><br>
+								       <div>Current size: {{$data['sizes']}}</div><br>
                                         <select class="form-control" name="size-1" id="size-1" required>
                                         	<option value="none">Select size</option>
 											<?php
@@ -96,19 +100,23 @@ $imgg = $deal['images'];
 						<div class="row address-inputs">
 							<div class="col-md-4">
                                         <h4 class="form-control-plaintext text-primary text-left"><i class="fa fa-asterik"></i> Price(&#8358;):</h4>
-                                        <input type="number" class="form-control" name="amount" id="amount" value="" placeholder="Enter amount" required>
+                                        <input type="number" class="form-control" name="amount" id="amount" value="{{$data['amount']}}" placeholder="Enter amount" required>
 							</div>
 							<div class="col-md-4">
 								<p class="form-control-plaintext text-left"><i class="fa fa-link"></i> SKU</p><br>
-                                        <input type="text" class="form-control" value="Will be generated automatically" disabled>
+                                        <input type="text" class="form-control" value="{{$deal['sku']}}" disabled>
 							</div>
 							<div class="col-md-4">
                                         <p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Inventory Status</p><br>
-                                        <select class="form-control" name="in_stock">
+                                        <select class="form-control" name="in_stock" required>
                                      	  <option value="none">Select inventory status</option>
-                                           <option value="in-stock">In Stock</option>
-                                           <option value="new">New! </option>
-                                           <option value="out-of-stock">Out of Stock</option>
+                                          <?php 
+                              $iss = ['yes' => 'In stock','new' => 'New!','no' => 'Out of Stock'];                           
+                              foreach($iss as $key => $value){ 
+                              	$ss = ($deal['data']['in_stock'] == $key) ? 'selected="selected"' : ''; 
+                              ?>
+                              <option value="<?=$key?>" <?=$ss?>><?=$value?></option>
+                              <?php } ?>
                                         </select>
 							</div>
 						</div>
