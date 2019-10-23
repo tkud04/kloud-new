@@ -718,6 +718,8 @@ $subject = $data['subject'];
                         $temp['sku'] = $c->sku; 
                         $temp['deal'] = $this->getDeal($c->sku);
                         $temp['qty'] = $c->qty; 
+						$temp['color'] = $c->color; 
+                        $temp['size'] = $c->size; 
                         $temp['bid'] = Bids::where('auction_id', $c->auction_id)->where('user_id', $user->id)->first(); 
                         $temp['type'] = $c->type; 
                         array_push($ret, $temp); 

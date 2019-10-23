@@ -573,6 +573,7 @@ class MainController extends Controller {
         	return redirect()->intended('login?return=cart');
         }
         $signals = $this->helpers->signals;
+		#dd($cart);
 		$mainClass = "cart-table-area section-padding-100";
         return view('cart',compact(['user','cart','cartTotals','signals','mainClass']));
     }

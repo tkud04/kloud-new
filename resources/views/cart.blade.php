@@ -64,7 +64,7 @@
 										<img src="img/cart/1.jpg" alt="" data-cli="{{$du}}">
 										<div class="pc-title">
 											<h4><a href="{{$du}}">{{$deal['name']}}</a></h4>
-											<p>&#8358;{{number_format((float)$pay,2)}}</p>
+											<p></p>
 										</div>
 									</td>
 									<td class="quy-col">
@@ -74,10 +74,29 @@
 											</div>
                     					</div>
 									</td>
-									<td class="size-col"><h4>Size M</h4></td>
-									<td class="size-col"><h4>Size M</h4></td>
-									<td class="total-col"><h4>&#8358;45.90</h4></td>
+									<td class="size-col"><h4>{{$c['size']}}</h4></td>
+									<td class="size-col"><h4>c['color']</h4></td>
+									<td class="total-col"><h4>&#8358;{{number_format((float)$pay,2)}}</h4></td>
 									<td class="total-col"><a href="{{$removeURL}}" class="btn btn-danger">Remove</a></td>
+								</tr>
+								 <?php
+                                     $subtotal = $cartTotals['subtotal'];
+                                     $delivery = $cartTotals['delivery'];
+                                     $total = $cartTotals['total'];
+                                    ?>
+								<tr>
+									<td class="product-col">
+										<i class="fa fa-star fa-2x"></i>
+										<div class="pc-title">
+											<h4>Delivery fee</h4>
+										</div>
+									</td>
+									<td class="quy-col">
+									
+									<td class="size-col"></td>
+									<td class="size-col"></td>
+									<td class="total-col"><h4>&#8358;{{number_format((float)$delivery,2)}}</h4></td>
+									<td class="total-col"></td>
 								</tr>
 								@endforeach
 								@endif
@@ -85,7 +104,7 @@
 						</table>
 						</div>
 						<div class="total-cost">
-							<h6>Total <span>&#8358;99.90</span></h6>
+							<h6>Total <span>&#8358;{{number_format((float)$total,2)}}</span></h6>
 						</div>
 					</div>
 				</div>
