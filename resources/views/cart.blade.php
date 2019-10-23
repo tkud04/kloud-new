@@ -11,6 +11,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
+				<form action="{{url('update-cart')}}" method="post">
+                	      {!! csrf_field() !!}
 					<div class="cart-table">
 						<h3>Your Cart</h3>
 						<div class="cart-table-warp">
@@ -79,34 +81,29 @@
 									<td class="total-col"><h4>&#8358;{{number_format((float)$pay,2)}}</h4></td>
 									<td class="total-col"><a href="{{$removeURL}}" class="btn btn-danger">Remove</a></td>
 								</tr>
-								 <?php
+								
+								@endforeach
+								@endif
+							</tbody>
+							  <tfoot>
+                                    <tr>
+                                        <center><button type="submit" class="btn btn-success">Update cart</button></center>
+                                    </tr>
+                                </tfoot>
+						</table>
+						</div>
+						 <?php
                                      $subtotal = $cartTotals['subtotal'];
                                      $delivery = $cartTotals['delivery'];
                                      $total = $cartTotals['total'];
                                     ?>
-								<tr>
-									<td class="product-col">
-										<i class="fa fa-star fa-2x"></i>
-										<div class="pc-title">
-											<h4>Delivery fee</h4>
-										</div>
-									</td>
-									<td class="quy-col">
-									
-									<td class="size-col"></td>
-									<td class="size-col"></td>
-									<td class="total-col"><h4>&#8358;{{number_format((float)$delivery,2)}}</h4></td>
-									<td class="total-col"></td>
-								</tr>
-								@endforeach
-								@endif
-							</tbody>
-						</table>
-						</div>
 						<div class="total-cost">
-							<h6>Total <span>&#8358;{{number_format((float)$total,2)}}</span></h6>
+							<h6>Subtotal: <span>&#8358;{{number_format((float)$subtotal,2)}}</span></h6>
+							<h6>Delivery: <span>&#8358;{{number_format((float)$delivery,2)}}</span></h6>
+							<h6>Total: <span>&#8358;{{number_format((float)$total,2)}}</span></h6>
 						</div>
 					</div>
+					</form>
 				</div>
 				<div class="col-lg-4 card-right">
 					<form class="promo-code-form">
