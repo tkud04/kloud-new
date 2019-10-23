@@ -1523,7 +1523,7 @@ class MainController extends Controller {
                              'name' => 'required',
                              'category' => 'required',
                              'description' => 'required',
-                             'size-1' => 'required',
+                             'size-1' => 'required|not_in:none',
                              'color' => 'required|not_in:null',
                              'amount' => 'required|numeric',
          ]);
@@ -1878,7 +1878,7 @@ class MainController extends Controller {
                              'in_stock' => 'required',
                              'description' => 'required',
                              'amount' => 'required|numeric',
-							  'size-1' => 'required',
+							  'size-1' => 'required|not_in:none',
                              'color' => 'required|not_in:null'
          ]);
          

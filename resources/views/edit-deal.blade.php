@@ -41,8 +41,8 @@ $imgg = $deal['images'];
 				 <input type="hidden" name="ird" id="ird" value="{{$imgg[0]['url']}}" required>
                                    <input type="hidden" name="irdc" id="irdc" value="{{$imgg[0]['irdc']}}" required>
                                    	<input type="hidden" name="sku" id="sku" value="{{$deal['sku']}}" required>
-                 <input type="hidden" name="description" id="description" value="" required>
-                 <input type="hidden" name="color" id="ccolor" value="" required>
+                 <input type="hidden" name="description" id="description" value="{{$data['description']}}" required>
+                 <input type="hidden" name="color" id="ccolor" value="{{$data['colors']}}" required>
               				   
 						<div class="cf-title">Add a new deal to the system<br>Only deals that are approved will be displayed on our platform</div>
 						<div class="row address-inputs">
@@ -94,7 +94,7 @@ $imgg = $deal['images'];
                                             <option value="{{$key}}">{{$value}}</option>
                                             @endforeach
                                        </select><br>
-									   <input type="number" class="form-control" id="size-2" name="size-2" value="" placeholder="Enter size">
+									   <input type="text" class="form-control" id="size-2" name="size-2" value="" placeholder="Enter size">
 							</div>
 						</div>
 						<div class="row address-inputs">
