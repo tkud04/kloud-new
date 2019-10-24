@@ -15,15 +15,23 @@ if($deal['status'] == "approved") $rupture = $deal['name'];
                                       $imggs = [];
                                       shuffle($images);
                          
-                                      if(count($images) < 1) { $imggs = ["https://via.placeholder.com/150"]; }
+                                      if(count($images) < 1) { $imggs = ["img/no-image.png"]; }
                                       else{
                                       	$ird = $images[0]['url'];
-                                      	for($x = 0; $x < $images[0]['irdc']; $x++){
-                                      	 $jara = "";
-                                            if($x > 0) $jara = "-".($x + 1);
-                                      	  $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird.$jara;
-                                            array_push($imggs,$imgg); 
+										if($ird == "none")
+										{
+											$imggs = ["img/no-image.png"];
+										}
+										else
+										{
+                                      	  for($x = 0; $x < $images[0]['irdc']; $x++)
+										  {
+                                      	   $jara = "";
+                                           if($x > 0) $jara = "-".($x + 1);
+                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird.$jara;
+                                           array_push($imggs,$imgg); 
                                           }
+										}
                                       } 
                                       
                                       $data = $deal['data'];
@@ -40,14 +48,21 @@ if($deal['status'] == "approved") $rupture = $deal['name'];
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="product-pic-zoom">
-						<img class="product-big-img" src="img/single-product/1.jpg" alt="">
+						<img class="product-big-img" src="{{$imggs[0]}}" alt="">
 					</div>
 					<div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
 						<div class="product-thumbs-track">
-							<div class="pt active" data-imgbigurl="img/single-product/1.jpg"><img src="img/single-product/thumb-1.jpg" alt=""></div>
-							<div class="pt" data-imgbigurl="img/single-product/2.jpg"><img src="img/single-product/thumb-2.jpg" alt=""></div>
-							<div class="pt" data-imgbigurl="img/single-product/3.jpg"><img src="img/single-product/thumb-3.jpg" alt=""></div>
-							<div class="pt" data-imgbigurl="img/single-product/4.jpg"><img src="img/single-product/thumb-4.jpg" alt=""></div>
+						    <?php
+							for($gmi = 0; $gmi < count($imggs); $gmi++)
+							{
+								$pi = $imggs[$gmi];
+								$sxt = "";
+								if($gmi == 0) $sxt = " active";
+							?>
+							<div class="pt {{$sxt}}" data-imgbigurl="{{$pi}}"><img src="{{$pi}}" alt=""></div>
+							<?php
+							}
+							?>
 						</div>
 					</div>
 				</div>

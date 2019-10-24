@@ -719,9 +719,11 @@ class MainController extends Controller {
         	return redirect()->intended('login?return=checkout');
         }
         
+		#dd($sd);
+		$sdd = $sd[0];
         $signals = $this->helpers->signals;
 		$mainClass = "cart-table-area section-padding-100";
-        return view('checkout',compact(['user','cart','signals','cartTotals','sd','orderNumber','states','mainClass']));
+        return view('checkout',compact(['user','cart','signals','cartTotals','sd','sdd','orderNumber','states','mainClass']));
     }
     
     /**
@@ -751,6 +753,7 @@ class MainController extends Controller {
                              'city' => 'required|filled',
                              'state' => 'required|not_in:none',
                              'zip' => 'required|filled',
+                             '_sd' => 'required|',
                              'phone' => 'required|filled',
                              'terms' => 'required|accepted',
          ]);
@@ -805,6 +808,7 @@ class MainController extends Controller {
          else
          {
          	$deal = $this->helpers->getDeal($req['sku']);
+			#dd($deal);
              $mine = "no";
              if($user != null && ($user->id == $deal['u']->id)) $mine = "yes";
              $rating = $this->helpers->getUserRating($deal,$user);

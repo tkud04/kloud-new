@@ -6,6 +6,17 @@
 @section('content')
 @include('generic-banner',['title' => "Checkout"])
 
+<?php
+echo "<script>";
+echo "let sds = {";
+foreach($sd as $s)
+{
+	$addressText = "";
+	if($s['address'] != "")	$addressText = $s['address'].",".$s['city'].",".$s['state'].",".$s['zipcode'];
+	echo $s['id'].": '".$addressText."',";
+}
+echo "};</script>";
+?>
 	<!-- checkout section  -->
 	<section class="checkout-section spad">
 		<div class="container">
@@ -13,21 +24,27 @@
 				<div class="col-lg-8 order-2 order-lg-1">
 					<form class="checkout-form" id="checkout-form">
 					    {!! csrf_field() !!}
+						<input type="hidden" name="sd" id="_sd"/>
 						<div class="cf-title">Billing Info</div>
 						<div class="row">
 							<div class="col-md-7">
 								<p>*Confirm Your Billing Information</p>
 							</div>
 							<div class="col-md-5">
-								<div class="cf-radio-btns address-rb">
-									<div class="cfr-item">
-										<input type="radio" name="pm" id="one">
-										<label for="one">Use my regular address</label>
-									</div>
-									<div class="cfr-item">
-										<input type="radio" name="pm" id="two">
-										<label for="two">Use a different address</label>
-									</div>
+								<div class="address-rb">
+								    <p class="form-plaintext">Which shipping address do you want to use?</p>
+									<select class="form-control" id="sd">
+									   <option value="none">Add new shipping address</option>
+									   @foreach($sd as $s)
+									   <?php
+									     $addd = "";
+										 if($s['address'] == "") $addd = "Address #".$s['id'];
+										 else $addd = $s['address'].", ".$s['city'].", ".$s['state'];
+										 
+									   ?>
+									   <option value="{{$s['id']}}">{{$addd}}</option>
+									   @endforeach
+									</select>
 								</div>
 							</div>
 						</div>
@@ -39,7 +56,7 @@
                                         <input type="text" class="form-control" id="last_name" name="lname" value="{{$user->lname}}" data-default="{{$user->lname}}" placeholder="Last Name" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" id="company" name="company" placeholder="Company Name" value="{{$sd['company']}}" data-default="{{$sd['company']}}">
+                                        <input type="text" class="form-control" id="company" name="company" placeholder="Company Name" value="{{$sdd['company']}}" data-default="{{$sdd['company']}}">
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{$user->email}}" data-default="{{$user->email}}">
@@ -53,17 +70,17 @@
 						</div>
 						<div class="row address-inputs">
 							<div class="col-md-12">
-								 <input type="text" class="form-control" id="street_address" name="address" placeholder="Address" value="{{$sd['address']}}" data-default="{{$sd['address']}}">
+								 <input type="text" class="form-control" id="street_address" name="address" placeholder="Address" value="{{$sdd['address']}}" data-default="{{$sdd['address']}}">
 							</div>
 							<div class="col-md-6">
-								   <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{$sd['city']}}" data-default="{{$sd['city']}}">
+								   <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{$sdd['city']}}" data-default="{{$sdd['city']}}">
 							</div>
 							<div class="col-md-6">
                                         <select class="form-control w-100" name="state" style="margin-bottom: 10px;">
                                         <option value="none">Select state</option>
                                         <?php 
                                           foreach($states as $key => $value){
-                                          	$selectedText = ($key == $sd['state']) ? "selected='selected'" : "";                                           
+                                          	$selectedText = ($key == $sd[0]['state']) ? "selected='selected'" : "";                                           
                                         ?>
                                         <option value="<?=$key?>" <?=$selectedText?> ><?=$value?></option>
                                         <?php 
@@ -72,7 +89,7 @@
                                     </select>
 									</div>
 							<div class="col-md-6">
-								  <input type="text" class="form-control" id="zipCode" name="zip" placeholder="Zip Code" value="{{$sd['zipcode']}}" data-default="{{$sd['zipcode']}}">
+								  <input type="text" class="form-control" id="zipCode" name="zip" placeholder="Zip Code" value="{{$sdd['zipcode']}}" data-default="{{$sdd['zipcode']}}">
 							</div>
 							<div class="col-md-6">
                                 <input type="text" class="form-control" id="phone_number" name="phone" min="0" placeholder="Phone No" value="{{$user->phone}}" data-default="{{$user->phone}}">
@@ -88,59 +105,96 @@
                                         </div>
                             </div>
 						</div>
-						<div class="cf-title">Delievery Info</div>
-						<div class="row shipping-btns">
-							<div class="col-6">
-								<h4>Standard</h4>
-							</div>
-							<div class="col-6">
-								<div class="cf-radio-btns">
-									<div class="cfr-item">
-										<input type="radio" name="shipping" id="ship-1">
-										<label for="ship-1">Free</label>
-									</div>
-								</div>
-							</div>
-							<div class="col-6">
-								<h4>Next day delievery  </h4>
-							</div>
-							<div class="col-6">
-								<div class="cf-radio-btns">
-									<div class="cfr-item">
-										<input type="radio" name="shipping" id="ship-2">
-										<label for="ship-2">$3.45</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="cf-title">Payment</div>
-						<ul class="payment-list">
-							<li>Paypal<a href="#"><img src="img/paypal.png" alt=""></a></li>
-							<li>Credit / Debit card<a href="#"><img src="img/mastercart.png" alt=""></a></li>
-							<li>Pay when you get the package</li>
-						</ul>
-						<button class="site-btn submit-order-btn">Place Order</button>
+						            <?php
+                                     $subtotal = $cartTotals['subtotal'];
+                                     $delivery = $cartTotals['delivery'];
+                                     $total = $cartTotals['total'];
+                                     $md = $cartTotals['md'];
+                                     $md['type'] = 'checkout';
+                                    ?>
+                         
+						 <input type="hidden" id="cod-action" value="{{url('checkout')}}">
+                            	<input type="hidden" id="card-action" value="{{url('pay')}}">
+                            	
+                             <script>
+                             	let mc = {
+                             	                'type': 'checkout',
+                                                 'comment': '',
+                                                 'company': "{{$sdd['company']}}",
+                                                 'address': "{{$sdd['address']}}",
+                                                 'city': "{{$sdd['city']}}",
+                                                 'state': "{{$sdd['state']}}",
+                                                 'zip': "{{$sdd['zipcode']}}",
+                                                 'ssa': "off"
+                                             };
+                             
+                             </script>
+                            <!-- payment form -->
+                            	<input type="hidden" name="email" value="{{$user->email}}"> {{-- required --}}
+                            	<input type="hidden" name="amount" value="{{$total * 100}}"> {{-- required in kobo --}}
+                            	<input type="hidden" name="metadata" id="nd" value="" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
+                            
+                                <input type="hidden" id="meta-comment" value="">  
+                            <!-- End payment form -->
+							
+						 
+						<button id="pay-cod" class="site-btn submit-order-btn" style="margin-bottom: 10px;">Pay with KloudPay</button><br>
+						<button id="pay-card" class="site-btn submit-order-btn">Pay with Credit card</button>
 					</form>
 				</div>
 				<div class="col-lg-4 order-1 order-lg-2">
 					<div class="checkout-cart">
 						<h3>Your Cart</h3>
+						
 						<ul class="product-list">
+						   @if(count($cart) > 0)
+                           @foreach($cart as $c)
+					       <?php
+						     $deal = $c['deal'];
+                                     if(count($deal) < 1){
+                                   	      $pay = 0;
+                                       
+                                       $deal = ['name' => "<s>Deleted</s>",
+                                                   'data' => ['amount'=> 0]
+                                          ];
+                                       $imgg = "img/no-image.png";
+                                     
+                                     }
+                                     else{
+                                        $data = $deal['data'];
+                                        $pay = $data['amount'];
+                                        
+                                        if($c['type'] == "auction"){
+                                        	$b = $c['bid'];
+                                            if($b != null){
+                                            	$pay = $b->pay;
+                                            }
+                                        }
+                                        $images = $deal['images'];
+                                        shuffle($images);
+                                        $ird = $images[0]['url'];
+										if($ird == "none") $imgg = "img/no-image.png"; 
+                                        else $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird;
+                                        
+                                        }
+						   ?>
 							<li>
-								<div class="pl-thumb"><img src="img/cart/1.jpg" alt=""></div>
-								<h6>Animal Print Dress</h6>
-								<p>$45.90</p>
+								<div class="pl-thumb"><img src="{{$imgg}}" alt="{{$deal['name']}}"></div>
+								<h6>{{$deal['name']}}</h6>
+								<p>&#8358;{{number_format((float)$pay,2)}}</p>
 							</li>
-							<li>
-								<div class="pl-thumb"><img src="img/cart/2.jpg" alt=""></div>
-								<h6>Animal Print Dress</h6>
-								<p>$45.90</p>
-							</li>
+							@endforeach
+							@endif
 						</ul>
+						<?php
+                                     $subtotal = $cartTotals['subtotal'];
+                                     $delivery = $cartTotals['delivery'];
+                                     $total = $cartTotals['total'];
+                                    ?>
 						<ul class="price-list">
-							<li>Total<span>$99.90</span></li>
-							<li>Shipping<span>free</span></li>
-							<li class="total">Total<span>$99.90</span></li>
+							<li>Subtotal<span>&#8358;{{number_format((float)$subtotal,2)}}</span></li>
+							<li>Delivery<span>&#8358;{{number_format((float)$subtotal,2)}}</span></li>
+							<li class="total">Total<span>&#8358;{{number_format((float)$total,2)}}</span></li>
 						</ul>
 					</div>
 				</div>
@@ -149,4 +203,28 @@
 	</section>
 	<!-- checkout section end -->
 
+@stop
+
+@section('scripts')
+<script>
+//console.log(sds);
+$('#sd').change(function(){
+	let sdVal = $(this).val();
+	if(sdVal == "none"){
+		
+	}
+	else{
+	   let selectedAddress = sds[sdVal];
+	   console.log(selectedAddress);
+	
+	   if(selectedAddress == ""){
+		
+	   }
+	   else{
+		
+	   }
+	}
+	$('#_sd').val(sdVal);
+});
+</script>
 @stop

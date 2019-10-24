@@ -40,7 +40,7 @@
                                        $deal = ['name' => "<s>Deleted</s>",
                                                    'data' => ['amount'=> 0]
                                           ];
-                                       $imgg = "https://via.placeholder.com/150";
+                                       $imgg = "img/no-image.png";
                                        $removeURL = url('remove-from-cart').'?asf='.$c['id'];
                                      }
                                      else{
@@ -56,14 +56,15 @@
                                         $images = $deal['images'];
                                         shuffle($images);
                                         $ird = $images[0]['url'];
-                                        $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird;
+										if($ird == "none") $imgg = "img/no-image.png"; 
+                                        else $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird;
                                         $du = url('deal')."?sku=".$deal['sku'];
                                         $removeURL = url('remove-from-cart').'?asf='.$deal['sku'];
                                         }
                                     ?>
 								<tr>
 									<td class="product-col">
-										<img src="img/cart/1.jpg" alt="" data-cli="{{$du}}">
+										<img src="{{$imgg}}" alt="" data-cli="{{$du}}">
 										<div class="pc-title">
 											<h4><a href="{{$du}}">{{$deal['name']}}</a></h4>
 											<p></p>

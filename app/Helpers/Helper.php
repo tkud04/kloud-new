@@ -1169,14 +1169,15 @@ $subject = $data['subject'];
  
               if($sd != null)
                {
+				   $temp = [];
                    	$temp['company'] = $sd->company; 
-                       $temp['address'] = $sd->address; 
-                       $temp['city'] = $sd->city;
-                       $temp['state'] = $sd->state; 
-                       $temp['zipcode'] = $sd->zipcode; 
-                       $temp['id'] = $sd->id; 
-                       $temp['date'] = $sd->created_at->format("jS F, Y"); 
-                       $ret = $temp; 
+                    $temp['address'] = $sd->address; 
+                    $temp['city'] = $sd->city;
+                    $temp['state'] = $sd->state; 
+                    $temp['zipcode'] = $sd->zipcode; 
+                    $temp['id'] = $sd->id; 
+                    $temp['date'] = $sd->created_at->format("jS F, Y"); 
+                    array_push($ret,$temp); 
                }                          
                                                       
                 return $ret;
