@@ -2,20 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-let x = getCookie('kloudtransact_gdpr');
-if (x) {
-    $('#cookieConsent').hide();
-}
 
-      $('.summernote').summernote({
-        height: 200,
-      });
-
-$('.shop-categories-linkk').click(function(e){
-	e.preventDefault();
-	let c = $(this).attr('data-cat');
-	console.log("Category: " + c);
-});
 
 $("#pay-cod").click(function(e){
 	e.preventDefault();

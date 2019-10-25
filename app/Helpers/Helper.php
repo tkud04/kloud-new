@@ -2489,6 +2489,8 @@ function adminGetOrder($number)
            
            function checkout($user, $data, $type)
            {
+			   $deb = [$data,$type];
+			   dd($deb);
                switch($type){
                	case "kloudpay":
                  	$ret = $this->payWithKloudPay($user, $data);

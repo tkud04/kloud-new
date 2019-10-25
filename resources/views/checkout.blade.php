@@ -193,7 +193,7 @@ echo "};</script>";
                                     ?>
 						<ul class="price-list">
 							<li>Subtotal<span>&#8358;{{number_format((float)$subtotal,2)}}</span></li>
-							<li>Delivery<span>&#8358;{{number_format((float)$subtotal,2)}}</span></li>
+							<li>Delivery<span>&#8358;{{number_format((float)$delivery,2)}}</span></li>
 							<li class="total">Total<span>&#8358;{{number_format((float)$total,2)}}</span></li>
 						</ul>
 					</div>

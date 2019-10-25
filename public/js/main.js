@@ -37,6 +37,42 @@ $('#size-1').change(function(e){
 		$('#size-2').hide();
 	}	
 });
+
+$("#pay-cod").click(function(e){
+	e.preventDefault();
+	setPaymentAction("cod");
+});
+
+$(".cli").click(function(e){
+	e.preventDefault();
+	uu = $(this).attr("data-cli");
+	console.log(uu);
+	window.location = uu; 
+	
+});
+
+$("#pay-card").click(function(e){
+	e.preventDefault();
+	 mc['comment'] = $('#comment').val();
+	if($('#customCheck3').is(':checked')) mc['ssa'] = "on";
+	$('#nd').val(JSON.stringify(mc));
+	
+	setPaymentAction("card");
+});
+
+$("#deposit-card").click(function(e){
+	e.preventDefault();
+	
+	 $('#meta-amount').val($('#amount').val() * 100);
+	$('#nd').val(JSON.stringify(mc));
+	setPaymentAction("card");
+});
+
+
+
+
+
+
 setTimeout(function(){window.scrollTo(0,0);},0);
 
  // :: 3.0 ScrollUp Active Code
