@@ -13,7 +13,7 @@ class OrderDetails extends Model
      * @var array
      */
     protected $fillable = [
-        'order_id', 'deal_id', 'qty'
+        'order_id', 'deal_id', 'auction_id', 'type', 'qty', 'color', 'size'
     ];
     
 }

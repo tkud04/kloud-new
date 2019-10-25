@@ -439,12 +439,14 @@ $subject = $data['subject'];
            function createOrder($data)
            {
            	$ref = (isset($data['reference'])) ? $data['reference'] : "none"; 
-               $ref = (isset($data['comment'])) ? $data['comment'] : ""; 
+               $cmm = (isset($data['comment'])) ? $data['comment'] : ""; 
+			   
            	$ret = Orders::create(['number' => $this->generateOrderNumber($data['type']),                                                                                                          
                                                       'user_id' => $data['user_id'], 
                                                       'total' => $data['total'],
+                                                      'sd' => $data['sd'],
                                                       'reference' => $ref,
-                                                      'comment' => $data['comment'],
+                                                      'comment' => $cmm,
                                                       'status' => 'active'
                                                       ]);
                                                       
@@ -455,7 +457,10 @@ $subject = $data['subject'];
            {
            	$ret = OrderDetails::create(['order_id' => $data['order_id'],                                                                                                          
                                                       'deal_id' => $data['deal_id'], 
-                                                      'qty' => $data['qty']
+                                                      'qty' => $data['qty'],
+                                                      'color' => $data['color'],
+                                                      'size' => $data['size'],
+                                                      'type' => $data['type'],
                                                       ]);
                                                       
                 return $ret;
@@ -790,19 +795,18 @@ $subject = $data['subject'];
                                                       
                 return $ret;
            }	
-           function getOrderTotals($on)
+           function getOrderTotals($orderDetails)
            {
            	$ret = ["subtotal" => 0, "delivery" => 0, "total" => 0, "md" => []];
-               $md = ['order-id' => $this->generateOrderNumber("checkout"),
-                         ];
+               
                $mmd = '';
                
-              if($cart != null && count($cart) > 0)
+              if($orderDetails != null && count($orderDetails) > 0)
                {           	
-               	foreach($cart as $c) 
+               	foreach($orderDetails as $od) 
                     {
                     	
-                       $deal = $c["deal"];
+                       $deal = $od["deal"];
                         if(count($deal) < 1)
 						{
 							$mmd .= "<s>Deleted</s><br>";
@@ -815,17 +819,19 @@ $subject = $data['subject'];
                           $amount = $deal['data']['amount'];
                           
                           $type = "deal";
-                          if(isset($c['type']) && $c['type'] != "") $type = $c['type'];
+                          if(isset($od['type']) && $od['type'] != "") $type = $od['type'];
                           
                           if($type == "auction"){
-                                        	$b = $c['bid'];
+                                        	$b = $od['bid'];
                                             if($b != null){
                                             	$amount = $b->pay;
                                             }
                                         }
                                         
-               	          $qty = $c['qty']; 
-                          $mmd .= $deal['name']." x".$qty."<br>";
+               	          $qty = $od['qty']; 
+               	          $color = $od['color']; 
+               	          $size = $od['size']; 
+                          $mmd .= $deal['name']." (x".$qty.") | Color: ".$color."| Size: ".$size."<br>";
          
                           $ret['subtotal'] += ($amount * $qty);
 						}
@@ -1165,20 +1171,43 @@ $subject = $data['subject'];
            function getShippingDetails($user)
            {
            	$ret = [];
-               $sd = ShippingDetails::where('user_id',$user->id)->first();
+               $sdd = ShippingDetails::where('user_id',$user->id)->get();
+ 
+              if($sdd != null)
+               {
+				   foreach($sdd as $sd)
+				   {
+				      $temp = [];
+                   	   $temp['company'] = $sd->company; 
+                       $temp['address'] = $sd->address; 
+                       $temp['city'] = $sd->city;
+                       $temp['state'] = $sd->state; 
+                       $temp['zipcode'] = $sd->zipcode; 
+                       $temp['id'] = $sd->id; 
+                       $temp['date'] = $sd->created_at->format("jS F, Y"); 
+                       array_push($ret,$temp); 
+				   }
+               }                         
+                                                      
+                return $ret;
+           }
+		   function getSingleShippingDetails($user,$id)
+           {
+           	$ret = [];
+               $sd = ShippingDetails::where('user_id',$user->id)->where('id',$id)->first();
  
               if($sd != null)
                {
-				   $temp = [];
-                   	$temp['company'] = $sd->company; 
-                    $temp['address'] = $sd->address; 
-                    $temp['city'] = $sd->city;
-                    $temp['state'] = $sd->state; 
-                    $temp['zipcode'] = $sd->zipcode; 
-                    $temp['id'] = $sd->id; 
-                    $temp['date'] = $sd->created_at->format("jS F, Y"); 
-                    array_push($ret,$temp); 
-               }                          
+				      $temp = [];
+                   	   $temp['company'] = $sd->company; 
+                       $temp['address'] = $sd->address; 
+                       $temp['city'] = $sd->city;
+                       $temp['state'] = $sd->state; 
+                       $temp['zipcode'] = $sd->zipcode; 
+                       $temp['id'] = $sd->id; 
+                       $temp['date'] = $sd->created_at->format("jS F, Y"); 
+                       $ret = $temp; 
+               }                         
                                                       
                 return $ret;
            }	  
@@ -1202,17 +1231,34 @@ $subject = $data['subject'];
            
            function updateShippingDetails($user, $data)
            {
-           	$sd = ShippingDetails::where('user_id',$user->id)->first();
+			  $dsd = $data['sd'];
+			if($dsd == "none")
+			{
+				$company = $data['company'];
+				if(is_null($company)) $company = "";
+				$shippingDetails =  ShippingDetails::create(['user_id' => $user->id,                                                                                                          
+                                                      'company' => $company, 
+                                                      'address' => $data['address'],
+                                                     'city' => $data['city'],
+                                                'state' => $data['state'],
+                                              'zipcode' => $data['zip'] 
+                                                      ]);
+			} 
+			else
+			{
+				$sd = ShippingDetails::where('user_id',$user->id)->where('id',$dsd)->first();
  
-              if($sd != null)
-               {
+                if($sd != null)
+                {
                	   $sd->update(['company' => $data['company'],
                                           'address' => $data['address'],
                                           'city' => $data['city'],
                                           'state' => $data['state'],
                                           'zipcode' => $data['zip']
                       ]);               
-               }
+                }
+			}
+			
            }	
            function getWallet($user)
            {
@@ -2245,6 +2291,8 @@ function adminGetOrder($number)
                    	$temp['id'] = $o->id; 
                    	$temp['number'] = $o->number; 
                        $temp['status'] = $o->status; 
+                       $temp['details'] = $this->getOrderDetails($user->id,$o->id); 
+                       $temp['sd'] = $o->sd; 
                        $temp['amount'] = $o->total; 
 					   $temp['date'] = $o->created_at->format("jS F, Y"); 
                        array_push($ret, $temp); 
@@ -2252,7 +2300,53 @@ function adminGetOrder($number)
                }       
                 return $ret;
            }
-           
+		   
+		   
+		   function getOrder($on)
+           {
+           	$ret = [];
+           	$o = Orders::where('number',$on)->first();
+               
+                if($o != null)
+               {
+                   	$temp = [];
+                   	$temp['id'] = $o->id; 
+                   	$temp['number'] = $o->number; 
+                       $temp['status'] = $o->status; 
+                       $temp['details'] = $this->getOrderDetails($o->user_id,$o->id); 
+                       $temp['sd'] = $o->sd; 
+                       $temp['amount'] = $o->total; 
+					   $temp['date'] = $o->created_at->format("jS F, Y"); 
+                       $ret = $temp; 
+
+               }       
+                return $ret;
+           }
+		   
+		   function getOrderDetails($user_id,$id)
+           {
+           	$ret = [];
+               $odd = OrderDetails::where('order_id',$id)->get();
+              if($odd != null)
+               {
+               	foreach($odd as $od) 
+                    {
+                    	$temp = [];
+               	     $temp = [];
+                   	$temp['id'] = $od->id; 
+                   	$temp['deal'] = $this->getDeal($od->deal_id);
+                        $temp['qty'] = $od->qty; 
+                        $temp['type'] = $od->type; 
+						$temp['bid'] = Bids::where('auction_id', $od->auction_id)->where('user_id', $user_id)->first();
+                        $temp['color'] = $od->color; 
+                        $temp['size'] = $od->size; 
+                        array_push($ret, $temp); 
+                   }
+               }                                 
+                                                      
+                return $ret;
+           }
+		   
            function addOrder($user,$data)
            {
            	$cart = $this->getCart($user);
@@ -2268,13 +2362,15 @@ function adminGetOrder($number)
                    
                	#if cart item is auction, mark bid as paid
                    $bid = null; 
-                   
+                   $auction_id = "";
+				   
                    if($c['type'] == "auction")
                   {
                   	$bid = $c['bid'];
                                                 	
                         if($bid != null)
                         {
+                        	$auction_id = $bid->auction_id; 
                         	$amount = $bid->pay; 
                         	$bid->update(['status' => "paid"]);
                        }             
@@ -2283,9 +2379,12 @@ function adminGetOrder($number)
                
                	$dt = [];
                    $dt['order_id'] = $order->id; 
+                   $dt['auction_id'] = $auction_id; 
                    $dt['deal_id'] = $c['deal']['id']; 
                    $dt['amount'] = $amount;
                    $dt['qty'] = $c['qty'];
+                   $dt['color'] = $c['color'];
+                   $dt['size'] = $c['size'];
                    $dt['type'] = $c['type'];
                    
                    $od = $this->createOrderDetails($dt);
@@ -2346,30 +2445,10 @@ function adminGetOrder($number)
 
            function getInvoice($on)
            {
-           	$ret = [];
-           	$order = Orders::where('id',$on)
-                                    ->orWhere('number',$on)->first();   
-               $orderDetails = OrderDetails::where('order_id',$order->id)->get();   
-               
-                if($order != null && $orderDetails != null)
-               {
-               	$ret['id'] = $order->id; 
-                   	$ret['number'] = $order->number; 
-                       $ret['status'] = $order->status; 
-                       $ret['amount'] = $order->total;                        
-                       $ret['date'] = $order->created_at->format("jS F, Y"); 
-                       $ret['order-details'] = [];
-                       
-               	foreach($orderDetails as $od)
-                   {
-                   	$temp = [];
-                   	$temp['id'] = $od->id; 
-                   	$temp['deal'] = $this->getDeal($od->deal_id);
-                        $temp['qty'] = $od->qty; 
-                       array_push($ret['order-details'], $temp); 
-                   }
-               }      
-                $ret['totals'] = $this->getOrderTotals($OrderDetails);
+           	  $ret = [];
+           	   $order = $this->getOrder($on); 
+              $ret['totals'] = $this->getOrderTotals($order['details']);
+              $ret['sd'] = $order['sd'];
                 return $ret;
            }
 
@@ -2490,7 +2569,7 @@ function adminGetOrder($number)
            function checkout($user, $data, $type)
            {
 			   $deb = [$data,$type];
-			   dd($deb);
+			   #dd($deb);
                switch($type){
                	case "kloudpay":
                  	$ret = $this->payWithKloudPay($user, $data);

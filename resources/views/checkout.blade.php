@@ -34,7 +34,7 @@ echo "};</script>";
 								<div class="address-rb">
 								    <p class="form-plaintext">Which shipping address do you want to use?</p>
 									<select class="form-control" id="sd">
-									   <option value="none">Add new shipping address</option>
+									   
 									   @foreach($sd as $s)
 									   <?php
 									     $addd = "";
@@ -44,6 +44,7 @@ echo "};</script>";
 									   ?>
 									   <option value="{{$s['id']}}">{{$addd}}</option>
 									   @endforeach
+									   <option value="none">Add new shipping address</option>
 									</select>
 								</div>
 							</div>
@@ -76,7 +77,7 @@ echo "};</script>";
 								   <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{$sdd['city']}}" data-default="{{$sdd['city']}}">
 							</div>
 							<div class="col-md-6">
-                                        <select class="form-control w-100" name="state" style="margin-bottom: 10px;">
+                                        <select class="form-control w-100" id="state" name="state" style="margin-bottom: 10px;">
                                         <option value="none">Select state</option>
                                         <?php 
                                           foreach($states as $key => $value){
@@ -222,9 +223,18 @@ $('#sd').change(function(){
 		
 	   }
 	   else{
-		
+		   let saArray = selectedAddress.split(',');
+		   console.log(saArray);
+		   if(saArray.length > 3){
+		     address = saArray[0], city = saArray[1], state = saArray[2], zipcode = saArray[3];
+		   }
 	   }
 	}
+	
+	$('#street_address').val(address);
+	$('#city').val(city);
+	$('#state').val(state);
+	$('#zipCode').val(zipcode);
 	
 	$('#_sd').val(sdVal);
 });

@@ -49,6 +49,7 @@ Interface HelperContract
         public function getUserDeal($user, $sku);
         public function updateUserDeal($user, $data);
         public function getShippingDetails($user);
+        public function getSingleShippingDetails($user,$id);
         public function getBankAccount($user);
         public function updateShippingDetails($user,$data);
         public function getWallet($user);
@@ -91,6 +92,8 @@ Interface HelperContract
         public function getUserRating($deal,$user);
         public function getComments($deal);
         public function getOrders($user);
+        public function getOrder($on);
+        public function getOrderDetails($user_id,$id);
         public function addOrder($user,$data);
         public function getInvoice($on);
         public function getUserInvoice($user,$on);

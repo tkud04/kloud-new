@@ -13,7 +13,7 @@ class Orders extends Model
      * @var array
      */
     protected $fillable = [
-        'number', 'user_id', 'reference', 'comment', 'total', 'status'
+        'number', 'sd', 'user_id', 'reference', 'comment', 'total', 'status'
     ];
     
 }

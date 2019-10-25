@@ -753,7 +753,7 @@ class MainController extends Controller {
                              'city' => 'required|filled',
                              'state' => 'required|not_in:none',
                              'zip' => 'required|filled',
-                             '_sd' => 'required',
+                             'sd' => 'required',
                              'phone' => 'required|filled',
                              'terms' => 'required|accepted',
          ]);
@@ -1268,8 +1268,9 @@ class MainController extends Controller {
             else
             {
                 $invoice = $this->helpers->getUserInvoice($user,$req['on']);
+				#dd($invoice);
                 $alertClass = "danger";
-                $sd = $this->helpers->getShippingDetails($user);
+                $sd = $this->helpers->getSingleShippingDetails($user,$invoice['sd']);
                 $alert = true; 
                 $alertText = "This invoice has been marked as UNPAID. ";
                 
