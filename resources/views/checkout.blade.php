@@ -22,9 +22,9 @@ echo "};</script>";
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 order-2 order-lg-1">
-					<form class="checkout-form" id="checkout-form">
+					<form class="checkout-form" id="checkout-form" method="post">
 					    {!! csrf_field() !!}
-						<input type="hidden" name="sd" id="_sd"/>
+						<input type="hidden" name="sd" id="_sd" value="none"/>
 						<div class="cf-title">Billing Info</div>
 						<div class="row">
 							<div class="col-md-7">
@@ -207,15 +207,16 @@ echo "};</script>";
 
 @section('scripts')
 <script>
-//console.log(sds);
+console.log(sds);
 $('#sd').change(function(){
 	let sdVal = $(this).val();
+	let city = "", state = "", address = "", zipcode = "";
 	if(sdVal == "none"){
 		
 	}
 	else{
 	   let selectedAddress = sds[sdVal];
-	   console.log(selectedAddress);
+	   console.log(`sa: ${selectedAddress}`);
 	
 	   if(selectedAddress == ""){
 		
@@ -224,6 +225,7 @@ $('#sd').change(function(){
 		
 	   }
 	}
+	
 	$('#_sd').val(sdVal);
 });
 </script>

@@ -743,7 +743,7 @@ class MainController extends Controller {
         	return redirect()->intended('/');
         }
         $req = $request->all();
-        //dd($req);
+        #dd($req);
         
         $validator = Validator::make($req, [
                              'fname' => 'required|filled',
@@ -753,7 +753,7 @@ class MainController extends Controller {
                              'city' => 'required|filled',
                              'state' => 'required|not_in:none',
                              'zip' => 'required|filled',
-                             '_sd' => 'required|',
+                             '_sd' => 'required',
                              'phone' => 'required|filled',
                              'terms' => 'required|accepted',
          ]);
