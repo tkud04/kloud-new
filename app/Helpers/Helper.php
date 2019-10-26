@@ -801,8 +801,10 @@ $subject = $data['subject'];
                
                $mmd = '';
                
+               
               if($orderDetails != null && count($orderDetails) > 0)
-               {           	
+               {
+                 $mmdtemp = [];				   
                	foreach($orderDetails as $od) 
                     {
                     	
@@ -831,13 +833,14 @@ $subject = $data['subject'];
                	          $qty = $od['qty']; 
                	          $color = $od['color']; 
                	          $size = $od['size']; 
-                          $mmd .= $deal['name']." (x".$qty.") | Color: ".$color."| Size: ".$size."<br>";
+                          $mmd = $deal['name']." (x".$qty.") | Color: ".$color."| Size: ".$size."<br>";
+						  array_push($mmdtemp,$mmd);
          
                           $ret['subtotal'] += ($amount * $qty);
 						}
                    }
                    
-                   $md["items"] = $mmd;
+                   $md = $mmdtemp;
                    $ret["md"] = $md;
                    $ret['delivery'] = $this->getDeliveryFee();
                    $ret['total'] = (float)$ret['subtotal'] + (float)$ret['delivery'];
@@ -2449,6 +2452,10 @@ function adminGetOrder($number)
            	   $order = $this->getOrder($on); 
               $ret['totals'] = $this->getOrderTotals($order['details']);
               $ret['sd'] = $order['sd'];
+              $ret['number'] = $order['number'];
+              $ret['date'] = $order['date'];
+              $ret['status'] = $order['status'];
+              $ret['amount'] = $order['amount'];
                 return $ret;
            }
 
