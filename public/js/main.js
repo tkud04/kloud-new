@@ -69,6 +69,13 @@ $("#deposit-card").click(function(e){
 });
 
 
+//Price refine button
+$("#price-refine-btn").click(function(e){
+	e.preventDefault();
+	 let minAmount = $('#minamount').val(), maxAmount = $('#maxamount').val();
+	 console.log(`min: ${minAmount}, max: ${maxAmount}`);
+});
+
 
 
 
@@ -230,6 +237,8 @@ setTimeout(function(){window.scrollTo(0,0);},0);
 	/*-------------------
 		Range Slider
 	--------------------- */
+	let encodedNaira = "\u20A6";
+
 	var rangeSlider = $(".price-range"),
 		minamount = $("#minamount"),
 		maxamount = $("#maxamount"),
@@ -241,12 +250,12 @@ setTimeout(function(){window.scrollTo(0,0);},0);
 		max: maxPrice,
 		values: [minPrice, maxPrice],
 		slide: function (event, ui) {
-			minamount.val('$' + ui.values[0]);
-			maxamount.val('$' + ui.values[1]);
+			minamount.val(encodedNaira + ui.values[0]);
+			maxamount.val(encodedNaira + ui.values[1]);
 		}
 	});
-	minamount.val('$' + rangeSlider.slider("values", 0));
-	maxamount.val('$' + rangeSlider.slider("values", 1));
+	minamount.val(encodedNaira + rangeSlider.slider("values", 0));
+	maxamount.val(encodedNaira + rangeSlider.slider("values", 1));
 
 
 	/*-------------------
