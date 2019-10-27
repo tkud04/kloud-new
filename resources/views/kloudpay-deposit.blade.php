@@ -37,8 +37,7 @@
                             	<input type="hidden" name="email" value="{{$user->email}}"> {{-- required --}}
                             	<input type="hidden" name="amount" id="meta-amount" value=""> {{-- required in kobo --}}
                             	<input type="hidden" name="metadata" id="nd" value="" > {{-- For other necessary things you want to add to your payload. it is optional though --}}
-                            	<input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
-                           	 <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
+                            	
                             <!-- End payment form -->
                             	
                             <input type="hidden" id="card-action" value="{{url('pay')}}">

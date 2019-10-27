@@ -608,10 +608,13 @@ class MainController extends Controller {
         {    
         	return redirect()->intended('login?return=cart');
         }
+		
+		$deals = $this->helpers->getDeals("deal");
+		
         $signals = $this->helpers->signals;
 		#dd($cart);
 		$mainClass = "cart-table-area section-padding-100";
-        return view('cart',compact(['user','cart','cartTotals','signals','mainClass']));
+        return view('cart',compact(['user','cart','cartTotals','signals','deals','mainClass']));
     }
     
     /**
@@ -634,7 +637,8 @@ class MainController extends Controller {
         
         $validator = Validator::make($req, [
                              'qty' => 'required|numeric',
-                             'sku' => 'required'
+                             'sku' => 'required',
+                             'sz' => 'required|not_in:undefined'
          ]);
          
          if($validator->fails())

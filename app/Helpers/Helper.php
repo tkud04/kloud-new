@@ -1348,6 +1348,7 @@ $subject = $data['subject'];
                              $d = Deals::where('id',$desc[1])->first();
                              $dn = ($d != null) ? $d->name: 'Unknown'; #deal username
                              $iu = url('invoice').'?on='.$desc[2]; #invoice url
+							 $temp['amount'] = $t->amount * $qty; 
                              $temp['description'] = 'User purchased '.$qty.' pcs of '.$dn.', order number <a href="'.$iu.'" target="_blank">'.$desc[2].'</a>'; 
                              $temp['badgeClass'] = 'badge-success'; 
                            break; 

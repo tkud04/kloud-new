@@ -120,6 +120,6 @@
 	<!-- cart section end -->
 
 
-	@include('more-products',['caption' => "CONTINUE SHOPPING"])
+	@include('more-products',['caption' => "CONTINUE SHOPPING",'deals' => $deals])
 
 @stop

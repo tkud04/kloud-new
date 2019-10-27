@@ -9,6 +9,8 @@
                        	@foreach ($errors->all() as $error)
                               @if($error == "The g-recaptcha-response field is required.")
 							    <li>You must fill the captcha to continue.</li>
+						      @elseif($error == "The selected sz is invalid.")
+							    <li>You must select a size to continue.</li>
 						      @else
 						        <li>{{ $error }}</li>
 						      @endif
