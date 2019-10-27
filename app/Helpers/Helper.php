@@ -1276,7 +1276,9 @@ $subject = $data['subject'];
  
                 if($sd != null)
                 {
-               	   $sd->update(['company' => $data['company'],
+					$company = $data['company'];
+				if(is_null($company)) $company = "";
+               	   $sd->update(['company' => $company,
                                           'address' => $data['address'],
                                           'city' => $data['city'],
                                           'state' => $data['state'],
