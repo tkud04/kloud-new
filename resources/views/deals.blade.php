@@ -11,6 +11,7 @@
 	<section class="category-section spad">
 		<div class="container">
 			<div class="row">
+			 <input type="hidden" id="q" value="{{$q}}"/>
 				@include('deals-filter')
 
 				<div class="col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0">

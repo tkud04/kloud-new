@@ -29,6 +29,7 @@ Interface HelperContract
         public function generateSKU();
         public function generateOrderNumber($type);
         public function getDeals($category,$q="");
+        public function refineDeals($deals,$p="");
         public function getUserDeals($user);
         public function getDeadline($baseTimeStamp,$offset);
         public function getDealData($sku);

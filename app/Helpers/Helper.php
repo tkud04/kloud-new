@@ -637,7 +637,30 @@ $subject = $data['subject'];
                }                                 
                                                       
                 return $ret;
-           }		 
+           }
+		   
+		   function refineDeals($deals,$p="")
+           {
+           	$ret = [];
+              if($deals != null && $p != "")
+               {
+				  $priceRange = explode("to",$p);
+				  $debug = [];
+				  
+               	foreach($deals as $d)
+                   {           
+                       $dt = $this->getDealData($d['sku']);
+					   array_push($debug,[$dt['amount'],$priceRange]);
+					   if($dt['amount'] >= $priceRange[0] && $dt['amount'] <= $priceRange[1]) array_push($ret, $d); 
+                   }
+				   
+				  # dd($debug);
+               }                                 
+                                                      
+                return $ret;
+           }
+
+		   
            
            function getUserDeals($user)
            {

@@ -72,11 +72,12 @@ $("#deposit-card").click(function(e){
 //Price refine button
 $("#price-refine-btn").click(function(e){
 	e.preventDefault();
-	 let minAmount = $('#minamount').val(), maxAmount = $('#maxamount').val();
-	 console.log(`min: ${minAmount}, max: ${maxAmount}`);
+	 let minAmount = $('#minamount').val(), maxAmount = $('#maxamount').val(), qq = $('#q').val();
+	 //console.log(`min: ${minAmount}, max: ${maxAmount}, qq: ${qq}`);
+	 let refineURL = `deals?q=${qq}&p=${minAmount.substr(1)}to${maxAmount.substr(1)}`;
+	 console.log(refineURL);
+	 window.location = refineURL;
 });
-
-
 
 
 

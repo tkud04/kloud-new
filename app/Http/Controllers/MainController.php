@@ -85,21 +85,33 @@ class MainController extends Controller {
 		$req = $request->all();
 		$category = "";
 		$bundleProducts = [];
+		$q = "";
+		
 		if(isset($req['q']))
 		{
-			$bundleProducts = $this->helpers->getDeals("bundle",$req['q']);
+			$q = $req['q'];
+			$bundleProducts = $this->helpers->getDeals("deal",$req['q']);
 			$category = $this->helpers->categories[$req['q']];
 		} 
         else
         {
-        	$bundleProducts = $this->helpers->getDeals("bundle");
-        }     
+        	$bundleProducts = $this->helpers->getDeals("deal");
+        }
+
+        if(isset($req['p']))
+		{
+			$p = $req['p'];
+			$bundleProducts = $this->helpers->refineDeals($deals,$p);
+			#dd($deals);
+			
+		}
+		
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
 		$deals = $bundleProducts;
 		$title = "Bundle Products";
 		
-    	return view('deals',compact(['user','cart','deals','category','c','signals','title']));
+    	return view('deals',compact(['user','cart','deals','category','c','q','signals','title']));
     }
 
 	/**
@@ -504,21 +516,32 @@ class MainController extends Controller {
 		$req = $request->all();
 		$category = "";
 		$topDeals = [];
+		$q = "";
 		
 		if(isset($req['q']))
 		{
+			$q = $req['q'];
 			$topDeals = $this->helpers->getDeals("deal",$req['q']);
 			$category = $this->helpers->categories[$req['q']];
 		} 
         else
         {
         	$topDeals = $this->helpers->getDeals("deal");
-        }     
+        }
+
+        if(isset($req['p']))
+		{
+			$p = $req['p'];
+			$topDeals = $this->helpers->refineDeals($deals,$p);
+			#dd($deals);
+			
+		}
+		
+		$deals = $topDeals;
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
-		$deals = $topDeals;
 		$title = "Top Deals";
-    	return view('deals',compact(['user','cart','category','deals','c','signals','title']));
+    	return view('deals',compact(['user','cart','category','deals','c','q','signals','title']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -538,20 +561,31 @@ class MainController extends Controller {
 		$req = $request->all();
 		$category = "";
 		$deals = [];
+		$q = "";
 		
 		if(isset($req['q']))
 		{
+			$q = $req['q'];
 			$deals = $this->helpers->getDeals("deal",$req['q']);
 			$category = $this->helpers->categories[$req['q']];
 		} 
         else
         {
         	$deals = $this->helpers->getDeals("deal");
-        }     
+        }
+
+        if(isset($req['p']))
+		{
+			$p = $req['p'];
+			$deals = $this->helpers->refineDeals($deals,$p);
+			#dd($deals);
+			
+		}
+		
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
 		$title = "Deals";
-    	return view('deals',compact(['user','cart','category','deals','c','signals','title']));
+    	return view('deals',compact(['user','cart','category','deals','c','q','signals','title']));
     }	
 	
 
