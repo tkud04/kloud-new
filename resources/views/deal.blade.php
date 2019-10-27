@@ -48,7 +48,7 @@ if($deal['status'] == "approved") $rupture = $deal['name'];
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="product-pic-zoom">
-						<img class="product-big-img" src="{{$imggs[0]}}" alt="">
+						<img class="product-big-img" src="{{$imggs[0]}}" alt="{{$deal['name']}}">
 					</div>
 					<div class="product-thumbs" tabindex="1" style="overflow: hidden; outline: none;">
 						<div class="product-thumbs-track">
@@ -217,6 +217,6 @@ if($deal['status'] == "approved") $rupture = $deal['name'];
 
 
 
-	@include('more-products',['caption' => "RELATED DEALS"])
+	@include('more-products',['caption' => "RELATED DEALS",'deals' => $deals])
 
 @stop

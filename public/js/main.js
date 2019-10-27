@@ -45,7 +45,7 @@ $("#pay-cod").click(function(e){
 
 $(".cli").click(function(e){
 	e.preventDefault();
-	uu = $(this).attr("data-cli");
+	let uu = $(this).attr("data-cli");
 	console.log(uu);
 	window.location = uu; 
 	

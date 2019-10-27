@@ -96,9 +96,10 @@ class MainController extends Controller {
         }     
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
+		$deals = $bundleProducts;
 		$title = "Bundle Products";
 		
-    	return view('deals',compact(['user','cart','bundleProducts','category','c','signals','title']));
+    	return view('deals',compact(['user','cart','deals','category','c','signals','title']));
     }
 
 	/**
@@ -515,8 +516,9 @@ class MainController extends Controller {
         }     
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
+		$deals = $topDeals;
 		$title = "Top Deals";
-    	return view('deals',compact(['user','cart','category','topDeals','c','signals','title']));
+    	return view('deals',compact(['user','cart','category','deals','c','signals','title']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -814,10 +816,11 @@ class MainController extends Controller {
              $rating = $this->helpers->getUserRating($deal,$user);
              $overallRating = $this->helpers->getRating($deal);
              $comments = $this->helpers->getComments($deal);
+			 $deals = $this->helpers->getDeals("deal");
              $category = $this->helpers->categories[$deal['category']];
              $signals = $this->helpers->signals;
 		     $mainClass = "single-product-area section-padding-100 clearfix";
-             return view('deal',compact(['user','cart','category','signals','deal','rating','overallRating','comments', 'mine', 'mainClass']));
+             return view('deal',compact(['user','cart','category','signals','deal','deals','rating','overallRating','comments', 'mine', 'mainClass']));
          }        
 		
     }
