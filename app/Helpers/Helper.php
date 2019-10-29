@@ -306,6 +306,7 @@ $subject = $data['subject'];
            {
            	$type = "cart";
                $auction_id = "";
+			   $color = "";
                $inCart = $this->inCart($data['user_id'], $data['sku']);
                if($inCart)
                 {
@@ -320,9 +321,11 @@ $subject = $data['subject'];
                else{
                if(isset($data['type'])) $type = $data['type'];
                if(isset($data['auction_id'])) $auction_id = $data['auction_id'];
+               if(isset($data['color'])) $color = $data['color'];
            	$ret = Carts::create(['user_id' => $data['user_id'],
                                           'sku' => $data['sku'],  
                                           'qty' => $data['qty'], 
+                                          'color' => $color, 
                                           'size' => $data['sz'], 
                                           'auction_id' => $auction_id, 
                                          'type' => $type,                                 
@@ -416,9 +419,13 @@ $subject = $data['subject'];
                 return $ret;
            }
            function createBid($data)
-           {   
+           {  
+            $color = isset($data['color']) ? $data['color']: "";		   
            	$ret = Bids::create(['auction_id' => $data['auction_id'],                                                                                                          
                                                       'user_id' => $data['user_id'], 
+                                                      'size' => $data['sz'], 
+                                                      'color' => $color, 
+                                                      'qty' => $data['qty'], 
                                                       'amount' => $data['amount'],    
                                                        'pay' => "0",    
                                                       'status' => "unpaid"
@@ -1005,8 +1012,12 @@ $subject = $data['subject'];
                                 ->where('auction_id', $data['auction_id'])->first();
                    
                         if($b != null)
-                        {                       
+                        {
+                            $color = isset($data['color']) ? $data['color']: "";							
                         	$b->update(['amount' => $data['amount'],
+							            'size' => $data['sz'], 
+                                        'color' => $color, 
+                                        'qty' => $data['qty'], 
                                            ]);
                                            
                                            $ret = "ok";
@@ -1994,19 +2005,21 @@ function adminGetOrder($number)
                        
                        #get highest bidder
                      	$hb = $this->getHighestBidder($a->id);
-                       dd($hb);
+                       #dd($hb);
                        if($hb != null) 
-                       {
-                         #add to highest bidder cart
-                         $dt = ['user_id' => $hb->id,'sku' => $d->sku,'qty' => "1",'auction_id' => $a->id,'type' => "auction"];
-					     $this->addToCart($dt);
-					     $a->update(['hb' => $hb->id]);
+                       {                   
 					     
 					      #update bid
                        $b = Bids::where('user_id',$hb->id)->where('auction_id',$a->id)->first();
                        #dd($b); 
                        if($b != null) 
                        {
+						  #add to highest bidder cart
+                         $dt = ['user_id' => $hb->id,'sku' => $d->sku,'qty' => $b->qty,'color' => $b->color,'sz' => $b->size,'auction_id' => $a->id,'type' => "auction"];
+					     $this->addToCart($dt);
+					     $a->update(['hb' => $hb->id]);
+						   
+						   
                        	$amount = $a->auction_price;
                        	if($mode == "buy") $amount = $a->buy_price;
                            $b->update(['pay' => $amount]);

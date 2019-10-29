@@ -349,7 +349,7 @@ class MainController extends Controller {
          else
          {
              #$req["uid"] = $user->id; 
-             $ret = $this->helpers->adminEndAuction($req,"bid");
+             $ret = $this->helpers->adminEndAuction($req['xf'],"bid");
 	        session()->flash("cobra-end-auction-status",$ret);
 			return redirect()->intended('my-auctions');
          }           	
@@ -456,13 +456,15 @@ class MainController extends Controller {
         //dd($req);
         
         $validator = Validator::make($req, [
+                             'qty' => 'required|numeric',
                              'sku' => 'required',
+                             'sz' => 'required|not_in:undefined'
          ]);
          
          if($validator->fails())
          {
              $messages = $validator->messages();
-             return redirect()->back();
+             return redirect()->back()->with('errors',$messages);
              //dd($messages);
          }
          

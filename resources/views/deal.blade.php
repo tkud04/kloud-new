@@ -150,13 +150,13 @@ if($deal['status'] == "approved") $rupture = $deal['name'];
                                 }
                                 else if($deal['type'] == "auction")
                                   {
-                                    $bidURL= url("bid")."?sku=".$deal['sku'];
+                                    $bidURL= url("bid")."?sku=".$deal['sku']."&qty=";
                                     $bidText = "Place bid";
                                     $buyURL = url("buy")."?sku=".$deal['sku']."&qty=1";
                                     $bp = "&#8358;".number_format($auction['buy_price'],2);
                                  ?>
-                                 <a href="#" class="site-btn" onclick="var effect = document.getElementById('qqq'); var qty = effect.value; if( !isNaN( qty )) window.location = '{{$bidURL}}';return false;">{{$bidText}}</a>
-                                 <a href="#" class="site-btn" onclick="var effect = document.getElementById('qqq'); var qty = effect.value; if( !isNaN( qty )) window.location = '{{$buyURL}}';return false;">Buy it now for {!! $bp !!}</a>
+                                 <a href="#" class="site-btn" onclick="var effect = document.getElementById('qqq'); var qty = effect.value; var sss = document.getElementById('sss').value; if( !isNaN( qty )) window.location = '{{$bidURL}}' + qty + '&sz=' + sss;return false;">{{$bidText}}</a>
+                                 <a href="#" class="site-btn" onclick="var effect = document.getElementById('qqq'); var qty = effect.value; var sss = document.getElementById('sss').value; window.location = '{{$buyURL}}'+ '&sz=' + sss;return false;">Buy it now for {!! $bp !!}</a>
                                  <?php
                                  }
                                  ?>
