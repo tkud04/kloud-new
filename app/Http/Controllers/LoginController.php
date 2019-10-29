@@ -133,7 +133,7 @@ class LoginController extends Controller {
                else{
                   $rex = "/";
                   if($user->verified == "vendor") $rex = "my-store";
-                  return redirect()->intended($return);
+                  return redirect()->intended($rex);
                }
             }
 			
