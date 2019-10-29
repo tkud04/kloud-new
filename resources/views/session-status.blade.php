@@ -8,9 +8,15 @@
        $pop .= "-error";
    } 
   ?>                
-  <div class="alert {{$class}}" role="alert">
-     <p>@if($val == "error")<strong>Whoops!</strong> @endif {{$signal[$pop]}}</p>
-     <button class="close" data-dismiss="alert">x</button>
-     <div class="clearfix"></div>
-     <br><br>                      
-  </div>
+  
+  <script>
+Swal.fire({
+  position: 'top-end',
+  type: '{{$class}}',
+  title: '@if($val == "error")<strong>Whoops!</strong> @else Success! @endif',
+  text: '{{$signal[$pop]}}',
+  showConfirmButton: false,
+  timer: 1500
+});
+</script>
+	
