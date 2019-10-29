@@ -81,7 +81,7 @@
 						   @else
 							<div class="up-item">
 								<i class="flaticon-profile"></i>
-								<a href="{{url('register')}}" style="color: #f51167;">Register</a> or <a href="{{url('login')}}" style="color: #f51167;">Login</a>
+								<a href="#" id="register-btnn" style="color: #f51167;">Register</a> or <a href="#" id="login-btnn" style="color: #f51167;">Login</a>
 							</div>
 						   @endif
 							<div class="up-item">
@@ -276,6 +276,72 @@
 	<script src="js/jquery.zoom.min.js"></script>
 	<script src="js/jquery-ui.min.js"></script>
 	<script src="js/main.js"></script>
+
+<script>
+$('#register-btnn').click(function(e){
+e.preventDefault();
+
+const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-warning'
+  },
+  buttonsStyling: false
+})
+
+swalWithBootstrapButtons.fire({
+  title: 'Register',
+  text: "Select an action to continue",
+  type: 'info',
+  showCancelButton: true,
+  confirmButtonText: 'Register as user',
+  cancelButtonText: 'Register as merchant',
+  reverseButtons: true
+}).then((result) => {
+  if (result.value) {
+    window.location = "register";
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    window.location = "mregister";
+  }
+})
+
+});
+
+$('#login-btnn').click(function(e){
+e.preventDefault();
+
+const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-warning'
+  },
+  buttonsStyling: false
+})
+
+swalWithBootstrapButtons.fire({
+  title: 'Login',
+  text: "Select an action to continue",
+  type: 'info',
+  showCancelButton: true,
+  confirmButtonText: 'Login as user',
+  cancelButtonText: 'Login as merchant',
+  reverseButtons: true
+}).then((result) => {
+  if (result.value) {
+    window.location = "login";
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    window.location = "login";
+  }
+})
+
+});
+</script>
 
     <!-- Cloudinary js -->
     <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
