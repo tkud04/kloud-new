@@ -3,210 +3,90 @@
 @section('title',$title)
 
 @section('content')
-<?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; ?>
+<?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; $product="auctions"; ?>
 @include('generic-banner',['title' => $title.$ct])
 
-
+<script>let nq = "";</script>
 	<!-- Category section -->
 	<section class="category-section spad">
 		<div class="container">
 			<div class="row">
+			 <input type="hidden" id="q" value="{{$q}}"/>
 				@include('deals-filter')
 
 				<div class="col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0">
 					<div class="row">
+					@if(count($auctions)  > 0)
+                     @foreach($auctions as $a)
+				      <?php
+                    $deal = $a['deal'];
+                    $data = $deal['data'];
+                    $images = $deal['images'];
+                         shuffle($images);
+                         if(count($images) < 1) { $imggs = ["img/no-image.png"]; }
+                                      else{
+                                      	$ird = $images[0]['url'];
+										if($ird == "none")
+										{
+											$imggs = ["img/no-image.png"];
+										}
+										else
+										{
+                                      	  for($x = 0; $x < $images[0]['irdc']; $x++)
+										  {
+                                      	   $jara = "";
+                                           if($x > 0) $jara = "-".($x + 1);
+                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird.$jara;
+                                           array_push($imggs,$imgg); 
+                                          }
+										}
+                                      } 
+                    $du = url('deal')."?sku=".$deal['sku'];
+					
+					if($a['status'] == "ended") $frf = "frf";
+					else if($a['status'] == "live") $frf = "wyret";
+                  ?>
 						<div class="col-lg-4 col-sm-6 wow fadeInUp">
 							<div class="product-item">
-							   <div class="deal-clock" id="cdc-5"></div>
+							  <div class="row">
+							     <div class="col-lg-9 col-xs-9"><div class="deal-clock" id="cdc-{{$a['id']}}"></div></div>
+							     <div class="col-lg-3 col-xs-3"><span class="inline text-left">{{$a['total-bids']}} bids</span></div>
+							   </div>
 							          <script>
-	ertyw = "wyrett";
-	//M d, Y h:i A
-	nq = new Date("Oct 26, 2019 12:00 AM");
-    getcd(nq,"cdc-5");
+	ertyw = "{{$frf}}";
+	nq = new Date("{{$a['ed']}}");
+    getcd(nq,"cdc-{{$a['id']}}");
 </script>
 								<div class="pi-pic">
 									<div class="tag-sale">LIVE</div>
-									<img src="./img/product/6.jpg" alt="">
+									<img src="{{$imggs[0]}}" class="cli" data-cli="{{$du}}" alt="{{$deal['name']}}">
 									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>PLACE BID</span></a>
-										<a href="#" class="add-card"><i class="flaticon-credit-card"></i><span>BUY NOW</span></a>
+									<?php
+									      $bidURL= url("bid")."?sku=".$deal['sku'];
+                                          $buyURL = url("buy")."?sku=".$deal['sku']."&qty=1";
+                                          $bp = number_format((float)$a['buy_price'],2);
+                                         ?>
+										<a href="{{$bidURL}}" class="add-card"><i class="flaticon-bag"></i><span>PLACE BID</span></a>
+										<a href="{{$buyURL}}" class="add-card"><i class="flaticon-credit-card"></i><span>BUY: &#8358;{{$bp}}</span></a>
 									</div>
 								</div>
 								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Black and White Stripes Dress</p>
+									<h6>&#8358;{{number_format((float)$a['auction_price'], 2)}}</h6>
+									<p>{{$deal['name']}}</p>
 								</div>
 							</div>
 						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/7.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-									    <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Flamboyant Pink Top</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/8.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Flamboyant Pink Top </p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/10.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Black and White Stripes Dress</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/11.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Flamboyant Pink Top</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/12.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Flamboyant Pink Top </p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/5.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Flamboyant Pink Top</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/9.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Flamboyant Pink Top</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/1.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Flamboyant Pink Top </p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<div class="tag-new">new</div>
-									<img src="./img/product/2.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Black and White Stripes Dress</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/3.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Flamboyant Pink Top </p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 col-sm-6 wow fadeInUp">
-							<div class="product-item">
-								<div class="pi-pic">
-									<img src="./img/product/4.jpg" alt="">
-									<div class="pi-links">
-										<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-										<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-									</div>
-								</div>
-								<div class="pi-text">
-									<h6>&#8358;15,000.00</h6>
-									<p>Flamboyant Pink Top </p>
-								</div>
-							</div>
-						</div>
+						 @endforeach
+                  @else
+					<div class="col-lg-12 wow fadeInUp">
+                      <p class="text-primary">No auctions at the moment. Check back later? </p>
+					</div>
+                  @endif
+				  @if(count($auctions) > 12)
 						<div class="text-center w-100 pt-3">
 							<button class="site-btn sb-line sb-dark">LOAD MORE</button>
 						</div>
+				  @endif
 					</div>
 				</div>
 			</div>

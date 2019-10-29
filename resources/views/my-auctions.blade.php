@@ -37,8 +37,24 @@
                     $deal = $a['deal'];
                     $images = $deal['images'];
                          shuffle($images);
-                         $ird = $images[0]['url'];
-                         $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird;
+                        if(count($images) < 1) { $imggs = ["img/no-image.png"]; }
+                                      else{
+                                      	$ird = $images[0]['url'];
+										if($ird == "none")
+										{
+											$imggs = ["img/no-image.png"];
+										}
+										else
+										{
+                                      	  for($x = 0; $x < $images[0]['irdc']; $x++)
+										  {
+                                      	   $jara = "";
+                                           if($x > 0) $jara = "-".($x + 1);
+                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird.$jara;
+                                           array_push($imggs,$imgg); 
+                                          }
+										}
+                                      }
                     $du = url('deal')."?sku=".$deal['sku'];
                     $bp = "&#8358;".number_format($a['auction_price'],2);
                     $hb = "Unknown";
@@ -52,7 +68,7 @@
                                                  <tr>
                                                   <td>
                                                   	<center>
-                                <img src="{{$imgg}}" class="cli" data-cli="{{$du}}" alt="">
+                                <img src="{{$imggs[0]}}" width="100" height="155" class="cli" data-cli="{{$du}}" alt="">
                                 
                                 </center><br>
                                 <a href="{{$du}}">{{$deal['name']}}</a>

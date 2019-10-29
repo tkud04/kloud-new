@@ -133,8 +133,10 @@ class MainController extends Controller {
 		$req = $request->all();
 		$category = "";
 		$auctions = [];
+		$q = "";
 		if(isset($req['q']))
 		{
+			$q = $req['q'];
 			$auctions = $this->helpers->getAuctions($req['q']);
 			$category = $this->helpers->categories[$req['q']];
 		} 
@@ -142,11 +144,19 @@ class MainController extends Controller {
         {
         	$auctions = $this->helpers->getAuctions();
         }   
+		
+		if(isset($req['p']))
+		{
+			$p = $req['p'];
+			$auctions = $this->helpers->refineAuctions($auctions,$p);
+			#dd($deals);
+			
+		}
         #dd($auctions);		
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
 		$title = "Kloud Auctions";
-    	return view('auctions',compact(['user','cart','auctions','category','c','signals','title']));
+    	return view('auctions',compact(['user','cart','auctions','category','c','q','signals','title']));
     }
     /**
 	 * Show the application welcome screen to the user.

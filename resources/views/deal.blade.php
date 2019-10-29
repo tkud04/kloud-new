@@ -160,6 +160,9 @@ if($deal['status'] == "approved") $rupture = $deal['name'];
                                  <?php
                                  }
                                  ?>
+								  @if(isset($mine) && $mine == "yes" && count($auction) < 1)
+									<a href="#" class="site-btn" onclick="window.location = '{{$aurl}}';return false;">Auction this now</a>
+                                @endif
 					<div id="accordion" class="accordion-area">
 						<div class="panel">
 							<div class="panel-header" id="headingOne">

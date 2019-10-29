@@ -4,7 +4,7 @@
 						<ul class="category-menu">
 						   @foreach($c as $key => $value)
 						   <?php
-						    $cu = url('deals')."?q=".$key;
+						    $cu = url($product)."?q=".$key;
 						   ?>
 							<li><a href="{{$cu}}">{{$value}}</a></li>
 						   @endforeach

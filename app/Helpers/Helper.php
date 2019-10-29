@@ -399,6 +399,7 @@ $subject = $data['subject'];
                if(isset($data['buy_price']) && $data['buy_price'] > 0) $bp = $data['buy_price'];
            	$ret = Auctions::create(['deal_id' => $data['deal_id'], 
                                                 'user_id' => $data['user_id'],       
+                                                'category' => $d['category'],       
                                                  'auction_price' => $ap,       
                                                  'buy_price' => $bp, 
                                                  'hb' => "", 
@@ -1525,6 +1526,26 @@ $subject = $data['subject'];
                                                       
                 return $ret;
            }	
+		   
+		   function refineAuctions($auctions,$p="")
+           {
+           	$ret = [];
+              if($auctions != null && $p != "")
+               {
+				  $priceRange = explode("to",$p);
+				  $debug = [];
+				  
+               	foreach($auctions as $a)
+                   {           
+                       $auctionPrice = $a['auction_price'];
+					   if($auctionPrice >= $priceRange[0] && $auctionPrice <= $priceRange[1]) array_push($ret, $a); 
+                   }
+				   
+				  # dd($debug);
+               }                                 
+                                                      
+                return $ret;
+           }
            
            function getUserAuctions($user)
            {

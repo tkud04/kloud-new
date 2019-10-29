@@ -3,7 +3,7 @@
 @section('title',$title)
 
 @section('content')
-<?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; ?>
+<?php $ct = (isset($category) && $category != null) ? " - ".$category : ""; $product="deals"; ?>
 @include('generic-banner',['title' => $title.$ct])
 
 
