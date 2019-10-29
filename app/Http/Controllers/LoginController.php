@@ -129,12 +129,12 @@ class LoginController extends Controller {
                $user = Auth::user();          
                 #dd($user); 
 				
-               if($this->helpers->isAdmin($user)){return redirect()->intended('/');}
-               else{
+             #  if($this->helpers->isAdmin($user)){return redirect()->intended('/');}
+               #else{
                   $rex = "/";
                   if($user->verified == "vendor") $rex = "my-store";
                   return redirect()->intended($rex);
-               }
+              # }
             }
 			
 			else
