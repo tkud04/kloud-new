@@ -124,6 +124,7 @@
 						    <li><a href="{{url('login')}}">Log in</a></li>
 							<li><a href="{{url('mregister')}}">Merchant Register</a></li>							
 							<li><a href="{{url('login')}}">Merchant Log in</a></li>
+							<li><a href="{{url('enterprise')}}">Enterprise</a></li>
 						  @endif						
 						</ul>
 					</li>
