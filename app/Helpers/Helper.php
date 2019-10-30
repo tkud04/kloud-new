@@ -526,6 +526,7 @@ $subject = $data['subject'];
            	$ret = Stores::create(['user_id' => $data['user_id'],                                                                                                          
                                                       'flink' => $data['flink'], 
                                                       'name' => $data['sname'],
+                                                      'pickup_address' => $data['pickup_address'],
                                                       'rating' => 0,
                                                       'img' => $data['img'], 
                                                       'description' => $data['description'], 
@@ -2915,6 +2916,7 @@ function adminGetOrder($number)
                        $user = User::where('id',$s->user_id)->first();
                        $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
                        $temp['name'] = $s->name;
+                       $temp['pickup_address'] = $s->pickup_address;
                        $temp['deals'] = ($user == null) ? [] : $this->getUserDeals($user);                        
                        $temp['flink'] = $s->flink;
                        $temp['total-revenue'] = $s->revenue;
@@ -2942,6 +2944,7 @@ function adminGetOrder($number)
                        $user = User::where('id',$s->user_id)->first();
                        $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
                        $temp['name'] = $s->name;  
+                       $temp['pickup_address'] = $s->pickup_address;
                        $temp['rating'] = $s->rating;                        
                        $temp['img'] = $s->img;                        
                        $temp['description'] = $s->description;    
@@ -2970,7 +2973,8 @@ function adminGetOrder($number)
                    	   $temp['id'] = $s->id; 
                        $user = User::where('id',$s->user_id)->first();
                        $temp['user'] = ($user == null) ? "Anonymous" : $user->fname." ".$user->lname; 
-                       $temp['name'] = $s->name;     
+                       $temp['name'] = $s->name;    
+                       $temp['pickup_address'] = $s->pickup_address;
                        $temp['deals'] = ($user == null) ? [] : $this->getUserDeals($user);      					   
                        $temp['flink'] = $s->flink;                        
                        $temp['rating'] = $s->rating;                        
@@ -3003,6 +3007,7 @@ function adminGetOrder($number)
                             if(isset($data['ird']) && ($oldImage != $data['ird']))  $this->deleteCloudImage($oldImage);
                             
                         	$store->update(['name' => $data['name'],
+                                              'pickup_address' = $data['pickup_address'],
                                               'flink' => $data['flink'],
                                               'description' => $data['description'],
                                               'img' => $data['ird'],
@@ -3029,6 +3034,7 @@ function adminGetOrder($number)
                             if(isset($data['ird']) && ($oldImage != $data['ird'])) $this->deleteCloudImage($oldImage);
                             
                         	$store->update(['name' => $data['name'],
+                                              'pickup_address' = $data['pickup_address'],
                                               'flink' => $data['flink'],
                                               'description' => $data['description'],
                                               'img' => $data['ird'],
