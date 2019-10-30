@@ -1826,7 +1826,7 @@ class MainController extends Controller {
          else
          {
              $r = $this->helpers->updateUserStore($user, $req);
-	        session()->flash("update-store-status",$r);
+	        $request->session()->flash("update-store-status",$r);
 			return redirect()->intended('edit-store');
          }        
     }
