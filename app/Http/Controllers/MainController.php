@@ -1811,6 +1811,7 @@ class MainController extends Controller {
                              'ird' => 'required',
                              'name' => 'required',
                              'flink' => 'required',
+                             'pickup_address' => 'required',
                              'description' => 'required',
 							 
          ]);
@@ -1826,7 +1827,7 @@ class MainController extends Controller {
          {
              $r = $this->helpers->updateUserStore($user, $req);
 	        session()->flash("update-store-status",$r);
-			return redirect()->intended('manage-my-store');
+			return redirect()->intended('edit-store');
          }        
     }
 	
