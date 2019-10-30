@@ -3007,7 +3007,7 @@ function adminGetOrder($number)
                             if(isset($data['ird']) && ($oldImage != $data['ird']))  $this->deleteCloudImage($oldImage);
                             
                         	$store->update(['name' => $data['name'],
-                                              'pickup_address' = $data['pickup_address'],
+                                              'pickup_address' => $data['pickup_address'],
                                               'flink' => $data['flink'],
                                               'description' => $data['description'],
                                               'img' => $data['ird'],
@@ -3034,7 +3034,7 @@ function adminGetOrder($number)
                             if(isset($data['ird']) && ($oldImage != $data['ird'])) $this->deleteCloudImage($oldImage);
                             
                         	$store->update(['name' => $data['name'],
-                                              'pickup_address' = $data['pickup_address'],
+                                              'pickup_address' => $data['pickup_address'],
                                               'flink' => $data['flink'],
                                               'description' => $data['description'],
                                               'img' => $data['ird'],
