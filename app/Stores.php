@@ -13,7 +13,7 @@ class Stores extends Model
      * @var array
      */
     protected $fillable = [
-       'user_id', 'flink', 'name', 'rating', 'img', 'description', 'revenue', 'status'
+       'user_id', 'flink', 'name', 'pickup_address', 'rating', 'img', 'description', 'revenue', 'status'
     ];
     
 }
