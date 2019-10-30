@@ -35,7 +35,7 @@ $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/upload
 				{!!csrf_field()!!}
 				 <input type="hidden" name="ird" id="ird" value="{{$store['img']}}" required>
                                    <input type="hidden" name="irdc" id="irdc" value="" required>
-                                   <input type="hidden" name="description" id="description" value="" required>
+                                   <input type="hidden" name="description" id="description" value="{{$store['description']}}" required>
 						<div class="cf-title">View/edit information about your store</div>
 						<div class="row address-inputs">
 							<div class="col-md-6">
