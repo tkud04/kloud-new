@@ -46,7 +46,13 @@
 												<input type="text" class="form-control" name="sname" value="" placeholder="Your store name" required><br>
                                         <textarea class="form-control" name="description" value="" placeholder="Enter store description" required></textarea>
 							</div>
-						</div><div class="row address-inputs">
+						</div>
+						<div class="row address-inputs">
+							<div class="col-md-12">
+                                 <textarea class="form-control" name="pickup_address" value="" placeholder="Enter pickup address (Number, Street, City, State)" required></textarea>
+							</div>
+						</div>
+                        <div class="row address-inputs">
 							<div class="col-md-6">
 								 <input type="text" class="form-control" name="flink" value="" placeholder="Friendly URL" required>
 							</div>

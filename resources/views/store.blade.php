@@ -25,74 +25,62 @@ $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/upload
 			<div class="section-title">
 				<h2>Top Deals</h2>
 			</div>
+			
 			<div class="product-slider owl-carousel">
+			   @foreach($deals as $d)
+			   <?php
+					  $images = $d['images'];
+                                      $imggs = [];
+                                      shuffle($images);
+                         
+                                      if(count($images) < 1) { $imggs = ["img/no-image.png"]; }
+                                      else{
+                                      	$ird = $images[0]['url'];
+										if($ird == "none")
+										{
+											$imggs = ["img/no-image.png"];
+										}
+										else
+										{
+                                      	  for($x = 0; $x < $images[0]['irdc']; $x++)
+										  {
+                                      	   $jara = "";
+                                           if($x > 0) $jara = "-".($x + 1);
+                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird.$jara;
+                                           array_push($imggs,$imgg); 
+                                          }
+										}
+                                      } 
+                                    
+									   $data = $d['data'];
+									   $iss = ['yes' => 'In stock','new' => 'New!','no' => 'Out of Stock'];
+                                       $inStock = $data['in_stock'];									   
+									   $ttag = $iss[$inStock];
+									   
+                                       $dealURL = url("deal")."?sku=".$d['sku'];
+                                       $cartURL = url("add-to-cart")."?sku=".$d['sku']."&qty=1";
+									   
+									   $kp = $data['amount'];
+                                       $auction = $d['auction'];
+                                       if(count($auction) > 0 && $auction['status'] == "live") $kp = $auction['auction_price'];
+					                ?>
 				<div class="product-item">
 					<div class="pi-pic">
-						<img src="{{asset('./img/product/1.jpg')}}" alt="">
+						<img src="{{$imggs[0]}}" class="cli" data-cli="{{$dealURL}}" alt="{{$d['name']}}">
 						<div class="pi-links">
 							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
 							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
 						</div>
 					</div>
 					<div class="pi-text">
-						<h6>&#8358;20,000.00</h6>
-						<p>Flamboyant Pink Top </p>
+						<h6>&#8358;{{number_format((float)$kp,2)}}</h6>
+						<p>{{$d['name']}}</p>
 					</div>
 				</div>
-				<div class="product-item">
-					<div class="pi-pic">
-						<div class="tag-new">New</div>
-						<img src="{{asset('./img/product/2.jpg')}}" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>&#8358;20,000.00</h6>
-						<p>Black and White Stripes Dress</p>
-					</div>
-				</div>
-				<div class="product-item">
-					<div class="pi-pic">
-						<img src="{{asset('./img/product/3.jpg')}}" alt="">
-						<div class="pi-links">
-							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-						</div>
-					</div>
-					<div class="pi-text">
-						<h6>&#8358;20,000.00</h6>
-						<p>Flamboyant Pink Top </p>
-					</div>
-				</div>
-				<div class="product-item">
-						<div class="pi-pic">
-							<img src="{{asset('./img/product/4.jpg')}}" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>&#8358;20,000.00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				<div class="product-item">
-						<div class="pi-pic">
-							<img src="{{asset('./img/product/6.jpg')}}" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>&#8358;20,000.00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-			</div><br>
+				@endforeach
+			</div>
+			
+            <br>
 			<center><a href="{{url('manage-my-store')}}" class="site-btn">Go to your store dashboard</a></center>
 		</div>
 	</section>
