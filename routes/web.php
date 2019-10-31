@@ -195,4 +195,5 @@ Route::get('sdd', 'AdminController@getSeeder');
 
 Route::get('dri', 'MainController@getDeleteImage');
 Route::get('practice', 'MainController@getPractice');
+Route::post('practice', 'MainController@postPractice');
 Route::get('zohoverify/{url}', 'MainController@getZoho');
