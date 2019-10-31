@@ -2160,7 +2160,7 @@ class MainController extends Controller {
         
         $validator = Validator::make($req, [
                              'img' => 'required|array|min:1',
-                             'img.*' => 'required|''
+                             'img.*' => 'required'
 							 
          ]);
          
