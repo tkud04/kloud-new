@@ -2131,17 +2131,54 @@ class MainController extends Controller {
 	 */
 	public function getPractice()
     {
-		$url = "http://www.kloudtransact.com/cobra-deals";
-	    $msg = "<h2 style='color: green;'>A new deal has been uploaded!</h2><p>Name: <b>My deal</b></p><br><p>Uploaded by: <b>A Store owner</b></p><br><p>Visit $url for more details.</><br><br><small>KloudTransact Admin</small>";
-		$dt = [
-		   'sn' => "Tee",
-		   'em' => "kudayisitobi@gmail.com",
-		   'sa' => "KloudTransact",
-		   'subject' => "A new deal was just uploaded. (read this)",
-		   'message' => $msg,
-		];
-    	return $this->helpers->bomb($dt);
+		$user = null;
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		$signals = $this->helpers->signals;
+		return view('fff',compact(['user','signals']));
     }   
+    
+    /**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+    public function postPractice(Request $request)
+    {
+    	if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		else
+        {
+        	return redirect()->intended('/');
+        }
+        $req = $request->all();
+        
+        
+        $validator = Validator::make($req, [
+                             'img' => 'required|array|min:1',
+                             'img.*' => 'required|''
+							 
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back()->withInput()->with('errors',$messages);
+             //dd($messages);
+         }
+         
+         else
+         {
+         	dd($req);
+             $r = $this->helpers->updateUserStore($user, $req);
+	        $request->session()->flash("update-store-status",$r);
+			return redirect()->intended('fff');
+         }        
+    }
 
 
 }
