@@ -11,7 +11,7 @@
   
   <script>
 Swal.fire({
-  position: 'top-end',
+  position: 'top',
   type: '{{$class}}',
   title: '@if($val == "error")<strong>Whoops!</strong> @else Success! @endif',
   text: '{{$signal[$pop]}}',

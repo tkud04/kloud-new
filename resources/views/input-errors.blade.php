@@ -1,25 +1,25 @@
  
 <script>
+let nl = '\n';
 let text = 
 Swal.fire({
-  position: 'top-end',
+  position: 'top',
   type: 'error',
-  title: '<strong>Whoops!</strong> There were some problems with your input.',
-  text: `
-   <ul>                       	
+  title: `<strong>Whoops!</strong> ${nl} There were some problems with your input. ${nl}`,
+  text: `                     	
                        	@foreach ($errors->all() as $error)
                               @if($error == "The g-recaptcha-response field is required.")
-							    <li>You must fill the captcha to continue.</li>
+							    You must fill the captcha to continue
 						      @elseif($error == "The selected sz is invalid." || $error == "The sz field is required.")
-							    <li>You must select a size to continue.</li>
+							    You must select a size to continue
 						      @else
-						        <li>{{ $error }}</li>
-						      @endif
+						        {{ $error }}
+						      @endif 
+							  ${nl}
 						   @endforeach
-                       </ul>
          `,
   showConfirmButton: false,
-  timer: 2500
+  timer: 3000
 });
 </script>
 	

@@ -139,6 +139,7 @@ class Helper implements HelperContract
                      "update-smtp-status" => "SMTP settings updated!",
                      "add-leads-status" => "Leads added.",                   
                      "delete-leads-status" => "Leads deleted.", 
+                     "fund-wallet-status" => "Funds added/removed.", 
                      "vendor-signup-status" => "Welcome to your new store! Import your products and start selling.",
                      "signup-status" => "Signup successful! You can now log in.",
                      ],
@@ -2535,7 +2536,8 @@ function adminGetOrder($number)
            
            function fundWallet($data)
            {
-           	$account = User::where('email',$data['email'])->first();
+           	$account = User::where('email',$data['email'])
+			               ->orWhere('phone',$data['email'])->first();
                
                if($account != null)
                {
