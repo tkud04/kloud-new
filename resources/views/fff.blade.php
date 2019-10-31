@@ -11,7 +11,7 @@
 		<div class="container">
 			<div class="row">
           <div class="col-lg-12 mx-auto text-center">
-            <form class="checkout-form wow fadeInUp" action="{{url('fff')}}" method="post">
+            <form class="checkout-form wow fadeInUp" action="{{url('practice')}}" method="post">
 				{!!csrf_field()!!}
 				    
 						<div class="cf-title">Practice View</div>
