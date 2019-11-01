@@ -3070,8 +3070,8 @@ function adminGetOrder($number)
          function uploadCloudImage($path)
           {
           	$ret = [];
-          	$kid = "uploads/".$id;
-          	$rett = \Cloudinary\Uplpader::upload($path);
+          	
+          	$rett = \Cloudinary\Uploader::upload($path);
             
           
              /**
