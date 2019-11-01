@@ -2173,8 +2173,13 @@ class MainController extends Controller {
          
          else
          {
-         	dd($req);
-             $r = $this->helpers->updateUserStore($user, $req);
+         	$images = $req['img'];
+             foreach($images as $img)
+             {
+             	$ret = $this->helpers->uploadCloudImage($img);
+			     dd($ret);
+             }
+         	#dd($req);
 	        $request->session()->flash("update-store-status",$r);
 			return redirect()->intended('fff');
          }        
