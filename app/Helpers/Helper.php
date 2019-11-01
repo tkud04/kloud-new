@@ -139,7 +139,6 @@ class Helper implements HelperContract
                      "update-smtp-status" => "SMTP settings updated!",
                      "add-leads-status" => "Leads added.",                   
                      "delete-leads-status" => "Leads deleted.", 
-                     "fund-wallet-status" => "Funds added/removed.", 
                      "vendor-signup-status" => "Welcome to your new store! Import your products and start selling.",
                      "signup-status" => "Signup successful! You can now log in.",
                      ],
@@ -2536,8 +2535,7 @@ function adminGetOrder($number)
            
            function fundWallet($data)
            {
-           	$account = User::where('email',$data['email'])
-			               ->orWhere('phone',$data['email'])->first();
+           	$account = User::where('email',$data['email'])->first();
                
                if($account != null)
                {
@@ -3066,6 +3064,21 @@ function adminGetOrder($number)
              #update store if exists
              $store = Stores::where('img', $id)->first();
              if($store != null) $store->update(['img' => 'none']);
+             return $ret; 
+         }
+         
+         function uploadCloudImage($path)
+          {
+          	$ret = [];
+          	$kid = "uploads/".$id;
+          	$rett = \Cloudinary\Uplpader::upload($path);
+            
+          
+             /**
+             #update store if exists
+             $store = Stores::where('img', $id)->first();
+             if($store != null) $store->update(['img' => 'none']);
+             **/
              return $ret; 
          }
          
