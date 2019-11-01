@@ -3070,8 +3070,9 @@ function adminGetOrder($number)
          function uploadCloudImage($path)
           {
           	$ret = [];
-          	
-          	$rett = \Cloudinary\Uploader::upload($path);
+          	$dt = ['cloud_name' => "kloudtransact"];
+              $preset = "gjbdj9bt";
+          	$rett = \Cloudinary\Uploader::unsigned_upload($path,$preset,$dt);
             
           
              /**
@@ -3079,7 +3080,7 @@ function adminGetOrder($number)
              $store = Stores::where('img', $id)->first();
              if($store != null) $store->update(['img' => 'none']);
              **/
-             return $ret; 
+             return $rett; 
          }
          
          function getED($a)
