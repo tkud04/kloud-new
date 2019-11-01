@@ -2174,7 +2174,7 @@ class MainController extends Controller {
          else
          {
          	$images = $req['img'];
-             foreach($i = 0; $i < count($images); $i++)
+             for($i = 0; $i < count($images); $i++)
              {
              	$f = $request->file('img');
                  dd($f);
