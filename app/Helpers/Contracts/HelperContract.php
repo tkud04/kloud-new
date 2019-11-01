@@ -121,6 +121,7 @@ Interface HelperContract
 		public function getUserStore($user);
 		public function updateUserStore($user,$req);
 		public function deleteCloudImage($id);
+		public function uploadCloudImage($path);
 		public function getED($a);
 		public function deleteDeal($user, $id);
 		public function deleteAuction($user, $id);
