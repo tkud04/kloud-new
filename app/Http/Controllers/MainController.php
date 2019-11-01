@@ -2173,12 +2173,12 @@ class MainController extends Controller {
          
          else
          {
-         	$images = $req['img'];
-             for($i = 0; $i < count($images); $i++)
-             {
-             	$f = $request->file('img');
-                 dd($f);
-             	$ret = $this->helpers->uploadCloudImage($f[$i]);
+
+             $img = $request->file('img');
+                 dd($img);
+             for($i = 0; $i < count($img); $i++)
+             {           
+             	$ret = $this->helpers->uploadCloudImage($img[$i]);
 			     dd($ret);
              }
          	#dd($req);
