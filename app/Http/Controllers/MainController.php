@@ -2175,10 +2175,10 @@ class MainController extends Controller {
          {
 
              $img = $request->file('img');
-                 dd($img);
+                 #dd($img);
              for($i = 0; $i < count($img); $i++)
              {           
-             	$ret = $this->helpers->uploadCloudImage($img[$i]);
+             	$ret = $this->helpers->uploadCloudImage($img[$i]->getRealPath());
 			     dd($ret);
              }
          	#dd($req);
