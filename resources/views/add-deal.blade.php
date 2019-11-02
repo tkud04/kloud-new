@@ -29,7 +29,7 @@
 		<div class="container">
 			<div class="row">
           <div class="col-lg-12 mx-auto text-center">
-            <form class="checkout-form wow fadeInUp" action="{{url('deal-new')}}" method="post">
+            <form class="checkout-form wow fadeInUp" action="{{url('deal-new')}}" enctype="multipart/form-data" method="post">
 				{!!csrf_field()!!}
 				 <input type="hidden" name="ird" id="ird" value="" required>
                  <input type="hidden" name="irdc" id="irdc" value="" required>
@@ -39,8 +39,12 @@
 						<div class="cf-title">Add a new deal to the system<br>Only deals that are approved will be displayed on our platform</div>
 						<div class="row address-inputs">
 							<div class="col-md-12">
-								<button id="deal-upload" class="cloudinary-button">Upload Photos</button><br>
-                                <span id="cloudinary-loading"><strong>TIP: <em>You can upload multiple photos by clicking this button.</em></strong><br>It usually takes a few minutes to upload photos so please be patient when you click <em>Upload</em>.</span> 
+								<p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Upload deal images</p><br>
+								<input type="file" name="img[]" id="img-1" class="form-control"  required>
+								<input type="file" name="img[]" id="img-2" class="form-control"  required>
+								<input type="file" name="img[]" id="img-3" class="form-control"  required>
+								<input type="file" name="img[]" id="img-4" class="form-control"  required>
+								<input type="file" name="img[]" id="img-5" class="form-control"  required>
 							</div>
 							
 						</div>
