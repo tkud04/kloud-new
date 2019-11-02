@@ -1585,6 +1585,8 @@ class MainController extends Controller {
                              'size-1' => 'required|not_in:none',
                              'color' => 'required|not_in:null',
                              'amount' => 'required|numeric',
+                             'img' => 'required|array|min:1',
+                             'img.*' => 'required'
          ]);
          
          if($validator->fails())
@@ -1596,6 +1598,16 @@ class MainController extends Controller {
          
          else
          {
+         	//upload deal images 
+             $img = $request->file('img');
+                 #dd($img);
+                 $ird = [];
+             for($i = 0; $i < count($img); $i++)
+             {           
+             	$ret = $this->helpers->uploadCloudImage($img[$i]->getRealPath());
+			     #dd($ret);
+			    array_push($ird, $ret['public_id']);
+             }
          	$req["user_id"] = $user->id; 
              $req["type"] = "deal";
 
@@ -1610,7 +1622,8 @@ class MainController extends Controller {
 				 $sz = $req['size-1'];
 			 }
              $req['size'] = $sz;
-			 
+			 $req['ird'] = $ird;
+			
              $d = $this->helpers->createDeal($req);
 			  $req["sku"] = $d->sku; 
 	        session()->flash("add-deal-status","ok");

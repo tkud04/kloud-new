@@ -284,7 +284,7 @@ class LoginController extends Controller {
                              'sname' => 'required',
                              'flink' => 'required',
                              'description' => 'required',
-                             #'ird' => 'required',
+                             'img' => 'required',
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
          ]);
@@ -327,7 +327,13 @@ class LoginController extends Controller {
 			    $store = $this->helpers->getUserStore($user);
 			    if(count($store) > 0) return redirect()->intended('my-store');
 				$req['user_id'] = $user->id;
-				$req['img'] = (isset($req["ird"])) ? $req["ird"] : "none";
+				
+				//upload deal images 
+             $img = $request->file('img');
+                 #dd($img);                  
+             	$ret = $this->helpers->uploadCloudImage($img->getRealPath());                
+				
+				$req['img'] = $ret['public_id'];
 				#$req['sname'] = $req["fname"]."'s Store";
 			    $this->helpers->createStore($req);
 							  
