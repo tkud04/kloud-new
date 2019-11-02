@@ -1605,7 +1605,7 @@ class MainController extends Controller {
              for($i = 0; $i < count($img); $i++)
              {           
              	$ret = $this->helpers->uploadCloudImage($img[$i]->getRealPath());
-			     #dd($ret);
+			     dd($ret);
 			    array_push($ird, $ret['public_id']);
              }
          	$req["user_id"] = $user->id; 
