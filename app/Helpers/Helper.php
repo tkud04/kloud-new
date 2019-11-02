@@ -360,12 +360,14 @@ $subject = $data['subject'];
                 $dealData = $this->createDealData($data);
 				$ird = "none";
 				$irdc = 0;
-				if(isset($data['ird']) && isset($data['irdc']))
+				if(isset($data['ird']) && count($data['ird']) > 0)
 				{
-					$ird = $data['ird'];
-				    $irdc = $data['irdc'];
+					foreach($data['ird'] as $url)
+                    {
+                    	$this->createDealImage(['sku' => $data['sku'], 'url' => $url, 'irdc' => "1"]);
+                    }
 				}
-                $this->createDealImage(['sku' => $data['sku'], 'url' => $ird, 'irdc' => $irdc]);
+                
                 return $ret;
            }
            function createDealData($data)
@@ -3073,14 +3075,11 @@ function adminGetOrder($number)
           	$dt = ['cloud_name' => "kloudtransact"];
               $preset = "gjbdj9bt";
           	$rett = \Cloudinary\Uploader::unsigned_upload($path,$preset,$dt);
-            
-          
-             /**
-             #update store if exists
-             $store = Stores::where('img', $id)->first();
-             if($store != null) $store->update(['img' => 'none']);
-             **/
-             return $rett; 
+                    
+             
+             
+             
+             return $ret; 
          }
          
          function getED($a)
