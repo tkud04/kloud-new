@@ -7,7 +7,7 @@
 $ct = (isset($category) && $category != null) ? " - ".$category : ""; 
 $deals = (isset($store["deals"])) ? $store["deals"] : [];
 
-$img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$store['img'];
+$img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$store['img'];
  if($store['img'] == "none") $img = "https://via.placeholder.com/150";
 ?>
 

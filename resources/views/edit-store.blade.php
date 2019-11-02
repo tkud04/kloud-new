@@ -21,7 +21,7 @@ $sc = "text-warning";
 if($status == "disabled") $sc = "text-danger";
 else if($status == "success") $sc = "text-success";
 
-$img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$store['img'];
+$img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$store['img'];
  if($store['img'] == "none") $img = "https://via.placeholder.com/150";
 ?>
 <script> let cdb = "store";</script>
@@ -91,7 +91,7 @@ $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/upload
 						</div>
 						<div class="row address-inputs">
 							<div class="col-md-12">
-								<p class="form-control-plaintext text-left"><i class="fa fa-store"></i> Store pickup address</p><br>
+								<p class="form-control-plaintext text-left"><i class="fa fa-store"></i> Store pickup address<
                                 <textarea class="form-control" name="pickup_address" placeholder="Enter pickup address (Number, Street, City, State)" required>{{$store['pickup_address']}}</textarea>
 							</div>
 						</div>

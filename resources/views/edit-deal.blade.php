@@ -27,7 +27,7 @@
 $data = $deal['data'];
 $imgg = $deal['images'];
  if($imgg[0]['url'] == "none") $img = "https://via.placeholder.com/150";
- else $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$imgg[0]['url'];
+ else $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$imgg[0]['url'];
 ?>
 <script> let cdb = "deal";</script>
 
