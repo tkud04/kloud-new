@@ -46,11 +46,11 @@
 										}
 										else
 										{
-                                      	  for($x = 0; $x < $images[0]['irdc']; $x++)
+                                      	  for($x = 0; $x < count($images); $x++)
 										  {
                                       	   $jara = "";
                                            if($x > 0) $jara = "-".($x + 1);
-                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$ird;
+                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$images[$x]['url'];
                                            array_push($imggs,$imgg); 
                                           }
 										}
