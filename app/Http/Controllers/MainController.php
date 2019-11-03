@@ -2124,7 +2124,7 @@ class MainController extends Controller {
          	$img = $req["ird"];
 			 $ret = $this->helpers->deleteCloudImage($img);
 			#dd($ret);
-			$ss = "cloud-image-".$ret['status'];
+			$ss = "cloud-image-deleted";
 			$location = '/'; 
 	        if(isset($req["loc"])) $location = $req["loc"];    
             session()->flash($ss,"ok");
