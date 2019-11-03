@@ -43,6 +43,7 @@
                         <?php
                     $images = $d['images'];
                          shuffle($images);
+                         $imggs = [];
                          if(count($images) < 1) { $imggs = ["img/no-image.png"]; }
                                       else{                                     	
                                       	for($x = 0; $x < count($images); $x++)
