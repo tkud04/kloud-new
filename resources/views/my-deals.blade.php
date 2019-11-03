@@ -44,22 +44,20 @@
                     $images = $d['images'];
                          shuffle($images);
                          if(count($images) < 1) { $imggs = ["img/no-image.png"]; }
-                                      else{
-                                      	$ird = $images[0]['url'];
-										if($ird == "none")
-										{
-											$imggs = ["img/no-image.png"];
-										}
-										else
-										{
-                                      	  for($x = 0; $x < count($images); $x++)
+                                      else{                                     	
+                                      	for($x = 0; $x < count($images); $x++)
 										  {
-                                      	   $jara = "";
-                                           if($x > 0) $jara = "-".($x + 1);
-                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$images[$x]['url'];
-                                           array_push($imggs,$imgg); 
+											$ird =$images[$x]['url'];
+											if($ird == "none")
+										    {
+											  $imgg = "img/no-image.png";
+										    }
+                                      	   else
+                                             {
+                                      	    $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$ird;
+                                             }
+                                             array_push($imggs,$imgg); 
                                           }
-										}
                                       }
                     $du = url('edit-deal')."?sku=".$d['sku'];
                   ?>
