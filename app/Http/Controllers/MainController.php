@@ -1821,7 +1821,7 @@ class MainController extends Controller {
         //dd($req);
         
         $validator = Validator::make($req, [
-                             'ird' => 'required',
+                             'img' => 'required',
                              'name' => 'required',
                              'flink' => 'required',
                              'pickup_address' => 'required',

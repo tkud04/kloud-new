@@ -111,7 +111,7 @@ if($deal['status'] == "approved") $rupture = $deal['name'];
                                         </form>
 					</div><br>
 					<div class="p-review">
-						<a href="">3 reviews</a>|<a href="#">Add your review</a>
+						<a href="">{{count($comments)}} comments</a>|<a href="#comments-panel">Add a comment</a>
 					</div>
 					<div class="fw-size-choose">
 					  <?php
@@ -186,14 +186,24 @@ if($deal['status'] == "approved") $rupture = $deal['name'];
 								</div>
 							</div>
 						</div>
-						<div class="panel">
+						<div class="panel" id="comments-panel">
 							<div class="panel-header" id="headingTwo">
-								<button class="panel-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">reviews</button>
+								<button class="panel-link" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">comments</button>
 							</div>
 							<div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 								<div class="panel-body">
-									<img src="./img/cards.png" alt="">
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
+									<form class="checkout-form" action="{{url('comment')}}" method="post">
+                                      {!! csrf_field() !!}
+                                      <input type="hidden" name="xf" value="{{$deal['id']}}">
+									  <div class="row address-inputs">
+							<div class="col-md-12">
+								<p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Comment</p><br>
+                                <textarea name="comment" class="form-control" required></textarea>
+							</div>
+						</div>
+						<button type="submit" class="site-btn submit-order-btn">Submit</button>
+					                </form>
+									
 								</div>
 							</div>
 						</div>						
