@@ -44,8 +44,8 @@ $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$sto
                                           <?php
                                            if($store['img'] == "none"){                                       	
                                           ?>
-                                          <button id="store-upload" class="cloudinary-button">Upload new logo</button>
-                                          <span id="cloudinary-loading">It usually takes a few minutes to upload images so please be patient when you click Upload above :)</span>
+                                          <p class="form-control-plaintext text-left"><i class="fa fa-store"></i> Upload your store logo</p><br>
+                                          <input type="file" name="img" id="img-1" class="form-control"  required>
                                           <?php
                                            }
                                            else{
