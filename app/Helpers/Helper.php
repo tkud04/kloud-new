@@ -3033,13 +3033,13 @@ function adminGetOrder($number)
                            
                         	#if store has old image, delete from cloudinary
                             $oldImage = $store->img; 
-                            if(isset($data['ird']) && ($oldImage != $data['ird'])) $this->deleteCloudImage($oldImage);
+                            if(isset($data['img']) && ($oldImage != $data['img']) && ($data['img'] != "none") $this->deleteCloudImage($oldImage);
                             
                         	$store->update(['name' => $data['name'],
                                               'pickup_address' => $data['pickup_address'],
                                               'flink' => $data['flink'],
                                               'description' => $data['description'],
-                                              'img' => $data['ird'],
+                                              'img' => $data['img'],
                                               'status' => $status,
                                            ]);
                                            
@@ -3050,23 +3050,9 @@ function adminGetOrder($number)
            
            function deleteCloudImage($id)
           {
-          	$ret = [];
-          	$kid = "uploads/".$id;
-          	$api = new \Cloudinary\Api();
-             $rett = $api->delete_resources([$kid]);
-            
-            $ds = json_encode($rett);
-             $s = json_decode($ds,true);
-             #dd($ret);
-             $d = $s['deleted'];
-             $dc = $s['deleted_counts'];
-             $ret['status'] = $d[$kid];
-             $ret['counts'] = $dc[$kid];
-             
-             #update store if exists
-             $store = Stores::where('img', $id)->first();
-             if($store != null) $store->update(['img' => 'none']);
-             return $ret; 
+          	$rett = \Cloudinary\Uploader::destroy($id);
+                                                     
+             return $rett; 
          }
          
          function uploadCloudImage($path)
@@ -3075,10 +3061,7 @@ function adminGetOrder($number)
           	$dt = ['cloud_name' => "kloudtransact"];
               $preset = "gjbdj9bt";
           	$rett = \Cloudinary\Uploader::unsigned_upload($path,$preset,$dt);
-                    
-             
-             
-             
+                                                      
              return $rett; 
          }
          
