@@ -1838,6 +1838,13 @@ class MainController extends Controller {
          
          else
          {
+         	//upload store logo 
+             $img = $request->file('img');
+                 #dd($img);
+                    
+             	$ret = $this->helpers->uploadCloudImage($img->getRealPath());
+			     #dd($ret);
+			    $req['img'] = $ret['public_id'];
              $r = $this->helpers->updateUserStore($user, $req);
 	        $request->session()->flash("update-store-status",$r);
 			return redirect()->intended('edit-store');
