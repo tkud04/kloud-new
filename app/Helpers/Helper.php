@@ -3005,8 +3005,16 @@ function adminGetOrder($number)
                            
                         	#if store has old image, delete from cloudinary
                             $oldImage = $store->img; 
-                            
-                            if(isset($data['img']) && ($oldImage != $data['img']))  $this->deleteCloudImage($oldImage);
+                            if($data['img'] === "none")
+                            {
+                            }
+                            else
+                            {
+                            	if($oldImage !== "none" && $oldImage !== $data['img'])
+                                {
+                                	$this->deleteCloudImage($oldImage);                                  
+                                }                                                                 
+                            }
                             
                         	$store->update(['name' => $data['name'],
                                               'pickup_address' => $data['pickup_address'],
@@ -3033,8 +3041,17 @@ function adminGetOrder($number)
                            
                         	#if store has old image, delete from cloudinary
                             $oldImage = $store->img; 
-                            if(isset($data['img']) && ($oldImage != $data['img']) && ($oldImage != "none")) $this->deleteCloudImage($oldImage);
-                            
+                            if($data['img'] === "none")
+                            {
+                            }
+                            else
+                            {
+                            	if($oldImage !== "none" && $oldImage !== $data['img'])
+                                {
+                                	$this->deleteCloudImage($oldImage);                                  
+                                }                                                                 
+                            }
+                           
                         	$store->update(['name' => $data['name'],
                                               'pickup_address' => $data['pickup_address'],
                                               'flink' => $data['flink'],
@@ -3050,7 +3067,7 @@ function adminGetOrder($number)
            
            function deleteCloudImage($id)
           {
-          	$dt = ['invalidate' => true];
+          	$dt = ['type'=> "image", 'invalidate' => true];
           	$rett = \Cloudinary\Uploader::destroy($id,$dt);
                                                      
              return $rett; 
