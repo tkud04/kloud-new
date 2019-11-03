@@ -3067,7 +3067,7 @@ function adminGetOrder($number)
            
            function deleteCloudImage($id)
           {
-          	$dt = ['type'=> "image", 'invalidate' => true];
+          	$dt = ['invalidate' => true];
           	$rett = \Cloudinary\Uploader::destroy($id,$dt);
                                                      
              return $rett; 
