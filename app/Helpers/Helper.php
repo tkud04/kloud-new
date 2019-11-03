@@ -3033,7 +3033,7 @@ function adminGetOrder($number)
                            
                         	#if store has old image, delete from cloudinary
                             $oldImage = $store->img; 
-                            if(isset($data['img']) && ($oldImage != $data['img']) && ($data['img'] != "none") $this->deleteCloudImage($oldImage);
+                            if(isset($data['img']) && ($oldImage != $data['img']) && ($data['img'] != "none")) $this->deleteCloudImage($oldImage);
                             
                         	$store->update(['name' => $data['name'],
                                               'pickup_address' => $data['pickup_address'],
