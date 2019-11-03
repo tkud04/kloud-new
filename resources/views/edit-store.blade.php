@@ -31,9 +31,9 @@ $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$sto
 		<div class="container">
 			<div class="row">
           <div class="col-lg-12 mx-auto text-center">
-            <form class="checkout-form wow fadeInUp" action="{{url('edit-store')}}" method="post">
+            <form class="checkout-form wow fadeInUp" action="{{url('edit-store')}}" enctype="multipart/form-data" method="post">
 				{!!csrf_field()!!}
-				 <input type="hidden" name="ird" id="ird" value="{{$store['img']}}" required>
+				 <input type="hidden" name="img" id="img" value="{{$store['img']}}" required>
                                    <input type="hidden" name="irdc" id="irdc" value="" required>
                                    <input type="hidden" name="description" id="description" value="{{$store['description']}}" required>
 						<div class="cf-title">View/edit information about your store</div>
