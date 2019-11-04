@@ -3513,8 +3513,8 @@ function adminGetOrder($number)
 			    { 
                   $qs .= "&receivers=".$lead."&ug=deal"; 
                
-                  $config = $this->getSmtpConfig();
-                  $qs .= "&host=".$config['host']."&port=".$config['port']."&user=".$config['user']."&pass=".$config['pass'];
+                  $config = $this->emailConfig;
+                  $qs .= "&host=".$config['ss']."&port=".$config['sp']."&user=".$config['su']."&pass=".$config['spp'];
                   $qs .= "&message=".$data['message'];
                
 			      //Send request to nodemailer
@@ -3574,9 +3574,10 @@ function adminGetOrder($number)
 		                  ];    	
                   }
                   $dt['em'] = "kudayisitobi@gmail.com";
-                  return $this->bomb($dt);
+                  $this->bomb($dt);
 				  $dt['em'] = "info@kloudtransact.com";
-                  return $this->bomb($dt);
+                  $this->bomb($dt);
+                  return "ok";
 		   }
 
         	public function getSliders()
