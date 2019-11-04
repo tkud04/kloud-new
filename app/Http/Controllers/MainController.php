@@ -1585,8 +1585,8 @@ class MainController extends Controller {
                              'size-1' => 'required|not_in:none',
                              'color' => 'required|not_in:null',
                              'amount' => 'required|numeric',
-                             'img' => 'required|array|min:1',
-                             'img.*' => 'required'
+                             'img' => 'array|min:1',
+                             'img.*' => 'file'
          ]);
          
          if($validator->fails())
