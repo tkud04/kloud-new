@@ -40,11 +40,11 @@
 						<div class="row address-inputs">
 							<div class="col-md-12">
 								<p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Upload deal images</p><br>
-								<input type="file" name="img[]" id="img-1" class="form-control"  required>
-								<input type="file" name="img[]" id="img-2" class="form-control"  required>
-								<input type="file" name="img[]" id="img-3" class="form-control"  required>
-								<input type="file" name="img[]" id="img-4" class="form-control"  required>
-								<input type="file" name="img[]" id="img-5" class="form-control"  required>
+								<input type="file" name="img[]" id="img-1" class="form-control" >
+								<input type="file" name="img[]" id="img-2" class="form-control" >
+								<input type="file" name="img[]" id="img-3" class="form-control" >
+								<input type="file" name="img[]" id="img-4" class="form-control" >
+								<input type="file" name="img[]" id="img-5" class="form-control" >
 							</div>
 							
 						</div>
