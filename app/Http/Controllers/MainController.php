@@ -8,6 +8,7 @@ use App\Helpers\Contracts\HelperContract;
 use Auth;
 use Session; 
 use Validator; 
+use App\Stores;
 use Carbon\Carbon; 
 
 class MainController extends Controller {
@@ -2124,7 +2125,21 @@ class MainController extends Controller {
          	$img = $req["ird"];
 			 $ret = $this->helpers->deleteCloudImage($img);
 			#dd($ret);
-			$ss = "cloud-image-deleted";
+			
+			if(isset($req["type"]))
+            {
+            	if($req['type'] == "deal")
+                {
+                	
+                }
+                elseif($req['type'] == "store")
+                {
+                	$store = Stores::where('id', $req['xf'])->first();
+                    if($store != null) $store->update(['img' => "none"]);
+                }
+            }
+			
+			$ss = "delete-image-status";
 			$location = '/'; 
 	        if(isset($req["loc"])) $location = $req["loc"];    
             session()->flash($ss,"ok");
