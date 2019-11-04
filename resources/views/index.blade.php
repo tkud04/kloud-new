@@ -152,14 +152,14 @@
 @include('ad-banner')
 
   <?php
-  $filterTitles = ['HOTTEST DEALS','BEST SELLERS','HOT CATEGORIES'];
+  $filterTitles = ['HOTTEST DEALS' => $hd, 'BEST SELLERS' => $bs, 'HOT CATEGORIES' => $hc];
   
-  foreach($filterTitles as $ft)
+  foreach($filters as $key => $value)
   {
-  	$filterTitle = $ft; 
+  	$filterTitle = $key; 
   ?>
   
-  @include("product-filter",['filterTitle' => $filterTitle])
+  @include("product-filter",['filterTitle' => $key,'deals' => $value])
   @if($filterTitle == "BEST SELLERS")
     @include('ad-banner')
   @endif

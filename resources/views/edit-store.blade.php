@@ -49,7 +49,7 @@ $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$sto
                                           <?php
                                            }
                                            else{
-                                           $dri = url('dri')."?loc=edit-store&ird=".$store['img'];
+                                           $dri = url('dri')."?loc=edit-store&type=store&xf=".$store['id']."&ird=".$store['img'];
                                           ?>
                                           <a href="{{$dri}}" class="site-btn mb-3">Delete image</a>
                                           <?php
