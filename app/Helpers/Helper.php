@@ -134,7 +134,7 @@ class Helper implements HelperContract
                      "cobra-auction-status" => "New auction created!",
                      "cobra-settings-status" => "Settings updated. ",
                      "cobra-end-auction-status" => "Auction ended! Deal has been added to the highest bidder's cart",
-                     "cloud-image-deleted" => "Image(s) deleted",
+                     "delete-image-status" => "Image(s) deleted",
                      "cloud-image-not_found" => "Image(s) not found",
                      "update-smtp-status" => "SMTP settings updated!",
                      "add-leads-status" => "Leads added.",                   
@@ -156,6 +156,7 @@ class Helper implements HelperContract
                      "cobra-store-status-error" => "Store info could not be updated due to an unknown error. ",
                      "add-leads-status-error" => "There was a problem saving the leads, please check your limit and try again.",
                      "delete-leads-status-error" => "There was a problem deleting the leads, please try again.",
+                     "delete-image-status-error" => "There was a problem deleting the image(s), please try again.",
                      "update-smtp-status-error" => "There was an error updating smtp settings, please try again.",
                      "kloudpay-transfer-status-error" => "Transfer request denied. This could be because you have insufficient funds or the transfer amount has exceeded our limit of &#8358;200,000.00",
                      "cobra-get-store-status-error" => "We couldn't find the store you were looking for. Please check that you got yhe store name correctly."]
