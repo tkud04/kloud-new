@@ -152,7 +152,7 @@
 @include('ad-banner')
 
   <?php
-  $filterTitles = ['HOTTEST DEALS' => $hd, 'BEST SELLERS' => $bs, 'HOT CATEGORIES' => $hc];
+  $filters = ['HOTTEST DEALS' => $hd, 'BEST SELLERS' => $bs, 'HOT CATEGORIES' => $hc];
   
   foreach($filters as $key => $value)
   {
