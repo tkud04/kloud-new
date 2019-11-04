@@ -157,6 +157,7 @@
   foreach($filters as $key => $value)
   {
   	$filterTitle = $key; 
+      shuffle($value);
   ?>
   
   @include("product-filter",['filterTitle' => $key,'deals' => $value])
