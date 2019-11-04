@@ -8,7 +8,7 @@ $ct = (isset($category) && $category != null) ? " - ".$category : "";
 $deals = (isset($store["deals"])) ? $store["deals"] : [];
 
 $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$store['img'];
- if($store['img'] == "none") $img = "https://via.placeholder.com/150";
+ if($store['img'] == "none") $img = "img/no-image.png";
 ?>
 
 @include('generic-banner',['title' => $title.$ct])
@@ -19,6 +19,7 @@ $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$sto
 		<div class="container">
 		<div class="row">
 			   <div class="col-lg-12 text-center">
+				<img src="{{$store['img']}}" style="margin-bottom: 5px;" alt="{{$store['name']}}">
 			     <marquee>{!! $store['description'] !!}</marquee>
 			   </div>
 			</div><br><br>

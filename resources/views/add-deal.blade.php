@@ -39,12 +39,12 @@
 						<div class="cf-title">Add a new deal to the system<br>Only deals that are approved will be displayed on our platform</div>
 						<div class="row address-inputs">
 							<div class="col-md-12">
-								<p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Upload deal images</p><br>
+								<p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Upload deal images (<b>Recommended dimension: 500x775</b>)</p><br>
 								<input type="file" name="img[]" id="img-1" class="form-control" >
 								<input type="file" name="img[]" id="img-2" class="form-control" >
 								<input type="file" name="img[]" id="img-3" class="form-control" >
 								<input type="file" name="img[]" id="img-4" class="form-control" >
-								<input type="file" name="img[]" id="img-5" class="form-control" >
+								<input type="file" name="img[]" id="img-5" class="form-control" t>
 							</div>
 							
 						</div>
