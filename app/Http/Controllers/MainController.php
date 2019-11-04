@@ -42,8 +42,10 @@ class MainController extends Controller {
 		$bs = $this->helpers->getBestSellers();
 		$hc = $this->helpers->getHotCategories();
 		$sliders = $this->helpers->getSliders();
+		$indexAd = $this->helpers->getAds();
+		$layoutAd = $this->helpers->getAds();
 		//dd($sliders);
-    	return view('index',compact(['user','cart','c','signals','hd','na','bs','hc','sliders']));
+    	return view('index',compact(['layoutAd','user','cart','c','signals','hd','na','bs','hc','sliders','indexAd','layoutAd']));
     }
 
 	/**
@@ -63,7 +65,8 @@ class MainController extends Controller {
 		}
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
-    	return view('about',compact(['user','cart', 'c','signals']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('about',compact(['layoutAd','user','cart', 'c','signals']));
 		//return redirect()->intended('/');
     }	
 
@@ -111,8 +114,9 @@ class MainController extends Controller {
 		$signals = $this->helpers->signals;
 		$deals = $bundleProducts;
 		$title = "Bundle Products";
+		$layoutAd = $this->helpers->getAds();
 		
-    	return view('deals',compact(['user','cart','deals','category','c','q','signals','title']));
+    	return view('deals',compact(['layoutAd','user','cart','deals','category','c','q','signals','title']));
     }
 
 	/**
@@ -157,7 +161,8 @@ class MainController extends Controller {
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
 		$title = "Kloud Auctions";
-    	return view('auctions',compact(['user','cart','auctions','category','c','q','signals','title']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('auctions',compact(['layoutAd','user','cart','auctions','category','c','q','signals','title']));
     }
     /**
 	 * Show the application welcome screen to the user.
@@ -186,7 +191,8 @@ class MainController extends Controller {
 			$c = $this->helpers->categories;
 		    $signals = $this->helpers->signals;
 		    $mainClass = "amado_product_area section-padding-100 clearfix";
-        	return view('auction',compact(['user','cart','auction','category','c','signals','mainClass']));
+			$layoutAd = $this->helpers->getAds();
+        	return view('auction',compact(['layoutAd','user','cart','auction','category','c','signals','mainClass']));
 		} 
         else
         {
@@ -222,7 +228,8 @@ class MainController extends Controller {
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('my-auctions',compact(['user','cart','auctions','category','c','signals','mainClass']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('my-auctions',compact(['layoutAd','user','cart','auctions','category','c','signals','mainClass']));
     }
     
     /**
@@ -269,7 +276,8 @@ class MainController extends Controller {
              }
              else
              {
-             	return view('add-auction',compact(['cart','user','c','signals','deal']));
+				 $layoutAd = $this->helpers->getAds();
+             	return view('add-auction',compact(['layoutAd','cart','user','c','signals','deal']));
              }        
          }          
     }
@@ -506,7 +514,8 @@ class MainController extends Controller {
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
 		$mainClass = "amado_product_area section-padding-100 clearfix";
-    	return view('my-bids',compact(['user','cart','bids','category','c','signals','mainClass']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('my-bids',compact(['layoutAd','user','cart','bids','category','c','signals','mainClass']));
     }
     
 
@@ -554,7 +563,8 @@ class MainController extends Controller {
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
 		$title = "Top Deals";
-    	return view('deals',compact(['user','cart','category','deals','c','q','signals','title']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('deals',compact(['layoutAd','user','cart','category','deals','c','q','signals','title']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -598,7 +608,8 @@ class MainController extends Controller {
 		$c = $this->helpers->categories;
 		$signals = $this->helpers->signals;
 		$title = "Deals";
-    	return view('deals',compact(['user','cart','category','deals','c','q','signals','title']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('deals',compact(['layoutAd','user','cart','category','deals','c','q','signals','title']));
     }	
 	
 
@@ -627,7 +638,8 @@ class MainController extends Controller {
         $signals = $this->helpers->signals;
 		#dd($cart);
 		$mainClass = "cart-table-area section-padding-100";
-        return view('cart',compact(['user','cart','cartTotals','signals','deals','mainClass']));
+		$layoutAd = $this->helpers->getAds();
+        return view('cart',compact(['layoutAd','user','cart','cartTotals','signals','deals','mainClass']));
     }
     
     /**
@@ -776,7 +788,8 @@ class MainController extends Controller {
 		$sdd = $sd[0];
         $signals = $this->helpers->signals;
 		$mainClass = "cart-table-area section-padding-100";
-        return view('checkout',compact(['user','cart','signals','cartTotals','sd','sdd','orderNumber','states','mainClass']));
+		$layoutAd = $this->helpers->getAds();
+        return view('checkout',compact(['layoutAd','user','cart','signals','cartTotals','sd','sdd','orderNumber','states','mainClass']));
     }
     
     /**
@@ -871,7 +884,8 @@ class MainController extends Controller {
              $category = $this->helpers->categories[$deal['category']];
              $signals = $this->helpers->signals;
 		     $mainClass = "single-product-area section-padding-100 clearfix";
-             return view('deal',compact(['user','cart','category','signals','deal','deals','rating','overallRating','comments', 'mine', 'mainClass']));
+			 $layoutAd = $this->helpers->getAds();
+             return view('deal',compact(['layoutAd','user','cart','category','signals','deal','deals','rating','overallRating','comments', 'mine', 'mainClass']));
          }        
 		
     }
@@ -1043,7 +1057,8 @@ class MainController extends Controller {
 			$cart = $this->helpers->getCart($user);
 		}
 		$title = "Buy Airtime";
-        return view('airtime',compact(['user','cart','title']));
+		$layoutAd = $this->helpers->getAds();
+        return view('airtime',compact(['layoutAd','user','cart','title']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -1060,7 +1075,8 @@ class MainController extends Controller {
 			$cart = $this->helpers->getCart($user);
 		}
 		$title = "Book A Room";
-        return view('hotels',compact(['user','cart','title']));
+		$layoutAd = $this->helpers->getAds();
+        return view('hotels',compact(['layoutAd','user','cart','title']));
     }	/**
 	 * Show the application welcome screen to the user.
 	 *
@@ -1077,7 +1093,8 @@ class MainController extends Controller {
 			$cart = $this->helpers->getCart($user);
 		}
 		$title = "Travel Start";
-        return view('travelstart',compact(['user','cart','title']));
+		$layoutAd = $this->helpers->getAds();
+        return view('travelstart',compact(['layoutAd','user','cart','title']));
     }
     
     /**
@@ -1096,7 +1113,8 @@ class MainController extends Controller {
 			$cart = $this->helpers->getCart($user);
 		}
 		$signals = $this->helpers->signals;
-        return view('kloudpay',compact(['user','cart','signals']));
+		$layoutAd = $this->helpers->getAds();
+        return view('kloudpay',compact(['layoutAd','user','cart','signals']));
     }
     
 	/**
@@ -1123,7 +1141,8 @@ class MainController extends Controller {
         {
         	return redirect()->intended('login?return=wallet');
         }
-        return view('wallet',compact(['user','cart','wallet','signals','transactions']));
+		$layoutAd = $this->helpers->getAds();
+        return view('wallet',compact(['layoutAd','user','cart','wallet','signals','transactions']));
     }
 	
 	/**
@@ -1146,7 +1165,8 @@ class MainController extends Controller {
         {
         	return redirect()->intended('login?return=deposit');
         }
-        return view('kloudpay-deposit',compact(['user','cart','wallet']));
+		$layoutAd = $this->helpers->getAds();
+        return view('kloudpay-deposit',compact(['layoutAd','user','cart','wallet']));
     }
     
     /**
@@ -1169,7 +1189,8 @@ class MainController extends Controller {
         {
         	return redirect()->intended('login?return=deposit');
         }
-        return view('kloudpay-transfer',compact(['user','cart','wallet']));
+		$layoutAd = $this->helpers->getAds();
+        return view('kloudpay-transfer',compact(['layoutAd','user','cart','wallet']));
     }
     
     /**
@@ -1231,7 +1252,8 @@ class MainController extends Controller {
         {
         	return redirect()->intended('login?return=deposit');
         }
-        return view('kloudpay-withdraw',compact(['user','cart','wallet','fee']));
+		$layoutAd = $this->helpers->getAds();
+        return view('kloudpay-withdraw',compact(['layoutAd','user','cart','wallet','fee']));
     }
     
     /**
@@ -1293,7 +1315,8 @@ class MainController extends Controller {
         {
         	return redirect()->intended('login?return=orders');
         }
-        return view('orders',compact(['user','cart','orders','signals']));
+		$layoutAd = $this->helpers->getAds();
+        return view('orders',compact(['layoutAd','user','cart','orders','signals']));
     }
 	
 	/**
@@ -1338,7 +1361,8 @@ class MainController extends Controller {
                   $alertClass = "warning";
                   $alertText = "Invalid order number. Please check the number and try again.";
                 endif; 
-                return view('invoice',compact(['user','invoice','sd', 'alert', 'alertClass','alertText']));
+				$layoutAd = $this->helpers->getAds();
+                return view('invoice',compact(['layoutAd','user','invoice','sd', 'alert', 'alertClass','alertText']));
             }         
 		}
 		else
@@ -1362,7 +1386,8 @@ class MainController extends Controller {
 			$user = Auth::user();
 		}
 		$mainClass = "cart-table-area section-padding-100";
-        return view('enterprise',compact(['user','mainClass']));
+		$layoutAd = $this->helpers->getAds();
+        return view('enterprise',compact(['layoutAd','user','mainClass']));
     }
 
 	/**
@@ -1380,7 +1405,8 @@ class MainController extends Controller {
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
 		}
-        return view('faq',compact(['user','cart']));
+		$layoutAd = $this->helpers->getAds();
+        return view('faq',compact(['layoutAd','user','cart']));
     }
     
     /**
@@ -1409,8 +1435,8 @@ class MainController extends Controller {
         	return redirect()->intended('login?return=dashboard');
         }
 		
-		
-        return view('dashboard',compact(['user','sd', 'wallet','cart','transactions','signals']));
+		$layoutAd = $this->helpers->getAds();
+        return view('dashboard',compact(['layoutAd','user','sd', 'wallet','cart','transactions','signals']));
     }
 	
 	
@@ -1437,8 +1463,8 @@ class MainController extends Controller {
         	return redirect()->intended('login?return=dashboard');
         }
 		
-		
-        return view('profile',compact(['user','account', 'cart', 'signals']));
+		$layoutAd = $this->helpers->getAds();
+        return view('profile',compact(['layoutAd','user','account', 'cart', 'signals']));
     }
 	
 	/**
@@ -1502,8 +1528,8 @@ class MainController extends Controller {
            }
 		}
 		
-		
-			return view('merchants',compact(['user','cart']));
+		   $layoutAd = $this->helpers->getAds();
+			return view('merchants',compact(['layoutAd','user','cart']));
         
         
     }
@@ -1532,7 +1558,8 @@ class MainController extends Controller {
         
 		
 		$deals = $this->helpers->getUserDeals($user);
-    	return view('my-deals',compact(['user','deals','cart','c','signals']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('my-deals',compact(['layoutAd','user','deals','cart','c','signals']));
     }
     
         /**
@@ -1557,7 +1584,8 @@ class MainController extends Controller {
         
 		
 		#$deals = $this->helpers->adminGetDeals();
-    	return view('add-deal',compact(['user','cart','c','signals']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('add-deal',compact(['layoutAd','user','cart','c','signals']));
     }
     
     /**
@@ -1654,8 +1682,8 @@ class MainController extends Controller {
         {
         	return redirect()->intended('login?return=transactions');
         }
-		
-        return view('transactions',compact(['user','cart','transactions']));
+		$layoutAd = $this->helpers->getAds();
+        return view('transactions',compact(['layoutAd','user','cart','transactions']));
     }
 	
 	/**
@@ -1678,7 +1706,8 @@ class MainController extends Controller {
 		
 		$stores = $this->helpers->getStores();
         #dd($stores);
-		return view('stores',compact(['user','cart','stores','signals']));
+		$layoutAd = $this->helpers->getAds();
+		return view('stores',compact(['layoutAd','user','cart','stores','signals']));
     }
 
 	/**
@@ -1710,7 +1739,8 @@ class MainController extends Controller {
         
         $title = (isset($store["name"])) ? $store["name"] : "Store";
         $mine = "no";
-		return view('store',compact(['user','cart','store','title','mine','signals']));
+		$layoutAd = $this->helpers->getAds();
+		return view('store',compact(['layoutAd','user','cart','store','title','mine','signals']));
     }
 
 	/**
@@ -1738,7 +1768,8 @@ class MainController extends Controller {
 		#dd($store);
 		$title = (isset($store["name"])) ? $store["name"] : "Store";
         $mine = "yes";
-		return view('store',compact(['user','cart','store','title','mine','signals']));
+		$layoutAd = $this->helpers->getAds();
+		return view('store',compact(['layoutAd','user','cart','store','title','mine','signals']));
     }
     
     
@@ -1770,7 +1801,8 @@ class MainController extends Controller {
 		#dd($store);
 		$title = (isset($store["name"])) ? $store["name"] : "Store";
         $mine = "yes";
-		return view('manage-store',compact(['user','cart','store','title','mine','signals']));
+		$layoutAd = $this->helpers->getAds();
+		return view('manage-store',compact(['layoutAd','user','cart','store','title','mine','signals']));
     }
     
     /**
@@ -1800,7 +1832,8 @@ class MainController extends Controller {
 		#dd($store);
 		$title = (isset($store["name"])) ? $store["name"] : "Store";
         $mine = "yes";
-		return view('edit-store',compact(['user','cart','store','title','mine','signals']));
+		$layoutAd = $this->helpers->getAds();
+		return view('edit-store',compact(['layoutAd','user','cart','store','title','mine','signals']));
     }
     
     /**
@@ -1881,7 +1914,8 @@ class MainController extends Controller {
 		#dd($store);
 		$title = (isset($store["name"])) ? $store["name"] : "Store";
         $mine = "yes";
-		return view('sales-history',compact(['user','cart','store','title','mine','sales','signals']));
+		$layoutAd = $this->helpers->getAds();
+		return view('sales-history',compact(['layoutAd','user','cart','store','title','mine','sales','signals']));
     }
     
    /**
@@ -1928,7 +1962,8 @@ class MainController extends Controller {
 			 $c = $this->helpers->categories;
 		     #$mainClass = "single-product-area section-padding-100 clearfix";
 			 #dd($deal);
-             return view('edit-deal',compact(['user','cart','c','categories','signals','deal']));
+			 $layoutAd = $this->helpers->getAds();
+             return view('edit-deal',compact(['layoutAd','user','cart','c','categories','signals','deal']));
          }        
     }
     
@@ -2002,7 +2037,8 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
-		return view('user-guide',compact(['user']));
+		$layoutAd = $this->helpers->getAds();
+		return view('user-guide',compact(['layoutAd','user']));
     } 
     
     
@@ -2172,7 +2208,8 @@ class MainController extends Controller {
 			$user = Auth::user();
 		}
 		$signals = $this->helpers->signals;
-		return view('fff',compact(['user','signals']));
+		$layoutAd = $this->helpers->getAds();
+		return view('fff',compact(['layoutAd','user','signals']));
     }   
     
     /**

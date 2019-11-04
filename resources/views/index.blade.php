@@ -149,7 +149,7 @@
 	</section>
 	<!-- new arrivals section end -->
 	
-@include('ad-banner')
+@include('ad-banner',['data' => $indexAd])
 
   <?php
   $filters = ['HOTTEST DEALS' => $hd, 'BEST SELLERS' => $bs, 'HOT CATEGORIES' => $hc];
@@ -162,7 +162,7 @@
   
   @include("product-filter",['filterTitle' => $key,'deals' => $value])
   @if($filterTitle == "BEST SELLERS")
-    @include('ad-banner')
+    @include('ad-banner',['data' => $indexAd])
   @endif
   <?php
   }

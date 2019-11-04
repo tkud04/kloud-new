@@ -16,7 +16,7 @@ Swal.fire({
   title: '@if($val == "error")<strong>Whoops!</strong> @else Success! @endif',
   text: '{{$signal[$pop]}}',
   showConfirmButton: false,
-  timer: 2500
+  timer: 4500
 });
 </script>
 	

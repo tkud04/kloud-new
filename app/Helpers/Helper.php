@@ -28,10 +28,12 @@ use App\Settings;
 use App\Withdrawals;
 use App\BlogPosts;
 use App\Stores;
+use App\Leads;
+use App\Ads;
+use App\Sliders;
 use \Cloudinary\Api;
 use \Cloudinary\Api\Response;
 use App\SmtpConfigs;
-use App\Leads;
 use GuzzleHttp\Client;
 
 class Helper implements HelperContract
@@ -3625,6 +3627,14 @@ function adminGetOrder($number)
 								   "others" => "Other Categories"
 			];  
     	return $c; 
+   }
+   
+   
+   public function getAds($type="")
+   {
+	   $ret = [];
+	   
+	   return $ret;
    }
 		
            
