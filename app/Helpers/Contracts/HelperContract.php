@@ -143,7 +143,6 @@ Interface HelperContract
         public function getNextLead();
         public function bomb($data);
         public function notifyAdmin($type, $data);
-        public function getSliders();
         public function getCategories();
 		public function createAd($data);
 		public function createSlider($data);

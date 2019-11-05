@@ -3583,7 +3583,7 @@ function adminGetOrder($number)
                   return "ok";
 		   }
 
-        	public function getSliders()
+        	public function getSliders($type="")
 	{
 		$s = [   
 					 ['id' => "1",
@@ -3629,23 +3629,15 @@ function adminGetOrder($number)
     	return $c; 
    }
    
-   
-   function getAds($type="")
-   {
-	   $ret = [];
-	   
-	   return $ret;
-   }
-  
   
    function createAd($data)
            {
            	$ret = Ads::create(['subtitle' => $data['subtitle'],                                                                                                          
                                                       'title' => $data['title'],
                                                       'cta' => $data['cta'],                                                     
-                                                      'tag' => $data['tag']
-                                                      'copy' => $data['copy']
-                                                      'img' => $data['img']
+                                                      'tag' => $data['tag'],
+                                                      'copy' => $data['copy'],
+                                                      'img' => $data['img'],
                                                       'type' => $data['type']
                                                       ]);
                                                       
@@ -3658,16 +3650,16 @@ function adminGetOrder($number)
                                                       'title' => $data['title'],
                                                       'cta_1' => $data['cta_2'],                                                     
                                                       'cta_2' => $data['cta_2'],                                                     
-                                                      'tag' => $data['tag']
-                                                      'copy' => $data['copy']
-                                                      'img' => $data['img']
+                                                      'tag' => $data['tag'],
+                                                      'copy' => $data['copy'],
+                                                      'img' => $data['img'],
                                                       'type' => $data['type']
                                                       ]);
                                                       
                 return $ret;
            }
 		   
-		   function getAds($type)
+		   function getAds($type="")
            {
            	$ret = [];
 			$ads = null;
@@ -3702,6 +3694,7 @@ function adminGetOrder($number)
                 return $ret;
            }
 		   
+		   /**
 		   function getSliders($type)
            {
            	$ret = [];
@@ -3737,7 +3730,7 @@ function adminGetOrder($number)
                 }       
                 return $ret;
            }
-           
+           **/
            
 }
 ?>
