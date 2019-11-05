@@ -145,7 +145,10 @@ Interface HelperContract
         public function notifyAdmin($type, $data);
         public function getSliders();
         public function getCategories();
+		public function createAd($data);
+		public function createSlider($data);
         public function getAds($type);
+        public function getSliders($type);
 		
 }
  ?>

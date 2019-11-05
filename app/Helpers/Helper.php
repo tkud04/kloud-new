@@ -3610,7 +3610,7 @@ function adminGetOrder($number)
 		return $s;
 	}
 
-   public function getCategories()
+   function getCategories()
     {
     	$c= [
 			                       "phones-tablets" => "Phones & Tablets",
@@ -3630,13 +3630,113 @@ function adminGetOrder($number)
    }
    
    
-   public function getAds($type="")
+   function getAds($type="")
    {
 	   $ret = [];
 	   
 	   return $ret;
    }
-		
+  
+  
+   function createAd($data)
+           {
+           	$ret = Ads::create(['subtitle' => $data['subtitle'],                                                                                                          
+                                                      'title' => $data['title'],
+                                                      'cta' => $data['cta'],                                                     
+                                                      'tag' => $data['tag']
+                                                      'copy' => $data['copy']
+                                                      'img' => $data['img']
+                                                      'type' => $data['type']
+                                                      ]);
+                                                      
+                return $ret;
+           }
+
+		   function createSlider($data)
+           {
+           	$ret = Sliders::create(['subtitle' => $data['subtitle'],                                                                                                          
+                                                      'title' => $data['title'],
+                                                      'cta_1' => $data['cta_2'],                                                     
+                                                      'cta_2' => $data['cta_2'],                                                     
+                                                      'tag' => $data['tag']
+                                                      'copy' => $data['copy']
+                                                      'img' => $data['img']
+                                                      'type' => $data['type']
+                                                      ]);
+                                                      
+                return $ret;
+           }
+		   
+		   function getAds($type)
+           {
+           	$ret = [];
+			$ads = null;
+			
+			if($type == "")
+			{
+				$ads = Ads::where('id','>','0')->get(); 
+			}
+			else
+			{
+				$ads = Ads::where('type',$data['type'])->get(); 
+			}
+           	
+               
+                if($ads !== null) 
+                {
+                   foreach($ads as $a)
+                   {
+                   	  $temp = [];
+                      $temp['id'] = $a->id;  
+                      $temp['subtitle'] = $a->subtitle;  
+                      $temp['title'] = $a->title;  
+                      $temp['cta'] = $a->cta;  
+                      $temp['tag'] = $a->tag;  
+                      $temp['copy'] = $a->copy;  
+                      $temp['img'] = $a->img;  
+                      $temp['type'] = $a->type;  
+                      $temp['date'] = $a->created_at->format("jS F, Y h:i A"); 
+                      array_push($ret, $temp); 
+                   }
+                }       
+                return $ret;
+           }
+		   
+		   function getSliders($type)
+           {
+           	$ret = [];
+			$ads = null;
+			
+			if($type == "")
+			{
+				$ads = Ads::where('id','>','0')->get(); 
+			}
+			else
+			{
+				$ads = Ads::where('type',$data['type'])->get(); 
+			}
+           	
+               
+                if($ads !== null) 
+                {
+                   foreach($ads as $a)
+                   {
+                   	  $temp = [];
+                      $temp['id'] = $a->id;  
+                      $temp['subtitle'] = $a->subtitle;  
+                      $temp['title'] = $a->title;  
+                      $temp['cta_1'] = $a->cta_1;  
+                      $temp['cta_2'] = $a->cta_2;  
+                      $temp['tag'] = $a->tag;  
+                      $temp['copy'] = $a->copy;  
+                      $temp['img'] = $a->img;  
+                      $temp['type'] = $a->type;  
+                      $temp['date'] = $a->created_at->format("jS F, Y h:i A"); 
+                      array_push($ret, $temp); 
+                   }
+                }       
+                return $ret;
+           }
            
            
 }
