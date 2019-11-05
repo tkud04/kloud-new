@@ -168,7 +168,8 @@
 	
 	<?php
 	 shuffle($layoutAd);
-	 $ll = $layoutAd[0];
+	 $if(count($layoutAd) > 0) $ll = $layoutAd[0];
+	 else $ll = [];
 	?>
     @include('ad-banner',['data' => $ll])
 

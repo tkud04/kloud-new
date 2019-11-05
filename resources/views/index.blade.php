@@ -151,8 +151,9 @@
 	
 	<?php
 	 shuffle($indexAd);
-	 $ii = $indexAd[0];
-	?>
+	 if(count($indexAd) > 0) $ii = $indexAd[0];
+	 else $ii = [];
+	?> 
 @include('ad-banner',['data' => $ii])
 
   <?php
@@ -168,7 +169,8 @@
   @if($filterTitle == "BEST SELLERS")
 	  <?php
 	 shuffle($indexAd);
-	 $ii = $indexAd[0];
+	 if(count($indexAd) > 0) $ii = $indexAd[0];
+	 else $ii = [];
 	?>
     @include('ad-banner',['data' => $ii])
   @endif
