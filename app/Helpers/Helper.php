@@ -3705,33 +3705,33 @@ function adminGetOrder($number)
 		   function getSliders($type)
            {
            	$ret = [];
-			$ads = null;
+			$sliders = null;
 			
 			if($type == "")
 			{
-				$ads = Ads::where('id','>','0')->get(); 
+				$sliders = Sliders::where('id','>','0')->get(); 
 			}
 			else
 			{
-				$ads = Ads::where('type',$data['type'])->get(); 
+				$sliders = Sliders::where('type',$data['type'])->get(); 
 			}
            	
                
-                if($ads !== null) 
+                if($sliders !== null) 
                 {
-                   foreach($ads as $a)
+                   foreach($sliders as $s)
                    {
                    	  $temp = [];
-                      $temp['id'] = $a->id;  
-                      $temp['subtitle'] = $a->subtitle;  
-                      $temp['title'] = $a->title;  
-                      $temp['cta_1'] = $a->cta_1;  
-                      $temp['cta_2'] = $a->cta_2;  
-                      $temp['tag'] = $a->tag;  
-                      $temp['copy'] = $a->copy;  
-                      $temp['img'] = $a->img;  
-                      $temp['type'] = $a->type;  
-                      $temp['date'] = $a->created_at->format("jS F, Y h:i A"); 
+                      $temp['id'] = $s->id;  
+                      $temp['subtitle'] = $s->subtitle;  
+                      $temp['title'] = $s->title;  
+                      $temp['cta_1'] = $s->cta_1;  
+                      $temp['cta_2'] = $s->cta_2;  
+                      $temp['tag'] = $s->tag;  
+                      $temp['copy'] = $s->copy;  
+                      $temp['img'] = $s->img;  
+                      $temp['type'] = $s->type;  
+                      $temp['date'] = $s->created_at->format("jS F, Y h:i A"); 
                       array_push($ret, $temp); 
                    }
                 }       
