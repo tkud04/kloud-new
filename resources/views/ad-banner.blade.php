@@ -7,13 +7,22 @@
 			  $subtitle = "New Arrivals";
 			  $title = "STRIPED SHIRTS";
 			  $copy = "";
-			  $cta = explode(',', "#,SHOP NOW");
+			  $ctaa = "#,SHOP NOW";
 			  
-		       if(isset($data['img'])) $img = $data['img'];
+		       if(isset($data['img']))
+			   {
+				   $ird = $data['img'];
+                   if(count($ird) < 1 || $ird == "none") { $imgg = "img/no-image.png"; }
+                                      else{                                      	
+                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$ird;                                        
+										}
+			   }
 		       if(isset($data['tag'])) $tag = $data['tag'];
 		       if(isset($data['subtitle'])) $subtitle = $data['subtitle'];
 		       if(isset($data['title'])) $title = $data['title'];
-		       if(isset($data['cta'])) $cta = $data['cta'];
+		       if(isset($data['cta'])) $ctaa = $data['cta'];
+			   
+			   $cta = explode(',',$ctaa);
 		       
             ?>
 	<section class="banner-section">
@@ -22,7 +31,7 @@
 				<div class="tag-new">{{$tag}}</div>
 				<span>{{$subtitle}}</span>
 				<h2>{{$title}}</h2>
-				<a href="{{$cta[0]}}" class="site-btn">{{$cta[1]}}</a>
+				<a href="{{$cta[1]}}" target="_blank" class="site-btn">{{$cta[0]}}</a>
 			</div>
 		</div>
 	</section>

@@ -166,7 +166,11 @@
 	
 	@yield('content')
 	
-    @include('ad-banner',['data' => $layoutAd])
+	<?php
+	 shuffle($layoutAd);
+	 $ll = $layoutAd[0];
+	?>
+    @include('ad-banner',['data' => $ll])
 
 
 	<!-- Footer section -->
