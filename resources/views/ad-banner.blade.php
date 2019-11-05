@@ -12,9 +12,9 @@
 		       if(isset($data['img']))
 			   {
 				   $ird = $data['img'];
-                   if($ird == null || $ird == "none") { $imgg = "img/no-image.png"; }
+                   if($ird == null || $ird == "none") { $img = "img/banner-bg.jpg"; }
                                       else{                                      	
-                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$ird;                                        
+                                      	   $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$ird;                                        
 										}
 			   }
 		       if(isset($data['tag'])) $tag = $data['tag'];
