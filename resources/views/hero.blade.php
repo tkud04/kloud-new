@@ -25,7 +25,7 @@
 					@if($s['tag'] != null && $s['tag'] != "")
 					<div class="offer-card text-white">
 				        <span></span>
-						<h2 style="font-size: 57px;">{!! $s['tag'] !!}</h2>
+						<h2 style="font-size: 47px;">{!! $s['tag'] !!}</h2>
 						<p></p>
 					</div>
 					@endif
