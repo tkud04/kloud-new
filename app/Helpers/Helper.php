@@ -3583,33 +3583,7 @@ function adminGetOrder($number)
                   return "ok";
 		   }
 
-        	public function getSliders($type="")
-	{
-		$s = [   
-					 ['id' => "1",
-	                  'title' => "New Arrivals",
-	                  'category' => "denim jackets",
-	                  'date' => date("jS F, Y h:i A"),
-					  'brief' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ",
-	                  'content' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ",
-	                  'img' => "img/bg.jpg",         
-                      'price' => "15000",         
-	                 ],      
-					 ['id' => "2",
-	                  'title' => "New Arrivals",
-	                  'category' => "denim jackets",
-	                  'date' => date("jS F, Y h:i A"),
-					  'brief' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ",
-	                  'content' => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. ",
-	                  'img' => "img/bg-2.jpg",         
-                      'price' => "24000",                     
-	                 ],   
-	               
-    	
-	];
-		return $s;
-	}
-
+        	
    function getCategories()
     {
     	$c= [
@@ -3648,7 +3622,7 @@ function adminGetOrder($number)
            {
            	$ret = Sliders::create(['subtitle' => $data['subtitle'],                                                                                                          
                                                       'title' => $data['title'],
-                                                      'cta_1' => $data['cta_2'],                                                     
+                                                      'cta_1' => $data['cta_1'],                                                     
                                                       'cta_2' => $data['cta_2'],                                                     
                                                       'tag' => $data['tag'],
                                                       'copy' => $data['copy'],
@@ -3694,8 +3668,8 @@ function adminGetOrder($number)
                 return $ret;
            }
 		   
-		   /**
-		   function getSliders($type)
+		 
+           function getSliders($type="")
            {
            	$ret = [];
 			$sliders = null;
@@ -3730,7 +3704,6 @@ function adminGetOrder($number)
                 }       
                 return $ret;
            }
-           **/
            
 }
 ?>
