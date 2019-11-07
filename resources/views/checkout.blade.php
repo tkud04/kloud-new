@@ -9,11 +9,14 @@
 <?php
 echo "<script>";
 echo "let sds = {";
-foreach($sd as $s)
+if(count($sd) > 0)
 {
-	$addressText = "";
-	if($s['address'] != "")	$addressText = $s['address'].",".$s['city'].",".$s['state'].",".$s['zipcode'];
-	echo $s['id'].": '".$addressText."',";
+  foreach($sd as $s)
+  {
+	  $addressText = "";
+	  if($s['address'] != "")	$addressText = $s['address'].",".$s['city'].",".$s['state'].",".$s['zipcode'];
+	  echo $s['id'].": '".$addressText."',";
+  }
 }
 echo "};</script>";
 ?>
@@ -35,6 +38,7 @@ echo "};</script>";
 								    <p class="form-plaintext">Which shipping address do you want to use?</p>
 									<select class="form-control" id="sd">
 									   
+									   @if(count($sd) > 0)
 									   @foreach($sd as $s)
 									   <?php
 									     $addd = "";
@@ -44,11 +48,24 @@ echo "};</script>";
 									   ?>
 									   <option value="{{$s['id']}}">{{$addd}}</option>
 									   @endforeach
+									   @endif
 									   <option value="none">Add new shipping address</option>
 									</select>
 								</div>
 							</div>
 						</div>
+						<?php
+						 $company = ""; $address = ""; $city = ""; $state = ""; $zipcode = "";
+						 
+						 if(count($sd) > 0 && count($sdd) > 0)
+						 {
+							 if(isset($sdd['company'])) $company = $sdd['company'];
+							 $address = $sdd['address'];
+							 $city = $sdd['city'];
+							 $zipcode = $sdd['zipcode'];
+							 $state = $sd[0]['state'];
+						 } 
+						?>
 						<div class="row address-inputs">
 							<div class="col-md-6">
                                         <input type="text" class="form-control" id="first_name" name="fname" value="{{$user->fname}}" data-default="{{$user->fname}}" placeholder="First Name" required>
@@ -57,7 +74,7 @@ echo "};</script>";
                                         <input type="text" class="form-control" id="last_name" name="lname" value="{{$user->lname}}" data-default="{{$user->lname}}" placeholder="Last Name" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" id="company" name="company" placeholder="Company Name" value="{{$sdd['company']}}" data-default="{{$sdd['company']}}">
+                                        <input type="text" class="form-control" id="company" name="company" placeholder="Company Name" value="{{$company}}" data-default="{{$company}}">
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="email" name="email" placeholder="Email" value="{{$user->email}}" data-default="{{$user->email}}">
@@ -71,17 +88,17 @@ echo "};</script>";
 						</div>
 						<div class="row address-inputs">
 							<div class="col-md-12">
-								 <input type="text" class="form-control" id="street_address" name="address" placeholder="Address" value="{{$sdd['address']}}" data-default="{{$sdd['address']}}">
+								 <input type="text" class="form-control" id="street_address" name="address" placeholder="Address" value="{{$address}}" data-default="{{$address}}">
 							</div>
 							<div class="col-md-6">
-								   <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{$sdd['city']}}" data-default="{{$sdd['city']}}">
+								   <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{$city}}" data-default="{{$city}}">
 							</div>
 							<div class="col-md-6">
                                         <select class="form-control w-100" id="state" name="state" style="margin-bottom: 10px;">
                                         <option value="none">Select state</option>
                                         <?php 
                                           foreach($states as $key => $value){
-                                          	$selectedText = ($key == $sd[0]['state']) ? "selected='selected'" : "";                                           
+                                          	$selectedText = ($key == $state) ? "selected='selected'" : "";                                           
                                         ?>
                                         <option value="<?=$key?>" <?=$selectedText?> ><?=$value?></option>
                                         <?php 
@@ -90,7 +107,7 @@ echo "};</script>";
                                     </select>
 									</div>
 							<div class="col-md-6">
-								  <input type="text" class="form-control" id="zipCode" name="zip" placeholder="Zip Code" value="{{$sdd['zipcode']}}" data-default="{{$sdd['zipcode']}}">
+								  <input type="text" class="form-control" id="zipCode" name="zip" placeholder="Zip Code" value="{{$zipcode}}" data-default="{{$zipcode}}">
 							</div>
 							<div class="col-md-6">
                                 <input type="text" class="form-control" id="phone_number" name="phone" min="0" placeholder="Phone No" value="{{$user->phone}}" data-default="{{$user->phone}}">
@@ -121,11 +138,11 @@ echo "};</script>";
                              	let mc = {
                              	                'type': 'checkout',
                                                  'comment': '',
-                                                 'company': "{{$sdd['company']}}",
-                                                 'address': "{{$sdd['address']}}",
-                                                 'city': "{{$sdd['city']}}",
-                                                 'state': "{{$sdd['state']}}",
-                                                 'zip': "{{$sdd['zipcode']}}",
+                                                 'company': "{{$company}}",
+                                                 'address': "{{$address}}",
+                                                 'city': "{{$city}}",
+                                                 'state': "{{$state}}",
+                                                 'zip': "{{$zipcode}}",
                                                  'ssa': "off"
                                              };
                              
@@ -175,7 +192,7 @@ echo "};</script>";
                                         shuffle($images);
                                         $ird = $images[0]['url'];
 										if($ird == "none") $imgg = "img/no-image.png"; 
-                                        else $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird;
+                                        else $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$ird;
                                         
                                         }
 						   ?>

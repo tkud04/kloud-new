@@ -770,6 +770,7 @@ class MainController extends Controller {
     {
 		       $user = null;
 		       $cart = [];
+			   $sdd = [];
 		if(Auth::check())
 		{
 			$user = Auth::user();
@@ -785,7 +786,7 @@ class MainController extends Controller {
         }
         
 		#dd($sd);
-		$sdd = $sd[0];
+		if(count($sd) > 0) $sdd = $sd[0];
         $signals = $this->helpers->signals;
 		$mainClass = "cart-table-area section-padding-100";
 		$layoutAd = $this->helpers->getAds();
