@@ -15,6 +15,18 @@
   </button>
 </div>
 @endif
+<?php
+						 $company = ""; $address = ""; $city = ""; $state = ""; $zipcode = "";
+						 
+						 if(count($sd) > 0)
+						 {
+							 if(isset($sd['company'])) $company = $sd['company'];
+							 if(isset($sd['address'])) $address = $sd['address'];
+							 if(isset($sd['city'])) $city = $sd['city'];
+							 if(isset($sd['zipcode'])) $zipcode = $sd['zipcode'];
+							if(isset($sd[0]['state'])) $state = $sd[0]['state'];
+						 } 
+						?>
        <div class="container">
           <div class="row mt-5">
           	<div class="col-md-6">
@@ -35,9 +47,9 @@
           	<div class="col-md-5">
           	   <h4 class="pull-left">
               	  <strong>To</strong> {{$user->fname." ".$user->lname}}<br>
-                    <strong>{{$sd['address']}}</strong><br>
-                    <strong>{{$sd['city']}}</strong><br>
-                    <strong>{{$sd['state']}}</strong><br>
+                    <strong>{{$address}}</strong><br>
+                    <strong>{{$city}}</strong><br>
+                    <strong>{{$state}}</strong><br>
                   </h4>
               </div>
               <div class="col-md-3">

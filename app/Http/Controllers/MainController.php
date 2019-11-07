@@ -1349,6 +1349,7 @@ class MainController extends Controller {
 				#dd($invoice);
                 $alertClass = "danger";
                 $sd = $this->helpers->getSingleShippingDetails($user,$invoice['sd']);
+				#dd($sd);
                 $alert = true; 
                 $alertText = "This invoice has been marked as UNPAID. ";
                 
