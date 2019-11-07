@@ -30,8 +30,9 @@
 	<!-- kojo editor -->
 	<link rel="stylesheet" href="{{asset('lib/kojo/style.css')}}"> <!-- Core -->
     
-    
-	@yield('styles')
+   @yield('styles')
+	
+	@yield('pickr')
 
 	<!--[if lt IE 9]>
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -42,6 +43,7 @@
 	
 	<!--====== Jquery ======-->
 	<script src="{{asset('js/jquery-3.2.1.min.js')}}"></script>
+	<script src="lib/sweet-alert/all.js"></script>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -122,6 +124,7 @@
 						    <li><a href="{{url('login')}}">Log in</a></li>
 							<li><a href="{{url('mregister')}}">Merchant Register</a></li>							
 							<li><a href="{{url('login')}}">Merchant Log in</a></li>
+							<li><a href="{{url('enterprise')}}">Enterprise</a></li>
 						  @endif						
 						</ul>
 					</li>
@@ -162,18 +165,13 @@
 	
 	
 	@yield('content')
-	<!-- Banner section -->
-	<section class="banner-section wow rubberBand">
-		<div class="container">
-			<div class="banner set-bg" data-setbg="{{asset('img/banner-bg.jpg')}}">
-				<div class="tag-new">NEW</div>
-				<span>New Arrivals</span>
-				<h2>STRIPED SHIRTS</h2>
-				<a href="#" class="site-btn">SHOP NOW</a>
-			</div>
-		</div>
-	</section>
-	<!-- Banner section end  -->
+	
+	<?php
+	 shuffle($layoutAd);
+	 if(count($layoutAd) > 0) $ll = $layoutAd[0];
+	 else $ll = [];
+	?>
+    @include('ad-banner',['data' => $ll])
 
 
 	<!-- Footer section -->
