@@ -41,12 +41,15 @@ echo "};</script>";
 									   @if(count($sd) > 0)
 									   @foreach($sd as $s)
 									   <?php
-									     $addd = "";
-										 if($s['address'] == "") $addd = "Address #".$s['id'];
-										 else $addd = $s['address'].", ".$s['city'].", ".$s['state'];
+									     if($s['address'] != "")
+										 {
+											 $addd = $s['address'].", ".$s['city'].", ".$s['state'];
 										 
 									   ?>
 									   <option value="{{$s['id']}}">{{$addd}}</option>
+									   <?php
+										 }
+									   ?>
 									   @endforeach
 									   @endif
 									   <option value="none">Add new shipping address</option>
