@@ -194,16 +194,12 @@
 						<ul>
 							<li><a href="{{url('about')}}">About Us</a></li>
 							<li><a href="{{url('faq')}}">FAQ</a></li>
-							<li><a href="{{url('returns')}}">Returns</a></li>
-							
-							<li><a href="{{url('shipping')}}">Shipping</a></li>
-							
+							<li><a href="{{url('terms')}}">Terms of Use</a></li>
 						</ul>
 						<ul>
 							<li><a href="#">Enterprise</a></li>
-							<li><a href="{{url('blog')}}">Blog</a></li>
-							<li><a href="{{url('terms')}}">Terms of Use</a></li>
-							<li><a href="#">Sitemap</a></li>
+							<li><a href="{{url('blog')}}">Blog</a></li>							
+							<li><a href="{{url('sitemap')}}">Sitemap</a></li>
 							
 						</ul>
 					</div>

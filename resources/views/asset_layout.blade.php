@@ -194,16 +194,12 @@
 						<ul>
 							<li><a href="{{url('about')}}">About Us</a></li>
 							<li><a href="{{url('faq')}}">FAQ</a></li>
-							<li><a href="{{url('returns')}}">Returns</a></li>
-							
-							<li><a href="{{url('shipping')}}">Shipping</a></li>
-							
+							<li><a href="{{url('terms')}}">Terms of Use</a></li>
 						</ul>
 						<ul>
 							<li><a href="#">Enterprise</a></li>
-							<li><a href="{{url('blog')}}">Blog</a></li>
-							<li><a href="{{url('terms')}}">Terms of Use</a></li>
-							<li><a href="#">Sitemap</a></li>
+							<li><a href="{{url('blog')}}">Blog</a></li>							
+							<li><a href="{{url('sitemap')}}">Sitemap</a></li>
 							
 						</ul>
 					</div>
@@ -271,6 +267,147 @@
 	<script src="{{asset('js/jquery.zoom.min.js')}}"></script>
 	<script src="{{asset('js/jquery-ui.min.js')}}"></script>
 	<script src="{{asset('js/main.js')}}"></script>
+
+<script>
+$('#register-btnn').click(function(e){
+e.preventDefault();
+
+const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-warning'
+  },
+  buttonsStyling: false
+})
+
+swalWithBootstrapButtons.fire({
+  title: 'Register',
+  text: "Select an action to continue",
+  type: 'info',
+  showCancelButton: true,
+  confirmButtonText: 'Register as user',
+  cancelButtonText: 'Register as merchant',
+  reverseButtons: true
+}).then((result) => {
+  if (result.value) {
+    window.location = "register";
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    window.location = "mregister";
+  }
+})
+
+});
+
+$('#login-btnn').click(function(e){
+e.preventDefault();
+
+const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-warning'
+  },
+  buttonsStyling: false
+})
+
+swalWithBootstrapButtons.fire({
+  title: 'Login',
+  text: "Select an action to continue",
+  type: 'info',
+  showCancelButton: true,
+  confirmButtonText: 'Login as user',
+  cancelButtonText: 'Login as merchant',
+  reverseButtons: true
+}).then((result) => {
+  if (result.value) {
+    window.location = "login";
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    window.location = "login";
+  }
+})
+
+});
+</script>
+
+    <!-- Cloudinary js -->
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    <script type="text/javascript">  
+		let loadingg = document.getElementById("cloudinary-loading");
+		let trdc = 0;
+		console.log(loadingg);
+		//if(loadingg != null) loadingg.style.display = "none";
+    function createUploadWidget(dt){
+		loadingg.style.display == "inline";
+		loadingg.innerHTML = "Please wait..";
+		
+    var myWidget = cloudinary.createUploadWidget({
+        cloudName: 'kloudtransact', 
+       uploadPreset: 'gjbdj9bt',
+       publicId: dt}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info); 
+      document.getElementById("ird").value = dt;
+      
+      if(cdb == "deal"){
+      	trdc = parseInt(document.getElementById("irdc").value);
+          if(isNaN(trdc)) trdc = 1;
+          else if(Number.isInteger(trdc)) ++trdc; 
+      	document.getElementById("irdc").value = trdc;
+      }
+      
+      //console.log(document.getElementById("irdc").value);
+	 loadingg.innerHTML = "<span style='color: green;'>Image(s) uploaded.</span>";
+    }
+  });
+  return myWidget; 
+}
+
+function getRandInt(a,b){
+	let min = Math.ceil(a);
+	let max = Math.floor(b);
+	return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function getIRD(sird){
+	let nd = new Date();
+	return sird + "_" + nd.getHours() + "_" + nd.getDay() + "_" + getRandInt(1,8253272) + "_kampl";
+}
+
+if(typeof(cdb) === 'undefined' || cdb === null){}
+
+else{
+if(cdb == "blog"){
+document.getElementById("blog-upload").addEventListener("click", function(){
+	let bdd = getIRD("kloudblog");
+	let blogWidget = createUploadWidget(bdd);
+    blogWidget.open();
+  }, false);
+}
+
+if(cdb == "store"){
+  document.getElementById("store-upload").addEventListener("click", function(e){
+	 e.preventDefault();
+	let sdd = getIRD("my_store");
+	let storeWidget = createUploadWidget(sdd);
+    storeWidget.open();
+  }, false);
+}
+
+if(cdb == "deal"){
+  document.getElementById("deal-upload").addEventListener("click", function(e){
+	 e.preventDefault();
+	let sdd = getIRD("my_deal");
+	let dealWidget = createUploadWidget(sdd);
+    dealWidget.open();
+  }, false);
+}
+}
+</script>
 
     @yield('scripts')
 	</body>

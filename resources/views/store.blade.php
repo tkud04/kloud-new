@@ -19,7 +19,7 @@ $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$sto
 		<div class="container">
 		<div class="row">
 			   <div class="col-lg-12 text-center">
-				<img src="{{$store['img']}}" style="margin-bottom: 5px;" alt="{{$store['name']}}">
+				<img src="{{asset($img)}}" style="margin-bottom: 5px;" width="300" height="300" alt="{{$store['name']}}">
 			     <marquee>{!! $store['description'] !!}</marquee>
 			   </div>
 			</div><br><br>
@@ -67,7 +67,7 @@ $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$sto
 					                ?>
 				<div class="product-item">
 					<div class="pi-pic">
-						<img src="{{$imggs[0]}}" class="cli" data-cli="{{$dealURL}}" alt="{{$d['name']}}">
+						<img src="{{asset($imggs[0])}}" class="cli" data-cli="{{$dealURL}}" alt="{{$d['name']}}">
 						<div class="pi-links">
 							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
 							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
