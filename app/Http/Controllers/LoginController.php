@@ -34,8 +34,8 @@ class LoginController extends Controller {
 			$user = Auth::user();
 			return redirect()->intended('/');
 		}
-		
-    	return view('register',compact(['user']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('register',compact(['layoutAd','user']));
     }
 	/**
 	 * Show the application welcome screen to the user.
@@ -51,8 +51,8 @@ class LoginController extends Controller {
 			$user = Auth::user();
 			if($user->verified == "vendor") return redirect()->intended('/');
 		}
-		
-    	return view('mregister',compact(['user']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('mregister',compact(['layoutAd','user']));
     }
     
     /**
@@ -72,7 +72,8 @@ class LoginController extends Controller {
 			return redirect()->intended($return);
 		}
 		$signals = $this->helpers->signals;
-    	return view('login',compact(['user','return','signals']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('login',compact(['layoutAd','user','return','signals']));
     }
 
     /**
@@ -92,7 +93,8 @@ class LoginController extends Controller {
 			//return redirect()->intended($return);
 		}
 		$signals = $this->helpers->signals;
-    	return view('mlogin',compact(['user','return','signals']));
+		$layoutAd = $this->helpers->getAds();
+    	return view('mlogin',compact(['layoutAd','user','return','signals']));
     }
 
 	/**
@@ -167,7 +169,8 @@ class LoginController extends Controller {
 			return redirect()->intended($return);
 		} else{
 			$signals = $this->helpers->signals;
-         	return view('admin.login',compact(['user','return','signals']));
+			$layoutAd = $this->helpers->getAds();
+         	return view('admin.login',compact(['layoutAd','user','return','signals']));
           }
     }
 
@@ -348,7 +351,8 @@ class LoginController extends Controller {
 	
 	public function getForgotUsername()
     {
-         return view('forgot_username');
+		$layoutAd = $this->helpers->getAds();
+         return view('forgot_username',compact(['layoutAd',]));
     }
     
     /**
@@ -399,7 +403,8 @@ class LoginController extends Controller {
 			return redirect()->intended('/');
 		}
 		$signals = $this->helpers->signals;
-         return view('forgot-password', compact(['user','signals']));
+		$layoutAd = $this->helpers->getAds();
+         return view('forgot-password', compact(['layoutAd','user','signals']));
     }
     
     /**
@@ -463,7 +468,8 @@ class LoginController extends Controller {
 			return redirect()->intended('/');
 		}
 		$signals = $this->helpers->signals;
-         return view('admin.forgot-password', compact(['user','signals']));
+		$layoutAd = $this->helpers->getAds();
+         return view('admin.forgot-password', compact(['layoutAd','user','signals']));
     }
     
     /**
@@ -545,7 +551,8 @@ class LoginController extends Controller {
                 	return redirect()->back()->withErrors("The code is invalid or has expired. ","errors"); 
                 }
                 $v = ($user->role == "user") ? 'reset' : 'admin.reset';
-            	return view($v,compact(['user','return']));
+				$layoutAd = $this->helpers->getAds();
+            	return view($v,compact(['layoutAd','user','return']));
             }
             
             else
