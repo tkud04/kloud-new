@@ -33,7 +33,7 @@
 					   @if($status == "verified")
 						  <div class="tag-new"><i class="fa fa-check fa-2x text-center"></i></div>
 					   @endif
-						<img src="{{$img}}" alt="">
+						<img src="{{$img}}" class="cli" data-cli="{{$uu}}" alt="">
 						<div class="pi-links">
 							<a href="{{$uu}}" class="add-card"><i class="flaticon-store"></i><span>GO TO STORE</span></a>
 						</div>
@@ -82,7 +82,7 @@
 					   @if($status == "verified")
 						  <div class="tag-new"><i class="fa fa-check fa-2x text-center"></i></div>
 					   @endif
-						<img src="{{$img}}" alt="">
+						<img src="{{$img}}" class="cli" data-cli="{{$uu}}" alt="">
 						<div class="pi-links">
 							<a href="{{$uu}}" class="add-card"><i class="flaticon-store"></i><span>GO TO STORE</span></a>
 						</div>
