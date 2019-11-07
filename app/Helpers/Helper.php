@@ -2531,8 +2531,7 @@ function adminGetOrder($number)
            function getUserInvoice($user, $on)
            {
            	$ret = [];
-           	$order = Orders::where('number',$on)
-                                   ->where('user_id',$user->id)->first();   
+           	$order = Orders::where('number',$on)->first();   
                
                 if($order != null)
                {
