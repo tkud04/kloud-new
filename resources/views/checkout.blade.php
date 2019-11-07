@@ -41,7 +41,7 @@ echo "};</script>";
 									   @if(count($sd) > 0)
 									   @foreach($sd as $s)
 									   <?php
-									     if($s['address'] != "")
+									     if(isset($sdd['company']) && $s['address'] != "")
 										 {
 											 $addd = $s['address'].", ".$s['city'].", ".$s['state'];
 										 
@@ -63,10 +63,10 @@ echo "};</script>";
 						 if(count($sd) > 0 && count($sdd) > 0)
 						 {
 							 if(isset($sdd['company'])) $company = $sdd['company'];
-							 $address = $sdd['address'];
-							 $city = $sdd['city'];
-							 $zipcode = $sdd['zipcode'];
-							 $state = $sd[0]['state'];
+							 if(isset($sdd['address'])) $address = $sdd['address'];
+							 if(isset($sdd['city'])) $city = $sdd['city'];
+							 if(isset($sdd['zipcode'])) $zipcode = $sdd['zipcode'];
+							if(isset($sd[0]['state'])) $state = $sd[0]['state'];
 						 } 
 						?>
 						<div class="row address-inputs">
