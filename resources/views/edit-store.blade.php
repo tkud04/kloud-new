@@ -91,7 +91,7 @@ $img = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$sto
 						</div>
 						<div class="row address-inputs">
 							<div class="col-md-12">
-								<p class="form-control-plaintext text-left"><i class="fa fa-store"></i> Store pickup address<
+								<p class="form-control-plaintext text-left"><i class="fa fa-store"></i> Store pickup address
                                 <textarea class="form-control" name="pickup_address" placeholder="Enter pickup address (Number, Street, City, State)" required>{{$store['pickup_address']}}</textarea>
 							</div>
 						</div>

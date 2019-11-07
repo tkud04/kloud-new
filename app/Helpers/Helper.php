@@ -2495,7 +2495,7 @@ function adminGetOrder($number)
                    #create transaction for each deal
                    $stt = [];
                    $stt['type'] = "sold";
-                   $stt['description'] = $c['qty'].','.$c['deal']['id'].','.$order->id;                   
+                   $stt['description'] = $c['qty'].','.$c['deal']['id'].','.$order->number;                   
                    $stt['user_id'] = $c['deal']['u']->id;
                    $stt['amount'] = $amount;
                    $this->createTransaction($stt);                 
@@ -2510,6 +2510,9 @@ function adminGetOrder($number)
                    $tdt['amount'] = $data['total'];
                    $this->createTransaction($tdt); 
                
+			   
+			   //clear cart
+			   $this->clearCart($user);
            }
 
            function getInvoice($on)

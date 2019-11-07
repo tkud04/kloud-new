@@ -25,8 +25,16 @@
                          $status = $s['status'];
                          $uu = url("stores")."/".$flink;
 						 
-						 if($s['rating'] < 1) $ratingCount = 5;
-						 else $ratingCount = $s['rating'];
+						 if($s['rating'] < 1)
+						 {
+							$ratingCount = 5;
+                            $ratingClass = "fa-star-o";							
+						 }
+						 else
+						 {
+							$ratingCount = $s['rating'];
+                            $ratingClass = "fa-star";								
+						 } 
                       ?>
 				<div class="product-item">
 					<div class="pi-pic">
@@ -42,7 +50,7 @@
 						<h6>{{$dn}}</h6>
 						<p>                   
                         @for($x = 0; $x < $ratingCount; $x++)
-                          <i class="fa fa-star-o" aria-hidden="true"></i>
+                          <i class="fa {{$ratingClass}}" aria-hidden="true"></i>
                         @endfor
 						</p>
 					</div>
