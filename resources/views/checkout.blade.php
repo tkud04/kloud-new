@@ -41,7 +41,7 @@ echo "};</script>";
 									   @if(count($sd) > 0)
 									   @foreach($sd as $s)
 									   <?php
-									     if(isset($sdd['company']) && $s['address'] != "")
+									     if(isset($sdd['address']) && $s['address'] != "")
 										 {
 											 $addd = $s['address'].", ".$s['city'].", ".$s['state'];
 										 
