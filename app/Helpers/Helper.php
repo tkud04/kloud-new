@@ -1821,7 +1821,7 @@ $subject = $data['subject'];
                    	$data['auction_id'] = $a->id;
                      $hb = $this->getHighestBidder($a->id);
 					 
-                   	$b = Bids::where('user_id', $data['user_id'])
+                   	$b = Bids::where('user_id', $user->id)
                                 ->where('auction_id', $a->id)->first();
                                 
 					
