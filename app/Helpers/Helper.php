@@ -1819,7 +1819,8 @@ $subject = $data['subject'];
                	if($a != null)
                    {
                    	$data['auction_id'] = $a->id;
-                   
+                     $hb = $this->getHighestBidder($a->id);
+					 
                    	$b = Bids::where('user_id', $data['user_id'])
                                 ->where('auction_id', $a->id)->first();
                                 
@@ -1827,28 +1828,22 @@ $subject = $data['subject'];
 					     //check if account balance is enough
                           $wallet = $this->getWallet($user);
                    
-                       if($a->buy_price > 0 to)
+                       if($a->buy_price > 0)
                        {
+						   $ba = 1;
+						   if($hb != "none") $ba = $hb + 1;
+						   $data['amount'] = $ba;
+						   
                        	if($b == null)
-                          {                       	
-                          	$data['amount'] = 1;
+                          {                       	                        	
                           	$this->createBid($data);
                           }
                           else
                           {
-                          	$data['amount'] = $b->amount + 1;
                           	$this->updateBid($data);
                           }
                           
-                          /**debit the bidder
-                 	    $userData = ['email' => $user->email,
-                                     'type' => 'remove',
-                                     'amount' => $this->getBidAmount()
-                                    ];
-                                    
-                         $this->fundWallet($userData);
-                         **/
-                          $ret = "ok";
+                        $ret = $this->adminEndAuction($a->id,'buy');
                        }                     
 					      
                    }       
