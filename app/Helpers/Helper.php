@@ -1833,6 +1833,7 @@ $subject = $data['subject'];
 						   $ba = 1;
 						   if($hb != "no") $ba = $hb + 1;
 						   $data['amount'] = $ba;
+						   $data['user_id'] = $user->id;
 						   
                        	if($b == null)
                           {                       	                        	
