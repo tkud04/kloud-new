@@ -1834,6 +1834,7 @@ $subject = $data['subject'];
 						   if($hb != "no") $ba = $hb + 1;
 						   $data['amount'] = $ba;
 						   $data['user_id'] = $user->id;
+						   $data['sz'] = "";
 						   
                        	if($b == null)
                           {                       	                        	
