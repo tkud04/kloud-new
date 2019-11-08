@@ -1831,7 +1831,7 @@ $subject = $data['subject'];
                        if($a->buy_price > 0)
                        {
 						   $ba = 1;
-						   if($hb != "none") $ba = $hb + 1;
+						   if($hb != "no") $ba = $hb + 1;
 						   $data['amount'] = $ba;
 						   
                        	if($b == null)
