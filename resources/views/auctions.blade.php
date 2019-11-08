@@ -23,7 +23,7 @@
                     $data = $deal['data'];
                     $images = $deal['images'];
                          shuffle($images);
-                         $imggs = ["img/no-image.png"];
+                         $imggs = [];
                          
                          if(count($images) < 1) { $imggs = ["img/no-image.png"]; }
                                       else{
