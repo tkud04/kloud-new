@@ -23,6 +23,8 @@
                     $data = $deal['data'];
                     $images = $deal['images'];
                          shuffle($images);
+                         $imggs = ["img/no-image.png"];
+                         
                          if(count($images) < 1) { $imggs = ["img/no-image.png"]; }
                                       else{
                                       	$ird = $images[0]['url'];
@@ -32,11 +34,11 @@
 										}
 										else
 										{
-                                      	  for($x = 0; $x < $images[0]['irdc']; $x++)
+                                      	  for($x = 0; $x < count($images); $x++)
 										  {
                                       	   $jara = "";
                                            if($x > 0) $jara = "-".($x + 1);
-                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/uploads/".$ird.$jara;
+                                      	   $imgg = "https://res.cloudinary.com/kloudtransact/image/upload/v1563645033/".$images[$x]['url'];
                                            array_push($imggs,$imgg); 
                                           }
 										}
