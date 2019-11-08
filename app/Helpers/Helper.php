@@ -1804,6 +1804,58 @@ $subject = $data['subject'];
                                                       
                 return $ret;
            }
+		   
+		   function buyAuction($user,$data)
+           {
+           	$ret = "error";
+              #dd($data);
+               $deal = Deals::where('sku',$data['sku'])->first();
+ 
+              if($deal != null)
+               {
+				$a = Auctions::where('deal_id',$deal->id)->first();
+				#$ret['bids'] = []; 
+				
+               	if($a != null)
+                   {
+                   	$data['auction_id'] = $a->id;
+                   
+                   	$b = Bids::where('user_id', $data['user_id'])
+                                ->where('auction_id', $a->id)->first();
+                                
+					
+					     //check if account balance is enough
+                          $wallet = $this->getWallet($user);
+                   
+                       if($a->buy_price > 0 to)
+                       {
+                       	if($b == null)
+                          {                       	
+                          	$data['amount'] = 1;
+                          	$this->createBid($data);
+                          }
+                          else
+                          {
+                          	$data['amount'] = $b->amount + 1;
+                          	$this->updateBid($data);
+                          }
+                          
+                          /**debit the bidder
+                 	    $userData = ['email' => $user->email,
+                                     'type' => 'remove',
+                                     'amount' => $this->getBidAmount()
+                                    ];
+                                    
+                         $this->fundWallet($userData);
+                         **/
+                          $ret = "ok";
+                       }                     
+					      
+                   }       
+               }                          
+                                                      
+                return $ret;
+           }
 
 
           function adminGetUsers()

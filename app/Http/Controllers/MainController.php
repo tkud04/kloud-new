@@ -518,6 +518,48 @@ class MainController extends Controller {
     	return view('my-bids',compact(['layoutAd','user','cart','bids','category','c','signals','mainClass']));
     }
     
+	
+	/**
+	 * Show the application welcome screen to the user.
+	 *
+	 * @return Response
+	 */
+	public function getBuy(Request $request)
+    {
+       $user = null;
+		
+		if(Auth::check())
+		{
+			$user = Auth::user();
+		}
+		else
+        {
+        	return redirect()->intended('login?return=dashboard');
+        }
+        
+		$req = $request->all();
+        //dd($req);
+        
+        $validator = Validator::make($req, [
+                             'sku' => 'required',
+         ]);
+         
+         if($validator->fails())
+         {
+             $messages = $validator->messages();
+             return redirect()->back();
+             //dd($messages);
+         }
+         
+         else
+         {
+             #$req["uid"] = $user->id; 
+			 
+             $ret = $this->helpers->buyAuction($user,$req);
+	        session()->flash("buy-auction-status",$ret);
+			return redirect()->intended('cart');
+         }           	
+    }
 
 	/**
 	 * Show the application welcome screen to the user.
