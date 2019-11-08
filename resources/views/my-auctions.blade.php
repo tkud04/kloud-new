@@ -37,6 +37,7 @@
                     $deal = $a['deal'];
                     $images = $deal['images'];
                          shuffle($images);
+                         $imggs = ["img/no-image.png"];
                         if(count($images) < 1) { $imggs = ["img/no-image.png"]; }
                                       else{
                                       	$ird = $images[0]['url'];
