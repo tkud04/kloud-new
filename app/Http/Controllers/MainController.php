@@ -2252,7 +2252,7 @@ class MainController extends Controller {
 		{
 			$user = Auth::user();
 		}
-		$deals = Deals::where('id','0')->get();
+		$deals = Deals::where('id','>','0')->get();
                  #dd($img);
               
              if($deals != null)
