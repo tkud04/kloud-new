@@ -2245,16 +2245,26 @@ class MainController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function getPractice()
+	public function getPractice(Request $request)
     {
 		$user = null;
     	if(Auth::check())
 		{
 			$user = Auth::user();
 		}
-		$signals = $this->helpers->signals;
-		$layoutAd = $this->helpers->getAds();
-		return view('fff',compact(['layoutAd','user','signals']));
+		$deals = Deals::where('id','0')->get();
+                 #dd($img);
+              
+             if($deals != null)
+                {
+                  foreach($deals as $d)
+                 {           
+                 	$this->helpers->deleteDeal($user, $d->id);
+                 }
+             }
+         	#dd($req);
+	        $request->session()->flash("delete-deal-status","ok");
+			return redirect()->intended('deals');
     }   
     
     /**
