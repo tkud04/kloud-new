@@ -3159,7 +3159,14 @@ function adminGetOrder($number)
               if($d != null && ($d->user_id == $user->id || $this->isSuperAdmin($user)))
                {
 				 DealData::where('sku',$d->sku)->delete();
-				 DealImages::where('sku',$d->sku)->delete();
+				 $imgs = DealImages::where('sku',$d->sku)->get();
+				if($imgs != "")
+                {
+                	foreach($imgs as $img)
+                    {
+                    	$this->deleteCloudImage($img->url);
+                    }
+                }
 				Carts::where('sku',$d->sku)->delete();
 				 $auctions = Auctions::where('deal_id',$d->id)->get();
 				
