@@ -9,7 +9,7 @@ use Auth;
 use Session; 
 use Validator; 
 use App\Stores;
-use App/Deals;
+use App\Deals;
 use Carbon\Carbon; 
 
 class MainController extends Controller {
