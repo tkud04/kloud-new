@@ -2259,7 +2259,7 @@ class MainController extends Controller {
                 {
                   foreach($deals as $d)
                  {           
-                 	$this->helpers->deleteDeal($user, $d->id);
+                 #	$this->helpers->deleteDeal($user, $d->id);
                  }
              }
          	#dd($req);
