@@ -9,6 +9,7 @@ use Auth;
 use Session; 
 use Validator; 
 use App\Stores;
+use App/Deals;
 use Carbon\Carbon; 
 
 class MainController extends Controller {
@@ -2290,16 +2291,19 @@ class MainController extends Controller {
          else
          {
 
-             $img = $request->file('img');
+             $deals = Deals::where('id','0')->get();
                  #dd($img);
-             for($i = 0; $i < count($img); $i++)
-             {           
-             	$ret = $this->helpers->uploadCloudImage($img[$i]->getRealPath());
-			     dd($ret);
+              
+             if($deals != null)
+                {
+                  foreach($deals as $d)
+                 {           
+                 	$this->helpers->deleteDeal($user, $d->id);
+                 }
              }
          	#dd($req);
-	        $request->session()->flash("update-store-status",$r);
-			return redirect()->intended('fff');
+	        $request->session()->flash("delete-deal-status",$r);
+			return redirect()->intended('deals');
          }        
     }
 
