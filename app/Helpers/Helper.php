@@ -862,6 +862,7 @@ $subject = $data['subject'];
                           
                           if($type == "auction"){
                                         	$b = $od['bid'];
+                                           dd($b);
                                             if($b != null){
                                             	$amount = $b->pay;
                                             }
