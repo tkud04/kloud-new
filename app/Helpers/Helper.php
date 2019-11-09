@@ -470,6 +470,7 @@ $subject = $data['subject'];
            {
            	$ret = OrderDetails::create(['order_id' => $data['order_id'],                                                                                                          
                                                       'deal_id' => $data['deal_id'], 
+                                                      'auction_id' => $data['auction_id'], 
                                                       'qty' => $data['qty'],
                                                       'color' => $data['color'],
                                                       'size' => $data['size'],
@@ -862,7 +863,7 @@ $subject = $data['subject'];
                           
                           if($type == "auction"){
                                         	$b = $od['bid'];
-                                           dd($b);
+                                          # dd($b);
                                             if($b != null){
                                             	$amount = $b->pay;
                                             }
