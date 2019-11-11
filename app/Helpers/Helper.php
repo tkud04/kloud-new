@@ -142,7 +142,7 @@ class Helper implements HelperContract
                      "add-leads-status" => "Leads added.",                   
                      "delete-leads-status" => "Leads deleted.", 
                      "vendor-signup-status" => "Welcome to your new store! Import your products and start selling.",
-                     "signup-status" => "Signup successful! You can now log in.",
+                     "signup-status" => "Signup successful. Welcome to KloudTransact!",
                      ],
                      'errors'=> ["login-status-error" => "There was a problem signing in, please contact support.",
                      "cobra-user-status-error" => "There was an error updating info for this user. Please try again.",

@@ -252,6 +252,7 @@ class LoginController extends Controller {
                        #dd($req);            
 
             $user =  $this->helpers->createUser($req); 
+			Auth::login($user);
 			$req['user_id'] = $user->id;
             $shippingDetails =  $this->helpers->createShippingDetails($req); 
             $wallet =  $this->helpers->createWallet($req); 
