@@ -1,6 +1,6 @@
 <?php
 $user = null;
-layoutAd = [];
+$layoutAd = [];
 ?>
 @extends("layout")
 
