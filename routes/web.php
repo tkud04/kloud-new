@@ -94,8 +94,10 @@ Route::get('delete-auction', 'MainController@getDeleteAuction');
 Route::get('bid', 'MainController@getBid');
 Route::get('my-bids', 'MainController@getMyBids');
 
+/*
 Route::get('posts', 'MainController@getBlogPosts');
 Route::get('post', 'MainController@getBlogPost');
+*/
 
 Route::get('my-store', 'MainController@getMyStore');
 Route::get('stores', 'MainController@getStores');

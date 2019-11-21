@@ -129,7 +129,7 @@
 						</ul>
 					</li>
 					<li><a href="{{url('userguide')}}">User Guide</a></li>
-					<li><a href="{{url('blog')}}">Blog</a></li>
+					<li><a href="#">Blog</a></li>
 				</ul>
 			</div>
 		</nav>
