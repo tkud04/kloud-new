@@ -75,7 +75,7 @@
 				</div>
 				<div class="col-md-4 p-0 feature">
 					<div class="">
-					    <a href="{{url('travelstart')}}">
+					    <a href="{{url('travel')}}">
 						   <img class="img img-fluid img-upsell" src="img/travel.jpg" alt="#">	'
                         </a>						   
 					</div>
