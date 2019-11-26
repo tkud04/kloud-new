@@ -1136,7 +1136,7 @@ class MainController extends Controller {
 			$user = Auth::user();
 			$cart = $this->helpers->getCart($user);
 		}
-		$title = "Travel Start";
+		$title = "Travel";
 		$layoutAd = $this->helpers->getAds();
         return view('travelstart',compact(['layoutAd','user','cart','title']));
     }
