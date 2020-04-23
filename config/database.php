@@ -39,7 +39,7 @@ return [
             'prefix' => '',
         ],
 
-		//mysql://be1f93332b1f5d:2ee2e7dc@us-cdbr-iron-east-04.cleardb.net/heroku_f826352c3070c58?reconnect=true
+		//mysql://b067f9b4f4dc68:5caf3f6d@us-cdbr-iron-east-01.cleardb.net/heroku_b5e40b802668c82?reconnect=true
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', 'us-cdbr-iron-east-05.cleardb.net'),
