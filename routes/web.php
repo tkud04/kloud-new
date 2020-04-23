@@ -42,7 +42,7 @@ Route::post('comment', 'MainController@postComment');
 Route::get('faq', 'MainController@getFAQ');
 Route::get('airtime', 'MainController@getAirtime');
 Route::get('hotels', 'MainController@getHotels');
-Route::get('travelstart', 'MainController@getTravelStart');
+Route::get('travel', 'MainController@getTravelStart');
 Route::get('enterprise', 'MainController@getEnterprise');
 Route::get('merchants', 'MainController@getMerchants');
 
