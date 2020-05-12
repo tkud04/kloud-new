@@ -226,8 +226,8 @@ class LoginController extends Controller {
         
         $validator = Validator::make($req, [
                              'pass' => 'required|confirmed',
-                             'email' => 'required|email',                            
-                             'phone' => 'required|numeric',
+                             'email' => 'required|email|unique:users',                            
+                             'phone' => 'required|numeric|unique:users',
                              'fname' => 'required',
                              'lname' => 'required',
                              'dcd' => 'required',
