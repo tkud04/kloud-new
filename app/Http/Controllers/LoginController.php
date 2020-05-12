@@ -234,7 +234,7 @@ class LoginController extends Controller {
                              #'g-recaptcha-response' => 'required',
                            # 'terms' => 'accepted',
          ]);
-         
+         //dd($validator);
          if($validator->fails())
          {
              $messages = $validator->messages();
