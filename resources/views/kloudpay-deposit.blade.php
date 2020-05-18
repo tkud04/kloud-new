@@ -43,7 +43,7 @@
                             <input type="hidden" id="card-action" value="{{url('pay')}}">
                             	
 						
-						<button type="submit" class="site-btn submit-order-btn">Submit</button>
+						<button id="deposit-card" class="site-btn submit-order-btn">Submit</button>
 					</form>
           </div>
         </div>
