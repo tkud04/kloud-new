@@ -12,12 +12,12 @@
           <div class="col-lg-12 mx-auto text-center">
             <form class="checkout-form" action="{{url('withdraw')}}" method="post">
 				{!!csrf_field()!!}
-						<div class="cf-title">Withdraw funds from your KloudPay wallet by filling the form below.. <strong style="color:red;">Minimum: &#8358;5,000.00</strong></div>
+						<div class="cf-title">Withdraw funds from your KloudPay wallet by filling the form below.. <strong style="color:red;">Minimum: &#8358;1,000.00</strong></div>
 						
 						<div class="row address-inputs">
 							<div class="col-md-12">
 								  <p class="form-control-plaintext"><i class="fa fa-briefcase"></i> Current balance: &#8358;{{number_format($wallet['balance'], 2)}}</p><br>
-                               <input type="number" class="form-control" name="amount" id="amount" value="" placeholder="Enter amount" min="5000" required><br>
+                               <input type="number" class="form-control" name="amount" id="amount" value="" placeholder="Enter amount" min="1000" required><br>
 							</div>
 						</div>
 						<div class="row address-inputs">
