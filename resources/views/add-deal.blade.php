@@ -34,7 +34,7 @@
 				 <input type="hidden" name="ird" id="ird" value="" required>
                  <input type="hidden" name="irdc" id="irdc" value="" required>
                  <input type="hidden" name="description" id="description" value="" required>
-                 <input type="hidden" name="color" id="ccolor" value="" required>
+                
               				   
 						<div class="cf-title">Add a new deal to the system<br>Only deals that are approved will be displayed on our platform</div>
 						<div class="row address-inputs">
@@ -66,8 +66,7 @@
 						<div class="row address-inputs">
 							<div class="col-md-6">
 								<p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Color</p><br>
-                                <span>Click the box to specify product color</span>
-								<div class="color-picker"></div>
+                                <input type="text" class="form-control" name="color" value="" placeholder="Blue or blue,red,green or #fff" required>
 							</div>
 							<div class="col-md-6">
 								 <p class="form-control-plaintext text-left"><i class="fa fa-asterik"></i> Size</p><br>
@@ -87,7 +86,7 @@
                                             <option value="{{$key}}">{{$value}}</option>
                                             @endforeach
                                        </select><br>
-									   <input type="number" class="form-control" id="size-2" name="size-2" value="" placeholder="Enter size">
+									   <input type="text" class="form-control" id="size-2" name="size-2" value="" placeholder="Enter size">
 							</div>
 						</div>
 						<div class="row address-inputs">

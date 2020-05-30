@@ -1688,7 +1688,7 @@ class MainController extends Controller {
              $sz = "";
              if($req['size-1'] == "other")
 			 {
-				 if(isset($req['size-2']) && $req['size-2'] > 0) $sz = $req['size-2'];
+				 if(isset($req['size-2'])) $sz = $req['size-2'];
 				 else $sz = "0";
 			 }
              else
