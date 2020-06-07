@@ -3764,6 +3764,41 @@ function adminGetOrder($number)
                 }       
                 return $ret;
            }
+		   
+		   function arrangeSliders($sliders)
+		   {
+			   $ret = []; $retCount = 1;
+			   $last = null;
+			   $slidersLength = count($sliders);
+			   
+			  if($slidersLength > 0)
+			  {
+				  for($i = 0; $i < $slidersLength; $i++)
+				  {
+					  $s = $sliders[$i];
+					  if($s['type'] == "first")
+					  {
+						  $ret[0] = $s;
+					  }
+					  elseif($s['type'] == "random")
+					  {
+						  $ret[$retCount] = $s;
+						  ++$retCount;
+					  }
+					  elseif($s['type'] == "last")
+					  {
+						  $last = $s;
+					  }
+				  }
+				  
+				  if($last != null)
+				  {
+					  $ret[$slidersLength] = $last;
+				  }
+			  }
+			  
+			  return $ret;
+		   }
            
 }
 ?>

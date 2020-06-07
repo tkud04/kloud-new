@@ -42,7 +42,9 @@ class MainController extends Controller {
 		$na = $this->helpers->getNewArrivals();
 		$bs = $this->helpers->getBestSellers();
 		$hc = $this->helpers->getHotCategories();
-		$sliders = $this->helpers->getSliders();
+		$ss = $this->helpers->getSliders();
+		$sliders = $this->helpers->arrangeSliders($ss);
+		dd($sliders);
 		$indexAd = $this->helpers->getAds();
 		$layoutAd = $this->helpers->getAds();
 		//dd($sliders);
