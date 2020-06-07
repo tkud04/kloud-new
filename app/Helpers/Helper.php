@@ -3768,22 +3768,20 @@ function adminGetOrder($number)
 		   function arrangeSliders($sliders)
 		   {
 			   $ret = []; $retCount = 1;
-			   $last = null;
+			   $last = null; $first = null; $randoms = [];
 			   $slidersLength = count($sliders);
 			   
 			  if($slidersLength > 0)
 			  {
-				  for($i = 0; $i < $slidersLength; $i++)
+				  foreach($sliders as $s)
 				  {
-					  $s = $sliders[$i];
 					  if($s['type'] == "first")
 					  {
-						  $ret[0] = $s;
+						  $first = $s;
 					  }
 					  elseif($s['type'] == "random")
 					  {
-						  $ret[$retCount] = $s;
-						  ++$retCount;
+						  array_push($randoms,$s);
 					  }
 					  elseif($s['type'] == "last")
 					  {
@@ -3791,9 +3789,19 @@ function adminGetOrder($number)
 					  }
 				  }
 				  
+				  if($first != null)
+				  {
+					 array_push($ret,$first);
+				  }
+				  
+				  foreach($randoms as $r)
+				  {
+					  array_push($ret,$r);
+				  }
+				  
 				  if($last != null)
 				  {
-					  $ret[$slidersLength] = $last;
+					  array_push($ret,$last);
 				  }
 			  }
 			  
