@@ -44,7 +44,7 @@ class MainController extends Controller {
 		$hc = $this->helpers->getHotCategories();
 		$ss = $this->helpers->getSliders();
 		$sliders = $this->helpers->arrangeSliders($ss);
-		dd($sliders);
+		#dd($sliders);
 		$indexAd = $this->helpers->getAds();
 		$layoutAd = $this->helpers->getAds();
 		//dd($sliders);
